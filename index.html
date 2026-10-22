@@ -29,6 +29,11 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 .case-link .name{font-weight:700;font-size:15px;display:block}
 .case-link .meta{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
 .case-link.active .meta{color:#3f6b64}
+.case-link.red .name{color:#a3241f}
+.case-link.red{border-color:#f0d3d1}
+.case-link.red:hover{background:#fdf2f1}
+.case-link.red.active{background:#fbeae8;border-color:#e3b3b0}
+.case-link.red.active .meta{color:#8a4a45}
 .sidebar-foot{padding:14px 20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 .sidebar-foot a{color:var(--accent);font-weight:600;text-decoration:none}
 .sidebar-foot a:hover{text-decoration:underline}
@@ -79,7 +84,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     </div>
     <nav class="nav" id="nav">
       <details class="group"><summary>Skills</summary>
-      <a class="case-link" href="#behavioral-interview-prep" data-src="/behavioral-interview-prep/">
+      <a class="case-link red" href="#behavioral-interview-prep" data-src="/behavioral-interview-prep/">
         <span class="name">Behavioral Prep</span>
         <span class="meta">SJT practice · behavioral answers · ~20 min</span>
       </a>
