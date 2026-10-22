@@ -259,7 +259,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     fslink.hidden = false;
     openfull.href = link.getAttribute('data-src');
     fslink.href = link.getAttribute('data-src');
-    frame.src = link.getAttribute('data-src');
+    frame.src = link.getAttribute('data-src') + (link.getAttribute('data-src').indexOf('?')>-1?'&':'?') + 'v=' + Date.now();
     frame.style.display = 'block';
   }
   function showWelcome(){
