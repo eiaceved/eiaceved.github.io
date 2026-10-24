@@ -6,7 +6,7 @@
 <title>Evelyn Jones · Case Practice Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
 :root{
   --bg:#f2f5f6; --surface:#ffffff; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
@@ -73,6 +73,72 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   .stage{min-height:70vh}
 }
 </style>
+<style>
+/* Start-here intro (scoped to .intro) */
+/* Scoped to .intro so it can drop into the hub without touching other pages. */
+.intro{
+  --bg:#f2f5f6;--surface:#fff;--surface-2:#e8eef0;--fg:#13202a;--fg-2:#44525d;--muted:#6c7a84;--line:#d4dce0;
+  --accent:#0d6b61;--accent-ink:#0a5a51;--accent-soft:#dbeeea;--on-accent:#fff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--r:10px;
+  background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;min-height:100vh}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .intro{--bg:#0d1215;--surface:#151c20;--surface-2:#1b252a;--fg:#e5ecef;--fg-2:#a8b4bb;--muted:#7c8992;--line:#29343a;--accent:#4cc2b1;--accent-ink:#72d4c6;--accent-soft:#11302c;--on-accent:#06201c}}
+:root[data-theme="dark"] .intro{--bg:#0d1215;--surface:#151c20;--surface-2:#1b252a;--fg:#e5ecef;--fg-2:#a8b4bb;--muted:#7c8992;--line:#29343a;--accent:#4cc2b1;--accent-ink:#72d4c6;--accent-soft:#11302c;--on-accent:#06201c}
+.intro *{box-sizing:border-box}
+.intro .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.intro h1,.intro h2,.intro h3{font-family:var(--display);font-stretch:86%;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.intro p{margin:0 0 .8em}
+.intro a{color:var(--accent-ink)}
+.intro .eyebrow,.intro .lbl{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.intro .hero{padding-top:52px;padding-bottom:28px}
+.intro .hero .eyebrow{color:var(--accent-ink);margin-bottom:12px}
+.intro .hero h1{font-size:clamp(40px,8vw,62px);line-height:1;font-weight:800;font-stretch:80%}
+.intro .lede{font-size:20px;line-height:1.5;color:var(--fg-2);max-width:36em;margin-top:16px}
+.intro .sec{padding:34px 0;border-top:1px solid var(--line)}
+.intro .sec>h2{font-size:clamp(24px,4vw,30px);font-weight:750}
+.intro .sub{color:var(--fg-2);margin-top:6px;max-width:40em}
+.intro .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.intro .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;min-width:0}
+.intro .card h3{font-size:19px;font-weight:700;line-height:1.25}
+.intro .card p{font-size:15.5px;color:var(--fg-2);line-height:1.45;margin:6px 0 12px}
+.intro .card .go{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap}
+.intro .btn{font:600 14px/1.2 var(--body);border-radius:8px;padding:8px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;display:inline-block}
+.intro .btn:hover{border-color:var(--muted)}
+.intro .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.intro .steps{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:s}
+.intro .steps li{background:var(--surface-2);border-radius:8px;padding:12px;min-width:0;counter-increment:s;font-size:15px;line-height:1.4}
+.intro .steps li::before{content:counter(s);display:block;font:600 12px var(--mono);color:var(--accent-ink);margin-bottom:4px}
+.intro .steps b{display:block;font:700 16px var(--display);font-stretch:90%;margin-bottom:2px}
+.intro .note{font-size:15px;color:var(--fg-2);margin-top:12px}
+.intro .firms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.intro .firm{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.intro .firm h3{font-size:18px}
+.intro .firm .lbl{color:var(--muted);margin:2px 0 8px}
+.intro .firm ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.intro .firm li{font-size:15.5px;line-height:1.35}
+.intro .firm li span{color:var(--fg-2);font-size:14px}
+.intro .plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.intro .plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.intro .plan h3{font-size:19px}
+.intro .plan ol{margin:8px 0 0;padding-left:1.2em;font-size:15.5px;line-height:1.45}
+.intro .plan li{margin-bottom:6px}
+.intro .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.intro .about p{font-size:17px}
+.intro .pull{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px}
+.intro .pull p:last-child{margin-bottom:0}
+.intro footer{padding:28px 0 56px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+@media (max-width:760px){
+  .intro .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .intro .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .intro .about{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .intro{font-size:16px}
+  .intro .grid,.intro .firms,.intro .plans{grid-template-columns:minmax(0,1fr)}
+  .intro .lede{font-size:18px}
+}
+.stage .intro{flex:1;min-height:0;overflow-y:auto}
+</style>
 </head>
 <body>
 <div class="app">
@@ -83,6 +149,10 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
       <p>Interactive mock cases for casing practice</p>
     </div>
     <nav class="nav" id="nav">
+      <a class="case-link" href="#start" id="start-link">
+        <span class="name">Start here</span>
+        <span class="meta">How the hub works</span>
+      </a>
       <details class="group"><summary>Skills</summary>
       <a class="case-link red" href="#behavioral-interview-prep" data-src="/behavioral-interview-prep/">
         <span class="name">Behavioral Prep</span>
@@ -194,10 +264,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
         <span class="name">Fernway IPO</span>
         <span class="meta">PwC CMAAS · ~35 min</span>
       </a>
-      <a class="case-link" href="#fernway-ipo-mock-case-1" data-src="/fernway-ipo-mock-case-1/">
-        <span class="name">Fernway Pet Co.</span>
-        <span class="meta">CMAAS · ~35 min</span>
-      </a>
       <a class="case-link" href="#brightleaf-acquisition-case" data-src="/brightleaf-acquisition-case/">
         <span class="name">BrightLeaf Acquisition</span>
         <span class="meta">CMAAS · ~35 min</span>
@@ -214,22 +280,186 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
       <details class="subgroup"><summary style="color:#00338D">KPMG</summary>
       <a class="case-link" href="#kpmg-coastline-packaging-case" data-src="/kpmg-coastline-packaging-case/">
         <span class="name">Coastline Packaging</span>
-        <span class="meta">KPMG Deal Advisory · public sample case</span>
+        <span class="meta">KPMG Deal Advisory style</span>
       </a>
       <a class="case-link" href="#kpmg-northfield-dairy-case" data-src="/kpmg-northfield-dairy-case/">
         <span class="name">Northfield Dairy</span>
-        <span class="meta">KPMG Deal Advisory · public sample case</span>
+        <span class="meta">KPMG Deal Advisory style</span>
       </a>
       </details>
       </details>
       </details>
     </nav>
     <div class="sidebar-foot">
-      <a id="fullscreen-link" href="#" target="_blank" rel="noopener" hidden>Open this case full screen →</a>
+      <a id="fullscreen-link" href="/" target="_blank" rel="noopener" hidden>Open this case full screen →</a>
     </div>
         
     </aside>
   <main class="stage">
+    <div class="intro" id="intro" style="display:none">
+
+<header class="hero wrap">
+  <p class="eyebrow">Case Practice Hub · Start here</p>
+  <h1>Practice like it's the real interview</h1>
+  <p class="lede">Free, interactive prep for consulting and Big 4 advisory interviews: mock cases, case math, behavioral prep, and finance basics. Every page explains its own jargon and reveals one step at a time, so you learn the why, not just the answer.</p>
+</header>
+
+<div class="wrap">
+
+<section class="sec">
+  <h2>Where do you want to start?</h2>
+  <p class="sub">Pick the line that sounds most like you.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>I'm new to case interviews</h3>
+      <p>Learn how to do math out loud, then try CoffeeCo, a short public Bain sample case.</p>
+      <div class="go"><a class="btn primary" href="#case-math-habits">Math habits</a><a class="btn" href="#bain-coffeeco-case">CoffeeCo</a></div>
+    </div>
+    <div class="card">
+      <h3>I have a case interview coming up</h3>
+      <p>Find your firm below and do two of its cases out loud, with the timers on.</p>
+      <div class="go"><a class="btn primary" href="#fernway-ipo-mock-case">Try a PwC case</a></div>
+    </div>
+    <div class="card">
+      <h3>The math trips me up</h3>
+      <p>Twelve short topics with worked examples and calculators. Start with percentages and break-even.</p>
+      <div class="go"><a class="btn primary" href="#case-math-basics">Case Math</a><a class="btn" href="#case-math-breakeven">Break-even</a></div>
+    </div>
+    <div class="card">
+      <h3>I have a behavioral round or online assessment</h3>
+      <p>A situational judgment test with 50 workplace scenarios, a score, and the reasoning behind every answer.</p>
+      <div class="go"><a class="btn primary" href="#behavioral-interview-prep">Behavioral Prep</a></div>
+    </div>
+    <div class="card">
+      <h3>EBITDA and multiples confuse me</h3>
+      <p>How deals are priced, in plain English: why profit gets multiplied, what changes the price, and what doesn't.</p>
+      <div class="go"><a class="btn primary" href="#case-math-value">Deal math</a><a class="btn" href="#understanding-basic-finance">Finance basics</a></div>
+    </div>
+    <div class="card">
+      <h3>I want to sound current</h3>
+      <p>Upcoming IPOs and a watchlist, refreshed daily. Useful for "what deal have you been following?"</p>
+      <div class="go"><a class="btn primary" href="#markets">Markets</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>How every case works</h2>
+  <p class="sub">Each mock case runs like a real interview, one step at a time.</p>
+  <ol class="steps">
+    <li><b>Listen or read</b>Every step has a Listen button that reads the prompt aloud.</li>
+    <li><b>Answer out loud</b>Use the timers. Say your answer before you reveal anything.</li>
+    <li><b>Compare</b>Reveal a strong answer and see what you missed.</li>
+    <li><b>Work the numbers</b>Charts, step-by-step math, and calculators you can change.</li>
+    <li><b>Test yourself</b>A 12-question practice test at the end of every case.</li>
+  </ol>
+  <p class="note">Each case starts with a short primer on the firm, the team, and the terms you'll hear. Hints stay hidden until you ask for them.</p>
+</section>
+
+<section class="sec">
+  <h2>Find your firm</h2>
+  <p class="sub">Cases written in each firm's style, plus public sample cases with walkthroughs.</p>
+  <div class="firms">
+    <div class="firm">
+      <h3>PwC</h3><p class="lbl">CMAAS and strategy</p>
+      <ul>
+        <li><a href="#fernway-ipo-mock-case">Fernway IPO</a> <span>· IPO readiness, controls, risk sizing</span></li>
+        <li><a href="#brightleaf-acquisition-case">BrightLeaf Acquisition</a> <span>· quality of earnings, valuation, earnouts</span></li>
+        <li><a href="#pwc-luxury-hotel-entry-case">Luxury Hotel Entry</a> <span>· market entry, from a public mock interview</span></li>
+        <li><a href="#pwc-hair-restore-case">Hair Restore</a> <span>· Strategy&amp;, probability and launch decisions</span></li>
+      </ul>
+    </div>
+    <div class="firm">
+      <h3>EY</h3><p class="lbl">Technology Risk and EY-Parthenon</p>
+      <ul>
+        <li><a href="#harbor-bank-mock-case">Harbor Bank</a> <span>· technology risk</span></li>
+        <li><a href="#ey-fairway-sports-case">Fairway Sports</a> <span>· EY-Parthenon style</span></li>
+        <li><a href="#ey-brightwell-tutoring-case">Brightwell Tutoring</a> <span>· EY-Parthenon style</span></li>
+      </ul>
+    </div>
+    <div class="firm">
+      <h3>KPMG</h3><p class="lbl">Deal Advisory</p>
+      <ul>
+        <li><a href="#kpmg-coastline-packaging-case">Coastline Packaging</a> <span>· financial due diligence</span></li>
+        <li><a href="#kpmg-northfield-dairy-case">Northfield Dairy</a> <span>· merger synergies</span></li>
+      </ul>
+    </div>
+    <div class="firm">
+      <h3>McKinsey</h3><p class="lbl">McKinsey style</p>
+      <ul>
+        <li><a href="#mckinsey-harvest-grocers-case">Harvest Grocers</a></li>
+        <li><a href="#swift-distribution-case">Swift Distribution</a> <span>· with frameworking practice</span></li>
+      </ul>
+    </div>
+    <div class="firm">
+      <h3>BCG</h3><p class="lbl">BCG style</p>
+      <ul>
+        <li><a href="#bcg-starlight-cinemas-case">Starlight Cinemas</a></li>
+      </ul>
+    </div>
+    <div class="firm">
+      <h3>Bain</h3><p class="lbl">Bain style and public samples</p>
+      <ul>
+        <li><a href="#bain-sparkwash-case">SparkWash</a> <span>· Bain style</span></li>
+        <li><a href="#bain-coffeeco-case">CoffeeCo</a> <span>· Bain's public sample, a good first case</span></li>
+        <li><a href="#bain-fashionco-case">FashionCo</a> <span>· Bain's public sample</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Two ways to use your time</h2>
+  <div class="plans">
+    <div class="plan">
+      <h3>One week before an interview</h3>
+      <ol>
+        <li><b>Day 1:</b> Case Math habits, percentages, and break-even.</li>
+        <li><b>Days 2–3:</b> Two cases from your firm, out loud, with the timers.</li>
+        <li><b>Day 4:</b> Behavioral Prep in test mode, then review what you missed.</li>
+        <li><b>Day 5:</b> One case from a different firm, to practice a new structure.</li>
+        <li><b>Day 6:</b> Redo your weakest case and take its practice test.</li>
+        <li><b>Day 7:</b> Light review of the formula cheat sheet, then rest.</li>
+      </ol>
+    </div>
+    <div class="plan">
+      <h3>The night before</h3>
+      <ol>
+        <li>Read the primer for your firm's case type.</li>
+        <li>Redo one case's main math from memory.</li>
+        <li>Say a recommendation out loud with the 60-second timer.</li>
+        <li>Read the formula cheat sheet once.</li>
+        <li>Prepare your questions for the interviewer, then sleep.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>About me</h2>
+  <div class="about">
+    <div>
+      <p>Hi, I'm Evelyn, a USC student who came into recruiting from an audit internship. When I started casing, I didn't know what EBITDA was or why anyone multiplied it by 15, and most prep material assumed I already did.</p>
+      <p>So I started building practice cases for myself: one step at a time, every term explained, and the math broken into small pieces I could check. I kept asking "but why?" until things clicked, and wrote the answers into the cases. Friends and peer advisors started using them, so I kept going.</p>
+      <p>This site is the result. It's how I prepared for my own interviews, including the one that turned into an offer at PwC.</p>
+    </div>
+    <div class="pull">
+      <p class="lbl" style="color:var(--accent-ink);margin-bottom:8px">Why I made it free</p>
+      <p>Good case prep is often expensive, or it depends on knowing the right people. I wanted anyone to be able to practice with real structure and honest explanations, especially students without a consulting network.</p>
+      <p>I built these with help from AI tools and reworked every part that confused me until it made sense. If something still doesn't, that's a bug, and I want to fix it.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Practice cases are original, written in each firm's style, or adapted from public sample cases and mock interview videos, which are credited on each page. They aren't official materials from, or affiliated with, any firm.</p>
+  </div>
+</footer>
+
+</div>
     <div class="welcome" id="welcome">
       <div class="welcome-card">
         <h2>Pick a case from the sidebar</h2>
@@ -241,7 +471,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
         </ol>
       </div>
     </div>
-    <a class="open-full" id="openfull" href="#" target="_blank" rel="noopener">Open full screen →</a>
+    <a class="open-full" id="openfull" href="/" target="_blank" rel="noopener">Open full screen →</a>
     <iframe class="frame" id="caseframe" title="Selected case"></iframe>
   </main>
 </div>
@@ -252,6 +482,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   var welcome = document.getElementById('welcome');
   var openfull = document.getElementById('openfull');
   var fslink = document.getElementById('fullscreen-link');
+  var intro = document.getElementById('intro');
   var current = null;
   function select(slug){
     if(current === slug) { jumpToTarget(); return; }
@@ -260,6 +491,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     var link = links.filter(function(l){ return l.getAttribute('href') === '#' + slug; })[0];
     if(!link){ showWelcome(); return; }
     welcome.style.display = 'none';
+    intro.style.display = 'none';
     openfull.style.display = 'block';
     fslink.hidden = false;
     openfull.href = link.getAttribute('data-src');
@@ -289,8 +521,19 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
       }
     }catch(e){}
   }
+  function showIntro(){
+    current = null;
+    links.forEach(function(l){ l.classList.remove('active'); });
+    var sl = document.getElementById('start-link'); if(sl){ sl.classList.add('active'); }
+    welcome.style.display = 'none';
+    intro.style.display = 'block';
+    openfull.style.display = 'none';
+    frame.style.display = 'none';
+    fslink.hidden = true;
+  }
   function showWelcome(){
     current = null;
+    intro.style.display = 'none';
     links.forEach(function(l){ l.classList.remove('active'); });
     welcome.style.display = 'flex';
     openfull.style.display = 'none';
@@ -300,9 +543,10 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   links.forEach(function(l){ l.addEventListener('click', function(e){ e.preventDefault(); location.hash = l.getAttribute('href').slice(1); }); });
   window.addEventListener('hashchange', function(){
     var slug = location.hash.slice(1);
-    if(slug){ select(slug); } else { showWelcome(); }
+    if(!slug || slug === 'start'){ showIntro(); } else { select(slug); }
   });
-  if(location.hash){ select(location.hash.slice(1)); }
+  var s0 = location.hash.slice(1);
+  if(!s0 || s0 === 'start'){ showIntro(); } else { select(s0); }
 })();
 </script>
 <script>
