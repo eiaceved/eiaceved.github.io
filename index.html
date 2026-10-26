@@ -34,6 +34,12 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 .case-link.red:hover{background:#fdf2f1}
 .case-link.red.active{background:#fbeae8;border-color:#e3b3b0}
 .case-link.red.active .meta{color:#8a4a45}
+.group.box>summary{display:flex;align-items:center;gap:10px;list-style:none;cursor:pointer;user-select:none;padding:11px 12px;border-radius:9px;border:1px solid transparent;margin-bottom:4px;font-size:15px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--fg-2)}
+.group.box>summary:hover{background:var(--bg)}
+.group.box>summary .name{font-weight:700;font-size:15px;display:block}
+.group.box>summary .meta{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
+.group.box>summary::after{content:'\25BE';margin-left:auto;font-size:10px;color:var(--muted);transition:transform .15s ease}
+.group.box[open]>summary::after{transform:rotate(180deg)}
 .sidebar-foot{padding:14px 20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 .sidebar-foot a{color:var(--accent);font-weight:600;text-decoration:none}
 .sidebar-foot a:hover{text-decoration:underline}
@@ -159,7 +165,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
         <span class="name">Start here</span>
         <span class="meta">How the hub works</span>
       </a>
-      <details class="group"><summary style="color:#a3241f">Mock cases</summary>
+      <details class="group box"><summary><span><span class="name" style="color:#a3241f">Mock cases</span><span class="meta">Every case, grouped by firm</span></span></summary>
       <details class="group"><summary>MBB</summary>
       <details class="subgroup"><summary style="color:#2251FF">McKinsey</summary>
       <a class="case-link" href="#mckinsey-harvest-grocers-case" data-src="/mckinsey-harvest-grocers-case/">
@@ -265,13 +271,13 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
       </a>
       </details>
       </details>
-      <a class="case-link" href="#read-daily" data-src="/markets/read-daily.html">
-        <span class="name">Read Daily</span>
-        <span class="meta">5 finance reads &amp; a listen · new every morning</span>
-      </a>
       <a class="case-link" href="#front-page" data-src="/markets/frontpage.html">
         <span class="name">Front Page</span>
         <span class="meta">Today&#8217;s journal covers · captured each morning</span>
+      </a>
+      <a class="case-link" href="#read-daily" data-src="/markets/read-daily.html">
+        <span class="name">Read Daily</span>
+        <span class="meta">5 finance reads &amp; a listen · new every morning</span>
       </a>
       <details class="group"><summary>Community</summary>
       <a class="case-link" href="#manifest-board" data-src="/markets/manifest.html">
