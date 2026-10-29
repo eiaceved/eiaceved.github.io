@@ -150,7 +150,12 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 
 .updates-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 16px 16px;padding:13px 16px;background:#FFF6C9;border:1.5px solid #E4B429;border-radius:12px;font-size:13px;font-weight:700;color:#7a5c00;text-decoration:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .updates-btn .arr{font-size:15px;flex:none}
-.updates-btn:hover{background:#FFF0A3}
+.updates-btn .sp{display:inline-block;margin-left:2px;animation:sp-tw 1.6s ease-in-out infinite}
+@keyframes sp-tw{0%,100%{opacity:.35;transform:scale(.85) rotate(-8deg)}50%{opacity:1;transform:scale(1.2) rotate(10deg)}}
+@keyframes btn-glow{0%,100%{box-shadow:0 1px 3px rgba(0,0,0,.06),0 0 0 0 rgba(228,180,41,.0)}50%{box-shadow:0 2px 6px rgba(0,0,0,.08),0 0 20px 5px rgba(228,180,41,.6)}}
+.updates-btn{animation:btn-glow 2.2s ease-in-out infinite}
+.updates-btn:hover{background:#FFF0A3;animation-play-state:paused;box-shadow:0 2px 6px rgba(0,0,0,.08),0 0 24px 7px rgba(228,180,41,.75)}
+@media(prefers-reduced-motion:reduce){.updates-btn,.updates-btn .sp{animation:none}}
 </style>
 </head>
 <body>
@@ -366,7 +371,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
       </details>
     
     </nav>
-    <a class="updates-btn" href="/updates/" target="_blank" rel="noopener">Click here for the latest Updates<span class="arr">→</span></a>
+    <a class="updates-btn" href="/updates/" target="_blank" rel="noopener"><span>Click here for the latest Updates <span class="sp">✨</span></span><span class="arr">→</span></a>
     </aside>
   <main class="stage">
     <div class="intro" id="intro" style="display:none">
