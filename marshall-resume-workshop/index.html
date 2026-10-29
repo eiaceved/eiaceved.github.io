@@ -526,6 +526,14 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 .pv-list{display:grid;gap:10px;margin-top:14px}
 .pv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:0}
 .pv.open{border-color:var(--fg-2)}
+.pv-group{font:600 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:10px 0 -2px}
+.pv-group:first-child{margin-top:0}
+.pv.mine{background:var(--accent-soft);border-color:var(--accent)}
+.pv.mine .pv-head:hover{background:color-mix(in srgb,var(--accent) 14%,var(--accent-soft))}
+.pv.mine .pv-cta{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.pv.mine.open .pv-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pv-mine{display:inline-block;font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:3px 9px;margin:0 8px 4px 0}
+.pv.mine .pv-tag{display:inline-block}
 .pv-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center;width:100%;padding:16px 18px;background:none;border:0;text-align:left;cursor:pointer;color:var(--fg);font:inherit;border-radius:12px}
 .pv-head:hover{background:var(--surface-2)}
 .pv-tag{font:600 10.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block}
@@ -709,7 +717,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     <div data-say><b>Lead with what they want</b><p>Read the job description, then put the true details that match it first, in its words.</p></div>
     <div data-say><b>Keep a master resume</b><p>Write every bullet you could ever use in one long file. Each application is a cut of it.</p></div>
   </div>
-  <p class="sub" data-say>Open an experience, then flip between the four versions. Highlighted words are the ones that changed to fit each field.</p>
+  <p class="sub" data-say>Open an experience, then flip between the four versions. Highlighted words are the ones that changed to fit each field. The first four come straight from Evelyn's own resume, the person who built this site; the rest are samples.</p>
   <div class="pv-legend" id="pvLegend"></div>
   <div class="pv-list" id="pvList"></div>
   <div class="pv-drill">
@@ -956,8 +964,9 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
 
   const PAGEKEY="marshall-resume";
-  /* Resume review form: paste the https:// link to the Google Form here when it is ready. Until then the button reads "Review form opens soon". */
+  /* Resume review form: replace FORM_LINK with the full https:// link to the form. */
   const REVIEW_FORM="";
+  /* paste the https:// link to the Google Form here when it is ready */
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const store={get(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
@@ -1143,7 +1152,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
   const DONE_MSG=(r,t)=>`<b>${r} of ${t}.</b> `+(r>=9?"You know the format. Run the checklist on your own resume, then score it.":r>=6?"Close. Re-read the parts you missed on the sample resume in step 03.":"Take the tour in step 03 once more, then retake the test.");
 
   /* Same job, different resume: Marshall tracks. [[word]] marks the words tailored to each field.
-     Items 1 to 3 are stand-ins shaped like real student roles; swap in real ones by editing org, title, dates, and bullets. */
+     Items marked mine:true come from Evelyn's own resume; the rest are samples. */
   const PV={
     tracks:[
       {k:"consult",n:"Consulting",c:"#2a78d6",tint:"#dbe9fb",lead:"problem solving",d:"diagnose, analyze, recommend"},
@@ -1152,16 +1161,26 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
       {k:"badm",n:"Business Admin",c:"#8a6200",tint:"#fff0c2",lead:"getting things done",d:"people, process, results"},
     ],
     items:[
-      {tag:"Consulting project",org:"Pacific Crest Zoo",loc:"Los Angeles, CA",title:"Student Consultant (club client project)",dates:"January 2025 - May 2025",v:{
-        consult:{b:["Interviewed 12 zoo staff and [[surveyed 400 visitors]] to [[diagnose]] why weekday attendance trailed weekends by 40%.","Built an Excel [[revenue model]] and [[benchmarked]] six peer zoos, [[recommending]] a weekday membership tier projected to add $250K a year."],note:"Opens with the diagnosis, then the analysis, then a recommendation with a dollar impact. That's the arc a consulting interviewer listens for."},
-        acct:{b:["Analyzed three years of [[ticket and membership revenue]], [[reconciling]] figures across two reporting systems into one clean baseline.","Built a [[revenue forecast]] and [[break-even analysis]] for a new membership tier projected to add $250K a year."],note:"Same project, but the data work moves to the front: reconciling, forecasting, break-even. The visitor survey drops out."},
-        mktg:{b:["[[Surveyed 400 visitors]] to [[segment]] weekday guests, identifying [[young families]] as the most likely new members.","Designed a weekday family membership and a [[social media launch plan]] to grow weekday attendance."],note:"Leads with customer research and the audience you found. The Excel model is cut to make room for the campaign."},
-        badm:{b:["[[Coordinated]] a five-person team through a 10-week [[project plan]], running weekly check-ins with the zoo's leadership.","[[Presented]] a membership [[strategy]] to the executive director, combining visitor research and an Excel model."],note:"Shows you can run a project and present to senior leaders, which every business role needs."}}},
-      {tag:"Startup internship",org:"Casa Agave Mezcal",loc:"Los Angeles, CA",title:"Brand and Operations Intern",dates:"June 2024 - August 2024",v:{
-        consult:{b:["[[Analyzed]] sales across 40 retail accounts and found the eight stores driving 60% of volume, shaping where the founder [[focused distribution]].","[[Benchmarked]] pricing for 12 competing brands and [[recommended]] a price point for a new bottle size."],note:"Turns everyday startup work into analysis and recommendations a client team would use."},
-        acct:{b:["[[Reconciled]] monthly invoices and payments for 40 retail accounts, catching $6K in [[unbilled orders]].","Tracked [[inventory]] for three products and prepared [[monthly sales reports]] for the founder's [[cash planning]]."],note:"Leads with accuracy: invoices, inventory, and reports. The $6K catch proves attention to detail."},
-        mktg:{b:["Planned eight in-store [[tasting events]] that introduced the brand to 600+ customers and lifted [[sell-through]] at host stores by 20%.","Created [[Instagram content]] for a product launch, growing followers from 2,100 to 3,400 in three months."],note:"Leads with events and social growth, the parts of the job a brand team cares about most."},
-        badm:{b:["Managed [[inventory and order fulfillment]] for 40 retail accounts, keeping stockouts under 2%.","[[Coordinated]] deliveries and events with distributors, retailers, and the founder across Los Angeles."],note:"Frames the role as operations: keeping a small business running smoothly."}}},
+      {mine:true,tag:"Consulting internship",org:"Los Angeles Zoo",loc:"Los Angeles, CA",title:"Project Lead Consulting Intern",dates:"February 2025 - June 2025",v:{
+        consult:{b:["[[Identified]] birding as a [[high-growth market opportunity]] for the zoo through [[market sizing]] and [[trend analysis]] (20%+ growth; 96M U.S. participants).","Projected up to $3M+ in potential revenue, driving the project's [[strategic recommendations]]."],note:"The consulting arc in two lines: find the opportunity, size it, recommend. The numbers prove the analysis was real."},
+        acct:{b:["Built [[revenue projections]] of up to $3M+ for a new birding opportunity, grounded in [[market-sizing data]].","[[Quantified]] the opportunity with [[participation and growth figures]] (96M U.S. participants; 20%+ growth) to support the projection."],note:"Same project, but the projection and the data behind it move to the front. Accounting readers want to see you build numbers they can trust."},
+        mktg:{b:["[[Identified]] birders as a [[high-growth audience]] for the zoo using [[audience engagement insights]] and [[trend analysis]] (96M U.S. participants; 20%+ growth).","Drove [[strategic recommendations]] around the birding opportunity, projecting up to $3M+ in potential revenue."],note:"Leads with the audience and engagement insights, the language a marketing team uses."},
+        badm:{b:["Led a consulting project for the Los Angeles Zoo as [[Project Lead]], from [[market research]] through [[strategic recommendations]].","Identified birding as a high-growth opportunity worth up to $3M+ in potential revenue."],note:"Puts the leadership role first: you owned the project from start to finish."}}},
+      {mine:true,tag:"Brand building",org:"Victorioso Mezcal",loc:"Los Angeles, CA",title:"Brand Ambassador / Marketing & Event Coordinator",dates:"August 2023 - May 2025",v:{
+        consult:{b:["Cultivated [[partnerships]] across 200+ restaurant venues, building the brand's [[market presence]] in Greater Los Angeles.","Produced a [[branded activation]] at the DTLA Film Festival, using recipe-driven assets to generate [[client engagement]]."],note:"Consulting firms look for client-facing experience. 200+ partner venues shows you can build and keep relationships."},
+        acct:{b:["Served as a brand contact for [[200+ restaurant accounts]], coordinating partner-facing promotions and a DTLA Film Festival activation."],note:"Not every job has an accounting angle, and that's fine. Keep it to one line and lead with client service and scale, which audit and tax teams value."},
+        mktg:{b:["Designed [[branded cocktail menus]] and [[marketing assets]] for partner-facing promotions, leading [[recipe R&D]], [[photography]], and [[visual layout]] in Adobe Illustrator.","Produced a [[branded activation]] at the DTLA Film Festival and deployed [[recipe-driven marketing assets]] across 200+ restaurant partners to [[expand market presence]]."],note:"The natural fit. Lead with the creative work and the brand-building results."},
+        badm:{b:["[[Coordinated]] events and promotions with 200+ restaurant partners, including a [[branded activation]] at the DTLA Film Festival.","Managed menu and asset production from [[recipe development]] through [[photography]] and [[layout]]."],note:"Frames the role as coordination: partners, events, and production running on time."}}},
+      {mine:true,tag:"Community tax project",org:"USC Volunteer Income Tax Assistance (VITA)",loc:"Los Angeles, CA",title:"E-Board Tax Advisor / Project Lead",dates:"August 2026 - Present",v:{
+        consult:{b:["[[Evaluate]] Los Angeles-area community colleges as hosts for a 20-preparer VITA [[sister site]], weighing faculty partnerships, recruitment, and outreach.","Set conservative first-year [[targets]] of 275+ returns and $300K+ in community refunds, [[benchmarked]] at 50% of USC VITA's prior season (972 returns; $1.1M)."],note:"Scouting a site is a consulting problem: compare options, set targets, and back them with a benchmark."},
+        acct:{b:["[[Advise]] on tax preparation as an E-Board Tax Advisor while planning a 20-preparer VITA sister site at a Los Angeles-area community college.","Projected 275+ [[tax returns]] and $300K+ in [[community refunds]] for year one, [[benchmarked]] against USC VITA's 972 returns and $1.1M returned."],note:"Leads with tax work and the return and refund numbers, the details an accounting or tax recruiter scans for."},
+        mktg:{b:["Plan [[student recruitment]] and [[community outreach]] for a new VITA sister site at a Los Angeles-area community college.","Set a first-year goal of $300K+ in refunds for local taxpayers, [[benchmarked]] at 50% of USC VITA's prior season."],note:"Recruiting volunteers and reaching taxpayers is marketing: audience, message, and turnout."},
+        badm:{b:["[[Lead]] the launch of a 20-preparer VITA [[sister site]], scouting Los Angeles-area community colleges and planning [[recruitment]], [[IRS certification]], [[training]], and [[site operations]].","Set first-year [[targets]] of 275+ returns and $300K+ in refunds, benchmarked at 50% of USC VITA's prior-season results."],note:"A launch is operations work: partners, people, training, and a plan with targets."}}},
+      {mine:true,tag:"Small business owner",org:"Thee Tipsy Barmaid",loc:"Los Angeles, CA",title:"Owner",dates:"July 2022 - Hiatus",v:{
+        consult:{b:["Built and operated a mobile bartending business, [[scoping]] each client's event at intake and [[pricing]] a plan to fit their [[budget]].","Managed every event [[end to end]], from booking through closeout, coordinating [[vendors]] and [[staffing]] to deliver for each client."],note:"Consulting is client service with a plan. Running your own business shows you've owned the whole client relationship."},
+        acct:{b:["Built and operated a mobile bartending business, managing [[event pricing]], [[budgeting]], and [[vendor costs]].","Tracked each event's [[budget]] from booking through [[closeout]]."],note:"Owning a business means you set the prices and the budgets. Lead with the money side."},
+        mktg:{b:["Built and ran a mobile bartending [[brand]], managing [[client intake]] and [[event pricing]] from first inquiry through booking."],note:"Marketing reads client intake as winning customers. If you have numbers, like bookings, repeat clients, or reviews, add them here."},
+        badm:{b:["Built and operated a mobile bartending business, managing [[staffing]], [[vendor coordination]], and [[service execution]] for every event.","Ran operations from [[booking]] through [[closeout]], including client intake, pricing, and budgeting."],note:"The natural fit: you ran every part of a small business."}}},
       {tag:"Finance internship",org:"Harbor Rock Capital Partners",loc:"Los Angeles, CA",title:"Summer Analyst",dates:"June 2025 - August 2025",v:{
         consult:{b:["[[Researched]] three industries and [[synthesized]] findings into market overviews that shaped which deals the partners pursued.","Built [[comparable company analyses]] for 15 targets, helping the team [[prioritize]] four for deeper diligence."],note:"Puts research, synthesis, and prioritizing first: the core of consulting work."},
         acct:{b:["Reviewed three years of target companies' [[financial statements]], adjusting EBITDA for [[one-time items]] in deal models.","Tracked [[monthly KPIs]] for six portfolio companies and flagged [[variances]] against budget for the partners."],note:"Leads with financial statements, adjustments, and variance analysis."},
@@ -1188,9 +1207,10 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     const kws=s=>[...s.matchAll(/\[\[(.+?)\]\]/g)].map(m=>m[1]);
     $("#pvLegend").innerHTML=T.map(t=>`<span style="${tv(t)}"><i></i><b>${t.n}</b>&nbsp;${t.d}</span>`).join("");
     const head=it=>`<p class="rl"><span><b>${esc(it.org)}</b></span><span>${esc(it.loc)}</span></p><p class="rl"><span><i>${esc(it.title)}</i></span><span>${esc(it.dates)}</span></p>`;
-    box.innerHTML=PV.items.map((it,i)=>`<article class="pv" data-i="${i}">
+    const anyMine=PV.items.some(x=>x.mine);
+    box.innerHTML=PV.items.map((it,i)=>`${anyMine&&i===PV.items.findIndex(x=>x.mine)?'<p class="pv-group">From Evelyn\'s own resume</p>':""}${anyMine&&!it.mine&&i===PV.items.findIndex(x=>!x.mine)?'<p class="pv-group">Sample resumes</p>':""}<article class="pv${it.mine?" mine":""}" data-i="${i}">
       <button class="pv-head" type="button" aria-expanded="false" aria-controls="pvb${i}">
-        <span><span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
+        <span>${it.mine?'<span class="pv-mine">From Evelyn\'s resume</span>':""}<span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
         <span class="pv-cta">Tailor it ▾</span>
       </button>
       <div class="pv-body" id="pvb${i}" hidden>

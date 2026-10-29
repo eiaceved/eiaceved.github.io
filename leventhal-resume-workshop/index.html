@@ -560,6 +560,14 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 .pv-list{display:grid;gap:10px;margin-top:14px}
 .pv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:0}
 .pv.open{border-color:var(--fg-2)}
+.pv-group{font:600 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:10px 0 -2px}
+.pv-group:first-child{margin-top:0}
+.pv.mine{background:var(--accent-soft);border-color:var(--accent)}
+.pv.mine .pv-head:hover{background:color-mix(in srgb,var(--accent) 14%,var(--accent-soft))}
+.pv.mine .pv-cta{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.pv.mine.open .pv-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pv-mine{display:inline-block;font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:3px 9px;margin:0 8px 4px 0}
+.pv.mine .pv-tag{display:inline-block}
 .pv-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center;width:100%;padding:16px 18px;background:none;border:0;text-align:left;cursor:pointer;color:var(--fg);font:inherit;border-radius:12px}
 .pv-head:hover{background:var(--surface-2)}
 .pv-tag{font:600 10.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block}
@@ -1000,8 +1008,9 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
 
   const PAGEKEY="leventhal-resume";
-  /* Resume review form: paste the https:// link to the Google Form here when it is ready. Until then the button reads "Review form opens soon". */
+  /* Resume review form: replace FORM_LINK with the full https:// link to the form. */
   const REVIEW_FORM="";
+  /* paste the https:// link to the Google Form here when it is ready */
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const store={get(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
   let TRACK=store.get("lv-track")==="gr"?"gr":"ug";
@@ -1205,9 +1214,10 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     const kws=s=>[...s.matchAll(/\[\[(.+?)\]\]/g)].map(m=>m[1]);
     $("#pvLegend").innerHTML=T.map(t=>`<span style="${tv(t)}"><i></i><b>${t.n}</b>&nbsp;${t.d}</span>`).join("");
     const head=it=>`<p class="rl"><span><b>${esc(it.org)}</b></span><span>${esc(it.loc)}</span></p><p class="rl"><span><i>${esc(it.title)}</i></span><span>${esc(it.dates)}</span></p>`;
-    box.innerHTML=PV.items.map((it,i)=>`<article class="pv" data-i="${i}">
+    const anyMine=PV.items.some(x=>x.mine);
+    box.innerHTML=PV.items.map((it,i)=>`${anyMine&&i===PV.items.findIndex(x=>x.mine)?'<p class="pv-group">From Evelyn\'s own resume</p>':""}${anyMine&&!it.mine&&i===PV.items.findIndex(x=>!x.mine)?'<p class="pv-group">Sample resumes</p>':""}<article class="pv${it.mine?" mine":""}" data-i="${i}">
       <button class="pv-head" type="button" aria-expanded="false" aria-controls="pvb${i}">
-        <span><span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
+        <span>${it.mine?'<span class="pv-mine">From Evelyn\'s resume</span>':""}<span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
         <span class="pv-cta">Tailor it ▾</span>
       </button>
       <div class="pv-body" id="pvb${i}" hidden>
