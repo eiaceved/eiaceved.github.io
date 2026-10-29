@@ -75,6 +75,9 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   .case-link{margin:0}
   .stage{min-height:70vh}
 }
+.mtoast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#13202a;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.mtoast.show{opacity:.95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mtoast{background:#4cc2b1;color:#06201c}}
 </style>
 <style>
 /* Start-here intro (scoped to .intro) */
@@ -571,6 +574,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     <iframe class="frame" id="caseframe" title="Selected case"></iframe>
   </main>
 </div>
+<div class="mtoast" id="mtoast" role="status">Opened below</div>
 <script>
 (function(){
   var links = Array.prototype.slice.call(document.querySelectorAll('.case-link'));
@@ -579,6 +583,13 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   var openfull = document.getElementById('openfull');
   var intro = document.getElementById('intro');
   var current = null;
+  function mobileReveal(){
+    if(window.innerWidth > 820) return;
+    var mt = document.getElementById('mtoast');
+    if(mt){ mt.classList.add('show'); setTimeout(function(){ mt.classList.remove('show'); }, 1800); }
+    var beh = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    setTimeout(function(){ var st = document.querySelector('.stage'); if(st){ st.scrollIntoView({behavior: beh, block: 'start'}); } }, 80);
+  }
   function select(slug){
     if(current === slug) { jumpToTarget(); return; }
     current = slug;
@@ -597,6 +608,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     frame.src = ds + (ds.indexOf('?')>-1?'&':'?') + 'v=' + Date.now() + frag;
     frame.style.display = 'block';
     frame.addEventListener('load', jumpToTarget);
+    mobileReveal();
   }
   function jumpToTarget(){
     var frag=(frame.getAttribute('src')||'').split('#')[1]||'';
@@ -624,6 +636,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     intro.style.display = 'block';
     openfull.style.display = 'none';
     frame.style.display = 'none';
+    mobileReveal();
   }
   function showWelcome(){
     current = null;
