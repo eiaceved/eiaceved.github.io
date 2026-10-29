@@ -1,0 +1,1311 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Leventhal Resume Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: one reading column (max 820px) under a sticky step rail. Every step runs the same loop:
+   interviewer prompt -> your move -> reveal a strong answer. Exhibits sit inside the column like workpapers. */
+:root{
+  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8eef0; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
+  --accent:#0d6b61; --accent-ink:#0a5a51; --accent-soft:#dbeeea; --on-accent:#ffffff;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#e2e8ea; --axis:#b6c1c7;
+  --good:#0ca30c; --good-ink:#006300; --crit:#d03b3b; --crit-ink:#ad2828;
+  --h1:#e6f0fc; --h2:#b7d3f6; --h3:#6da7ec; --h4:#2a78d6; --h5:#104281;
+  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#13202a; --tip-fg:#ffffff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+    --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+    --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+    --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+    --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+  --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+  --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+  --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+  --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:86%;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--accent-ink)}
+b,strong{font-weight:700}
+.eyebrow,.lbl,.who{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.rail-in{max-width:820px;margin:0 auto;padding:8px 20px;display:flex;gap:10px;align-items:center}
+.chips{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;padding-block:2px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{font:500 12px var(--mono);padding:5px 9px;border-radius:999px;color:var(--fg-2);white-space:nowrap;text-decoration:none}
+.chips a:hover{background:var(--surface-2)}
+.chips a.on{background:var(--fg);color:var(--bg)}
+.speed{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);flex:none}
+.speed select{font:500 12px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 4px}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .eyebrow{color:var(--accent-ink);margin-bottom:14px}
+.hero h1{font-size:clamp(40px,8vw,64px);line-height:1;font-weight:800;font-stretch:80%}
+.lede{font-size:21px;line-height:1.5;color:var(--fg-2);max-width:36em;margin-top:18px}
+.how{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:15px;line-height:1.4;counter-increment:how}
+.how li::before{content:counter(how);display:block;font:600 12px var(--mono);color:var(--accent-ink);margin-bottom:4px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* steps */
+.step{padding-block:52px;border-top:1px solid var(--line);scroll-margin-top:56px}
+.sh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.idx{font:600 13px var(--mono);color:var(--accent-ink)}
+.sh h2{font-size:clamp(26px,4.4vw,32px);line-height:1.15;font-weight:750}
+.sh .listen{margin-left:auto}
+.sub{color:var(--fg-2);margin-top:8px;max-width:40em}
+
+.btn{font:600 14px/1.2 var(--body);border-radius:8px;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.small{font-size:13px;padding:6px 10px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+
+.iv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:22px}
+.who{color:var(--muted);margin-bottom:8px}
+.iv p{font-size:19px;line-height:1.55}
+.iv p:last-child{margin-bottom:0}
+
+.move{display:flex;gap:12px 16px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-block:14px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.move .lbl{color:var(--accent-ink);flex:none}
+.move p{margin:0;flex:1 1 260px;min-width:0;font-weight:600}
+.move .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+.ans{background:var(--accent-soft);border-radius:var(--r);padding:20px 22px;margin-top:14px}
+.ans .who{color:var(--accent-ink)}
+.ans h3{font-size:19px;margin:18px 0 8px;font-weight:700}
+.ans h3:first-of-type{margin-top:4px}
+.ans ul{margin:0 0 .6em;padding-left:1.2em}
+.ans li{margin-bottom:.35em}
+.script{font-size:18px;line-height:1.6}
+.script p{margin-bottom:.7em}
+.note{font-size:15px;color:var(--fg-2)}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.facts div{background:var(--surface);padding:12px 14px;min-width:0}
+.facts .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:4px}
+.facts .d{font-size:13px;color:var(--fg-2);line-height:1.35;margin-top:2px}
+
+/* primer */
+.def{font:600 clamp(21px,3.4vw,26px)/1.35 var(--display);font-stretch:92%;margin-top:22px;max-width:30em}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.panel h3{font-size:19px;font-weight:700}
+.panel .tag{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 8px}
+.panel ul{margin:0;padding-left:1.1em;font-size:16px}
+.panel li{margin-bottom:.3em}
+.cycle{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.cycle li{position:relative;background:var(--surface-2);border-radius:8px;padding:12px 12px 10px;min-width:0}
+.cycle li b{display:block;font:700 17px var(--display);font-stretch:88%}
+.cycle li span{font-size:14px;color:var(--fg-2);line-height:1.35;display:block;margin-top:2px}
+.cycle li:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:12px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:translateY(-50%) rotate(45deg)}
+.cycle-note{font:500 12px var(--mono);color:var(--muted);margin-top:10px}
+.vocab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.term b{display:block;font:700 16px var(--display);font-stretch:90%;margin-bottom:3px}
+.term p{margin:0;font-size:15px;line-height:1.45;color:var(--fg-2)}
+.h-sec{font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+
+/* qa list */
+.qa{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.qa li{background:var(--surface);border-radius:8px;padding:12px 14px}
+.qa .q{font-weight:700}
+.qa .a{color:var(--fg-2);margin-top:2px}
+.qa .a::before{content:"Interviewer: ";font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* framework tree */
+.tree{margin-top:6px}
+.root{background:var(--fg);color:var(--bg);border-radius:8px;padding:12px 16px;font:700 18px/1.3 var(--display);font-stretch:90%;text-align:center;position:relative}
+.root::after{content:"";position:absolute;left:50%;bottom:-16px;width:2px;height:16px;background:var(--muted)}
+.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:14px;border-top:2px solid var(--muted)}
+.branch{background:var(--surface);border-radius:8px;padding:12px 13px;min-width:0}
+.branch .n{font:600 12px var(--mono);color:var(--accent-ink)}
+.branch b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin:2px 0 6px}
+.branch ul{margin:0;padding-left:1.05em;font-size:14.5px;line-height:1.4}
+.branch li{margin-bottom:.3em}
+
+/* exhibits */
+.ex{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px}
+.ex-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.ex-t{font:700 18px var(--display);font-stretch:88%}
+.ex-ref{font:500 12px var(--mono);color:var(--muted)}
+.ex-s{font-size:14px;color:var(--fg-2);margin-top:2px}
+.ex figcaption,.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:12px}
+.multiples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mini{border:1px solid var(--grid);border-radius:8px;padding:10px 10px 4px;min-width:0}
+.mini .nm{font-weight:700;font-size:14.5px;line-height:1.25;min-height:2.5em}
+.mini .ch{font:500 12px var(--mono);color:var(--fg-2)}
+.mini svg{display:block;width:100%;height:auto;margin-top:4px}
+.tblwrap{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+
+.hbar{margin-top:16px}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 14px;align-items:center;padding-block:9px;border-bottom:1px solid var(--grid)}
+.hrow:last-of-type{border-bottom:0}
+.hlab b{display:block;font-size:15px;line-height:1.3}
+.hlab span{font-size:13px;color:var(--fg-2);line-height:1.3;display:block}
+.track{position:relative;height:26px}
+.bar{position:absolute;left:0;top:5px;height:16px;border-radius:0 4px 4px 0;background:var(--s1);min-width:2px}
+.bar.b2{background:var(--s2)}
+.bval{position:absolute;top:2px;font:600 13px var(--mono);color:var(--fg);white-space:nowrap;padding-left:6px}
+.tol{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px solid var(--fg-2)}
+.axis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:14px}
+.ticks{position:relative;height:18px;font:500 11px var(--mono);color:var(--muted);border-top:1px solid var(--axis)}
+.ticks span{position:absolute;top:3px;transform:translateX(-50%)}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+.status{font:600 12px var(--mono);display:inline-flex;gap:5px;align-items:center;margin-top:3px}
+.status.bad{color:var(--crit-ink)} .status.ok{color:var(--good-ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--fg-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tolnote{font:500 12px var(--mono);color:var(--fg-2);margin-top:8px}
+
+/* given table + calc steps */
+.given{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.given div{background:var(--surface);padding:11px 13px;min-width:0}
+.given .k{font-size:13px;color:var(--fg-2);line-height:1.3}
+.given .v{font:700 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.calc{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.calc li{background:var(--surface);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;align-items:center}
+.calc .t{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);grid-column:1/-1}
+.calc .f{font-size:16px;min-width:0}
+.calc .r{font:700 20px var(--display);font-stretch:88%;text-align:right;white-space:nowrap}
+.stepper .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset span{font:500 12px var(--mono);background:var(--surface);border-radius:6px;padding:4px 8px;color:var(--fg-2)}
+.chipset b{color:var(--fg)}
+
+/* heat map */
+.heat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:12px}
+.heat svg{width:100%;height:auto;display:block}
+.heat svg text{font-family:var(--mono)}
+.reg{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.reg li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14.5px;line-height:1.3;padding-block:6px;border-bottom:1px solid var(--grid)}
+.reg .id{width:28px;height:28px;border-radius:50%;background:var(--dot);color:var(--dot-ink);font:600 11px var(--mono);display:grid;place-items:center}
+.reg .sc{font:600 13px var(--mono);color:var(--fg-2);text-align:right;white-space:nowrap}
+.ramp{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);margin-top:10px}
+.ramp i{width:22px;height:10px;display:inline-block;border-radius:2px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.phase{background:var(--surface);border-radius:8px;padding:12px 14px;min-width:0}
+.phase .d{font:600 12px var(--mono);color:var(--accent-ink)}
+.phase b{display:block;font:700 18px var(--display);font-stretch:88%;margin:2px 0 6px}
+.phase ul{margin:0;padding-left:1.05em;font-size:15px;line-height:1.4}
+.phase li{margin-bottom:.35em}
+.struct{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.struct span{font:600 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--surface);color:var(--fg)}
+
+/* drivers */
+.drivers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.drivers div{background:var(--surface);border-radius:8px;padding:11px 13px;min-width:0}
+.drivers b{display:block;font:700 16px var(--display);font-stretch:90%}
+.drivers p{margin:2px 0 0;font-size:15px;color:var(--fg-2);line-height:1.45}
+.eq{font:600 15px var(--mono);background:var(--surface);border-radius:8px;padding:10px 14px;margin:6px 0 12px;overflow-x:auto}
+.drill{margin-top:34px}
+.drill h3{font-size:22px;font-weight:750}
+
+/* multiple choice */
+.mc{margin-top:20px}
+.mc-head{display:flex;gap:10px;align-items:flex-start}
+.stem{font-weight:700;font-size:18px;line-height:1.45;margin:0 0 10px;flex:1;min-width:0}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:16px;line-height:1.45;cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt .L{font:600 13px/1.6 var(--mono);color:var(--muted);flex:none}
+.opt .x{flex:1;min-width:0}
+.opt .tag{font:600 12px/1.7 var(--mono);white-space:nowrap;flex:none}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.opt.right .tag{color:var(--good-ink)}
+.opt.wrong{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 9%,var(--surface))}
+.opt.wrong .tag{color:var(--crit-ink)}
+.why{margin-top:10px;padding:13px 16px;border-radius:8px;background:var(--surface-2);font-size:16px}
+.why p:last-child{margin-bottom:0}
+.test .mc{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}
+.test .mc:first-of-type{border-top:0;padding-top:0}
+.qn{font:600 13px var(--mono);color:var(--accent-ink);display:block;margin-bottom:2px}
+.scorebar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:5;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--line)}
+.score{font:700 22px var(--display);font-stretch:86%}
+.score small{font:500 12px var(--mono);color:var(--muted);margin-left:6px}
+.done{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:24px}
+
+footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-fg);font:500 12px/1.4 var(--mono);padding:6px 9px;border-radius:6px;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+@media (max-width:760px){
+  .branches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heat{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:minmax(0,1fr)}
+  .multiples{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .split,.vocab,.drivers{grid-template-columns:minmax(0,1fr)}
+  .cycle{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cycle li:nth-child(2)::after{display:none}
+  .given{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hrow,.axis{grid-template-columns:minmax(0,1fr)}
+  .axis>div:first-child{display:none}
+  .iv p{font-size:18px}
+  .speed span{display:none}
+}
+@media (max-width:420px){
+  .branches{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ans:not([hidden]),.why:not([hidden]),.calc li:not([hidden]){animation:rise .28s ease-out}
+  @keyframes rise{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+  html{scroll-behavior:smooth}
+}
+[hidden]:not([hidden=until-found i]){display:none!important}
+/* scoring register */
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.scorer li{grid-template-columns:auto minmax(0,1fr) auto}
+.scorer .nm{min-width:0}
+.pick{display:flex;gap:6px;align-items:center}
+.pick select{font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 4px;min-width:44px}
+.pick .sc{min-width:34px}
+.reg .w{display:block;font-size:13px;color:var(--fg-2);margin-top:2px;line-height:1.35}
+.reg .nm b{font-weight:600}
+.mytop{font:600 15px/1.4 var(--body);margin:12px 0 0;color:var(--fg)}
+.mapnote{font:500 12px var(--mono);color:var(--fg-2);margin:8px 0 0}
+.bar.b3{background:var(--fg-2)}
+/* voice menu */
+.voicebar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:22px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.voicebar label{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.voicebar select{flex:1 1 220px;min-width:0;max-width:100%;font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 6px}
+.vhint{flex-basis:100%;margin:0;font-size:14px;line-height:1.45;color:var(--fg-2)}
+@media (max-width:600px){.given>div:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:420px){
+  .scorer li{grid-template-columns:auto minmax(0,1fr)}
+  .scorer .pick{grid-column:2}
+}
+</style>
+<style>
+/* calculators */
+.calcbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px}
+.calcbox h3{font-size:19px;font-weight:700;margin:0 0 4px}
+.calcbox .sub{margin-top:2px;font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 14px;margin-top:12px}
+.cgrid label{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.3;color:var(--fg-2);min-width:0}
+.cgrid input,.cgrid select{font:500 15px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:7px 8px;width:100%;min-width:0}
+.cout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.cout div{background:var(--surface-2);border-radius:8px;padding:10px 12px;min-width:0}
+.cout .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cout .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:3px}
+.cnote{font-size:15px;line-height:1.5;color:var(--fg-2);margin:12px 0 0}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.gb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.gb .ans{margin-top:0}
+@media (max-width:600px){.gb{grid-template-columns:minmax(0,1fr)}}
+.reps{display:grid;gap:12px;margin-top:14px}
+.rep{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.rep .rq{font-weight:700;font-size:17px;margin:0 0 8px}
+.rep .acts{display:flex;gap:8px;flex-wrap:wrap}
+.rep .ans{margin-top:12px}
+.tw th,.tw td{white-space:normal}
+@media (max-width:600px){.tw th,.tw td{padding:6px 5px;font-size:13.5px}.tw th{font-size:10px}}
+</style>
+<style>
+/* Marshall Resume Workshop: the hub's case-page system, re-keyed to USC gold.
+   The resume itself is drawn as a white Times New Roman page in both themes, because that is the real artifact. */
+:root{
+  --accent:#ffcc00; --accent-ink:#7a5a00; --accent-soft:#fff4c7; --on-accent:#1f1a00;
+  --cardinal:#990000; --cardinal-ink:#990000;
+  --paper:#ffffff; --paper-ink:#111111; --paper-rule:#111111; --paper-muted:#555555;
+  --hl:#ffe27a; --hl-line:#c79a00; --badge:#ffcc00; --badge-ink:#1f1a00;
+  --acr-a:#2a78d6; --acr-c:#8a6d00; --acr-r:#0c7a3e;
+  --serif:"Times New Roman",Times,"Liberation Serif","Nimbus Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --accent:#ffcc00; --accent-ink:#ffd84d; --accent-soft:#2a240c; --on-accent:#1f1a00;
+    --cardinal:#c23b3b; --cardinal-ink:#ff8a80;
+    --acr-a:#7fb2f0; --acr-c:#ffd84d; --acr-r:#5fd08f;
+  }
+}
+:root[data-theme="dark"]{
+  --accent:#ffcc00; --accent-ink:#ffd84d; --accent-soft:#2a240c; --on-accent:#1f1a00;
+  --cardinal:#c23b3b; --cardinal-ink:#ff8a80;
+  --acr-a:#7fb2f0; --acr-c:#ffd84d; --acr-r:#5fd08f;
+}
+:focus-visible{outline-color:var(--accent-ink)}
+.chips a.on{background:var(--accent);color:var(--on-accent)}
+.hero .eyebrow{color:var(--accent-ink)}
+.goldbar{height:6px;background:linear-gradient(90deg,var(--accent) 0 72%,var(--cardinal) 72% 100%);border-radius:3px;margin-bottom:18px;max-width:180px}
+
+/* why it matters */
+.signal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.signal div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.signal b{display:block;font:700 17px/1.25 var(--display);font-stretch:90%;margin-bottom:4px}
+.signal p{margin:0;font-size:15px;color:var(--fg-2);line-height:1.45}
+@media (max-width:640px){.signal{grid-template-columns:minmax(0,1fr)}}
+
+/* rule cards */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px;padding:0;list-style:none}
+.rules li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0;font-size:16px;line-height:1.4}
+.rules .n{font:600 12px/1.9 var(--mono);color:var(--accent-ink);flex:none}
+@media (max-width:640px){.rules{grid-template-columns:minmax(0,1fr)}}
+
+/* the paper */
+.paper{background:var(--paper);color:var(--paper-ink);font-family:var(--serif);font-size:13.5px;line-height:1.28;padding:26px 28px 26px 34px;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.08);position:relative;min-width:0}
+.paper p{margin:0}
+.paper .rn{font-size:21px;font-weight:700;line-height:1.1}
+.paper .rc{font-size:12.5px;margin-top:3px}
+.paper .rh{font-weight:700;text-transform:uppercase;border-bottom:1px solid var(--paper-rule);margin-top:12px;padding-bottom:1px;font-size:13.5px;letter-spacing:.01em}
+.paper .rl{display:flex;justify-content:space-between;gap:14px}
+.paper .rl > span:first-child{min-width:0}
+.paper .rl > span:last-child{text-align:right;margin-left:auto;white-space:nowrap;flex:none}
+.paper .gap{height:7px}
+.paper ul{margin:1px 0 0;padding-left:26px}
+.paper li{margin:0;padding-left:2px}
+.paper i{font-style:italic}
+.paper .lab{font-weight:700}
+@media (max-width:520px){.paper{font-size:11.5px;padding:18px 14px 18px 26px}.paper .rn{font-size:18px}.paper .rc{font-size:11px}.paper .rh{font-size:11.5px}.paper ul{padding-left:18px}}
+
+/* hotspots */
+.hs{position:relative;border-radius:2px;cursor:pointer;outline:1px dashed transparent;outline-offset:1px;transition:background .15s}
+.hs:hover{outline-color:var(--hl-line)}
+.hs:focus-visible{outline:2px solid var(--hl-line)}
+.hs.on{background:var(--hl);outline:1px solid var(--hl-line)}
+.markers .hs[data-n]::before{content:attr(data-n);position:absolute;left:-27px;top:0;width:19px;height:19px;border-radius:50%;background:var(--badge);color:var(--badge-ink);font:700 11px/19px var(--body);text-align:center;box-shadow:0 0 0 1.5px var(--paper)}
+@media (max-width:520px){.markers .hs[data-n]::before{left:-23px;width:17px;height:17px;font-size:10px;line-height:17px}}
+.hs-pop{font-family:var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--hl-line);border-radius:8px;padding:10px 12px;margin:6px 0 8px;font-size:14.5px;line-height:1.45}
+.hs-pop b{display:block;font-family:var(--display);font-stretch:90%;font-size:15px;margin-bottom:2px}
+
+.anat{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.rulepanel{position:sticky;top:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.rulepanel .k{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+.rulepanel h3{margin:6px 0 6px;font-size:21px}
+.rulepanel p{font-size:16px;line-height:1.5;margin:0 0 8px}
+.rulepanel .rwhy{margin-top:8px;font-size:15px}
+.rulepanel .nav2{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.anat-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+@media (max-width:760px){.anat{grid-template-columns:minmax(0,1fr)}.rulepanel{display:none}}
+@media (min-width:900px){.anat{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);width:min(1120px,calc(100vw - 56px));margin-left:calc(50% - min(560px,calc(50vw - 28px)))}}
+@media (max-width:520px){.hs-pop{font-size:13.5px}}
+
+/* program picker */
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.picker .btn{font-size:13.5px;padding:7px 11px}
+.emph{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:15px;color:var(--fg-2)}
+.emph select{font:500 14px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;max-width:100%}
+.progout{margin-top:12px}
+.progout .paper{padding:18px 20px}
+.prognote{margin-top:10px;font-size:15.5px;color:var(--fg-2)}
+
+/* section guide */
+.secs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.secs article{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.secs h3{font-size:18px;margin:0 0 2px}
+.secs .req{font:600 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--accent);color:var(--on-accent);vertical-align:2px;margin-left:6px}
+.secs .req.ropt{background:var(--surface-2);color:var(--fg-2)}
+.secs ul{margin:8px 0 0;padding-left:18px;font-size:15px;line-height:1.45}
+.secs li+li{margin-top:4px}
+.secs .no{color:var(--crit-ink)}
+@media (max-width:640px){.secs{grid-template-columns:minmax(0,1fr)}}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;margin-top:12px}
+.ba > div{border-radius:8px;padding:12px 14px;min-width:0;font-size:16px;line-height:1.45}
+.ba .bf{background:var(--surface-2);color:var(--fg-2)}
+.ba .af{background:var(--surface);border:1px solid var(--line)}
+.ba .k{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+@media (max-width:640px){.ba{grid-template-columns:minmax(0,1fr)}}
+.a-,.c-,.r-{border-bottom:2.5px solid;padding-bottom:0}
+.a-{border-color:var(--acr-a)} .c-{border-color:var(--acr-c)} .r-{border-color:var(--acr-r)}
+.acrkey{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font:500 12px var(--mono);color:var(--fg-2)}
+.acrkey span{display:inline-flex;align-items:center;gap:6px}
+.acrkey i{display:inline-block;width:16px;height:3px;border-radius:2px}
+.techs{display:grid;gap:18px;margin-top:6px}
+.tech h3{margin:20px 0 2px}
+
+/* builder */
+.bld .cgrid{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr) minmax(0,1.6fr)}
+@media (max-width:700px){.bld .cgrid{grid-template-columns:minmax(0,1fr)}}
+.bld .paper{margin-top:14px;padding:16px 18px 16px 22px;font-size:14.5px}
+.checks{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:5px;font-size:15px}
+.checks li{display:flex;gap:8px;align-items:flex-start}
+.checks .m{font:700 13px/1.5 var(--mono);flex:none;width:16px}
+.checks .ok .m{color:var(--good-ink)} .checks .bad .m{color:var(--crit-ink)}
+.verbs{margin-top:16px}
+.verbs .picker .btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.chipsx{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chipsx button{font:500 13.5px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipsx button:hover{border-color:var(--accent-ink)}
+.toast{font:500 13px var(--mono);color:var(--accent-ink);min-height:1.4em;margin-top:8px}
+
+/* checklist */
+.meter{display:flex;align-items:center;gap:12px;margin-top:14px}
+.meter .mbar{flex:1;height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.meter .mfill{height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .25s}
+.meter b{font:700 18px var(--display);font-stretch:86%;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cl{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+.cl label{display:flex;gap:11px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 13px;cursor:pointer;font-size:16px;line-height:1.4}
+.cl input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent-ink);flex:none}
+.cl .grp{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+.cl label:has(input:checked){background:var(--accent-soft);border-color:transparent}
+
+/* rubric */
+.rub{display:grid;gap:10px;margin-top:16px}
+.rub fieldset{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:12px 14px 14px;margin:0;min-width:0}
+.rub legend{font:700 17px var(--display);font-stretch:90%;padding:0 4px}
+.rub legend small{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+.lv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.lv.na{grid-template-columns:repeat(5,minmax(0,1fr))}
+.lv label{display:block;cursor:pointer;min-width:0}
+.lv input{position:absolute;opacity:0;pointer-events:none}
+.lv span{display:block;text-align:center;border:1px solid var(--line);border-radius:7px;padding:7px 4px;font:600 13px/1.25 var(--body);color:var(--fg-2)}
+.lv input:focus-visible+span{outline:2px solid var(--accent-ink);outline-offset:2px}
+.lv input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.lv input.l3:checked+span,.lv input.l4:checked+span{background:var(--cardinal);border-color:var(--cardinal);color:#fff}
+.desc{font-size:15px;color:var(--fg-2);margin:8px 0 0;min-height:1.4em}
+@media (max-width:560px){.lv,.lv.na{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.verdict{margin-top:14px;border-radius:var(--r);padding:16px 18px;background:var(--surface-2)}
+.verdict b{display:block;font:750 24px/1.15 var(--display);font-stretch:86%}
+.verdict p{margin:6px 0 0;font-size:16px}
+.verdict.v1{background:var(--accent-soft)}
+
+/* compare */
+.cmp th:nth-child(2){color:var(--accent-ink)} .cmp th:nth-child(3){color:var(--cardinal-ink)}
+.cmp td:first-child{font-weight:600;white-space:nowrap}
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.res div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.res b{display:block;font:700 17px/1.25 var(--display);font-stretch:90%}
+.res p{margin:6px 0 0;font-size:15px;color:var(--fg-2)}
+.res code{font:500 12.5px var(--mono);color:var(--fg);background:var(--surface-2);padding:1px 5px;border-radius:4px}
+@media (max-width:640px){.res{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.meter .mfill,.hs{transition:none}}
+</style>
+<style>
+/* Leventhal Resume Workshop: same components as the Marshall page, re-keyed to USC cardinal. */
+:root{
+  --accent:#990000; --accent-ink:#990000; --accent-soft:#fbeaea; --on-accent:#ffffff;
+  --hl:#ffdcd8; --hl-line:#990000; --badge:#990000; --badge-ink:#ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --accent:#b3302b; --accent-ink:#ff8a80; --accent-soft:#2c1515; --on-accent:#ffffff; }
+}
+:root[data-theme="dark"]{ --accent:#b3302b; --accent-ink:#ff8a80; --accent-soft:#2c1515; --on-accent:#ffffff; }
+.goldbar{background:linear-gradient(90deg,#990000 0 72%,#ffcc00 72% 100%)}
+
+/* track toggle */
+.trk{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-size:15px;color:var(--fg-2)}
+.trk .btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+/* Leventhal paper styles */
+.paper.lvg .rn,.paper.lvu .rn{text-align:center;text-transform:uppercase;letter-spacing:.02em}
+.paper.lvg .rn{border-bottom:1.5px solid var(--paper-rule);padding-bottom:3px}
+.paper.lvg .rc,.paper.lvu .rc{text-align:center}
+.paper.lvg .rc{font-size:12px;margin-top:4px}
+.paper.lvg .rh{border-bottom:0;text-decoration:underline;text-underline-offset:2px;margin-top:13px}
+.paper.lvg ul,.paper.lvu ul{list-style:disc}
+.paper .ind{padding-left:0}
+.diff th:nth-child(2),.diff th:nth-child(3){color:var(--accent-ink)}
+.diff td:first-child{font-weight:600}
+.drills .mc{margin-top:22px}
+.drills .opt b{font-weight:700} .drills .opt i{font-style:italic}
+.drills .opt .x{font-family:var(--serif);font-size:16.5px}
+.drills .mc.plain .opt .x{font-family:inherit;font-size:inherit}
+.curbox{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:15px;color:var(--fg-2)}
+.curbox input{width:18px;height:18px;accent-color:var(--accent-ink)}
+.cl li[hidden]{display:none}
+</style>
+<style>
+/* Same job, different resume: one experience, four tailored versions. Track colors sit on white paper, so they are fixed. */
+.pv-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.pv-rules div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;min-width:0}
+.pv-rules b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin-bottom:3px}
+.pv-rules p{margin:0;font-size:15px;color:var(--fg-2);line-height:1.45}
+@media (max-width:640px){.pv-rules{grid-template-columns:minmax(0,1fr)}}
+.pv-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:16px;font-size:14px;color:var(--fg-2)}
+.pv-legend span{display:inline-flex;align-items:center;gap:7px}
+.pv-legend i{width:10px;height:10px;border-radius:50%;background:var(--tline);flex:none}
+.pv-list{display:grid;gap:10px;margin-top:14px}
+.pv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:0}
+.pv.open{border-color:var(--fg-2)}
+.pv-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center;width:100%;padding:16px 18px;background:none;border:0;text-align:left;cursor:pointer;color:var(--fg);font:inherit;border-radius:12px}
+.pv-head:hover{background:var(--surface-2)}
+.pv-tag{font:600 10.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block}
+.pv-org{display:block;font:750 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.pv-role{display:block;font-size:15px;color:var(--fg-2);margin-top:1px}
+.pv-cta{grid-row:1/4;grid-column:2;font:600 13px var(--body);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap;background:var(--surface)}
+.pv.open .pv-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pv-body{padding:0 18px 18px}
+.pv-ask{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px}
+.pv-tracks{display:flex;flex-wrap:wrap;gap:6px}
+.pv-tracks button{font:600 14px var(--body);border-radius:999px;padding:7px 14px;border:1.5px solid var(--tline);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pv-tracks button i{width:9px;height:9px;border-radius:50%;background:var(--tline);flex:none}
+.pv-tracks button[aria-pressed="true"]{background:var(--tline);color:#ffffff}
+.pv-tracks button[aria-pressed="true"] i{background:#ffffff}
+.pv-paper{margin-top:12px;padding:16px 18px 16px 22px}
+.pv-paper ul{margin-top:2px}
+.kw{background:var(--ttint);box-shadow:inset 0 -2px 0 var(--tline);border-radius:2px;padding:0 1px}
+.pv-why{margin-top:12px;background:var(--surface-2);border-radius:8px;padding:12px 14px;font-size:15.5px;line-height:1.5}
+.pv-why .lead{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-bottom:3px}
+.pv-why p{margin:0}
+.pv-kws{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pv-kws span{font:500 12.5px var(--body);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.pv-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pv-four{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.pv-four .paper{padding:12px 14px 12px 16px;font-size:12.5px}
+.pv-four h4{margin:0 0 4px;font:700 12px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--tline);display:flex;align-items:center;gap:6px}
+.pv-four h4 i{width:8px;height:8px;border-radius:50%;background:var(--tline)}
+.pv-four ul{padding-left:16px}
+@media (max-width:640px){.pv-four{grid-template-columns:minmax(0,1fr)}}
+.pv-fade{animation:pvfade .28s ease}
+@keyframes pvfade{from{opacity:.25;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pv-fade{animation:none}}
+.pv-drill .mc{margin-top:16px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:15px;line-height:1.45;color:var(--fg-2);margin:4px 0 10px}
+.post b{color:var(--fg)}
+
+/* review request */
+.review{display:flex;gap:14px 20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:18px}
+.review > div{min-width:0;flex:1 1 280px}
+.review b{display:block;font:750 20px/1.2 var(--display);font-stretch:88%}
+.review p{margin:4px 0 0;font-size:15.5px;color:var(--fg-2)}
+.review .btn.off{opacity:.6;cursor:default}
+</style>
+
+<nav class="rail" aria-label="Workshop steps">
+  <div class="rail-in">
+    <div class="chips" id="chips">
+      <a href="#why">Why</a><a href="#rules">The rules</a><a href="#anatomy">Anatomy</a><a href="#tailor">Same job</a><a href="#program">Your degree</a><a href="#details">Detail drills</a><a href="#bullets">Bullets</a><a href="#checklist">Checklist</a><a href="#next">Next steps</a><a href="#test">Test</a>
+    </div>
+    <label class="speed" for="rate"><span>Speed</span>
+      <select id="rate" aria-label="Read-aloud speed">
+        <option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option><option value="1.3">1.3×</option>
+      </select>
+    </label>
+  </div>
+</nav>
+
+<main>
+<header class="hero wrap">
+  <div class="goldbar" aria-hidden="true"></div>
+  <p class="eyebrow">Resume Workshop · USC Leventhal format · about 25 minutes</p>
+  <h1>Leventhal Resume Workshop</h1>
+  <p class="lede" data-say>Accounting firms hire people they can trust with details. A resume in Leventhal's format, with every date, font, and bullet consistent, shows that before you say a word. This page covers the format for undergraduate accounting majors and for graduate students, side by side.</p>
+  <div class="trk" role="group" aria-label="Which version of the format to show">
+    <span>Show me the</span>
+    <button class="btn small" type="button" data-tr="ug" aria-pressed="true">Undergrad accounting</button>
+    <button class="btn small" type="button" data-tr="gr" aria-pressed="false">Grad (MAcc, MBT)</button>
+    <span>version</span>
+  </div>
+  <ol class="how">
+    <li><b>Tap the sample resume</b> to see the rule behind every line.</li>
+    <li><b>Drill the details</b>: dates, tense, punctuation, and numbers.</li>
+    <li><b>Check your own</b> resume against the checklist before you send it.</li>
+  </ol>
+  <div class="hero-actions">
+    <a class="btn primary" href="#anatomy">Tap the sample resume</a>
+    <a class="btn" href="#tailor">Tailor one job four ways</a>
+    <a class="btn" href="#checklist">Go to the checklist</a>
+  </div>
+  <div class="voicebar">
+    <label for="voicePick">Read-aloud voice</label>
+    <select id="voicePick"></select>
+    <button class="btn small" type="button" id="voiceTest">Try it</button>
+    <p class="vhint">Sounds robotic? Pick a voice marked "natural." For the most human voices, open this page in Microsoft Edge, which includes free natural voices.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 WHY -->
+<section class="step" id="why">
+  <div class="sh"><span class="idx">01</span><h2>Why the format matters</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>In accounting, attention to detail is the job. Consistent formatting is the first proof you have it.</p>
+  <div class="signal">
+    <div data-say><b>Grad students: it's required</b><p>Leventhal Graduate Career Services requires its resume format for all recruiting activities.</p></div>
+    <div data-say><b>It's read in seconds</b><p>Leventhal's guide notes resumes are often scanned in 6 to 10 seconds. The layout has to work at a glance.</p></div>
+    <div data-say><b>Details are the test</b><p>A stray period or mismatched date looks small, but it's the same kind of mistake an auditor is paid to catch.</p></div>
+  </div>
+  <p class="sub" data-say>Undergraduate accounting majors follow Leventhal's undergraduate accounting sample. Use the toggle at the top of the page to switch between the undergrad and grad versions.</p>
+</section>
+
+<!-- 02 RULES -->
+<section class="step" id="rules">
+  <div class="sh"><span class="idx">02</span><h2>The format, rule by rule</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>From Leventhal's resume guidelines. Most rules apply to both undergrad and grad resumes; the table after the cards shows where they differ.</p>
+  <div class="secs">
+    <article data-say><h3>Page setup</h3><ul>
+      <li>One page, no exceptions, on letter-size paper.</li>
+      <li>Times New Roman or another professional font, the same throughout.</li>
+      <li>10 to 12 point. The guide says larger is better.</li>
+      <li>Margins: top and bottom 0.5" to 1"; left and right equal, 0.75" to 1".</li></ul></article>
+    <article data-say><h3>Header</h3><ul>
+      <li>Name and contact details centered.</li>
+      <li>Nickname or English name in parentheses: Jordan (Jo) Trojan.</li>
+      <li>Grad guide: a 1.5 pt line under your name.</li>
+      <li>Contact line in 10 point, with round bullets between items.</li></ul></article>
+    <article data-say><h3>Headings and details</h3><ul>
+      <li>Organizations and schools in bold.</li>
+      <li>Degrees and position titles in italics.</li>
+      <li>City and state after every school and employer; abbreviate states except in bullets.</li>
+      <li>Dates right-aligned, most recent experience first.</li></ul></article>
+    <article data-say><h3>Bullets</h3><ul>
+      <li>Solid round bullets, lined up.</li>
+      <li>Start with an action verb: present tense for a current role, past tense for a past one.</li>
+      <li class="no">No periods at the end.</li>
+      <li>Spell out numbers under 10, unless the digit has more impact.</li></ul></article>
+    <article data-say><h3>Skills</h3><ul>
+      <li>Small round bullets, with subheadings followed by a colon.</li>
+      <li>Certifications: any parts of the CPA exam you've passed.</li>
+      <li>Technical skills, and languages with your fluency level.</li></ul></article>
+    <article data-say><h3>Before you send it</h3><ul>
+      <li>Proofread every time, for typos and consistency.</li>
+      <li>After saving as a PDF or uploading to a firm's site, open it and check it looks right.</li>
+      <li>Use words the reader understands, not internal jargon.</li></ul></article>
+  </div>
+  <h3 style="margin-top:28px">Undergrad vs. grad</h3>
+  <div class="tblwrap card">
+    <table class="tw diff">
+      <thead><tr><th></th><th>Undergrad (accounting sample)</th><th>Grad (Leventhal guide)</th></tr></thead>
+      <tbody>
+        <tr><td>Section names</td><td>EDUCATION, WORK EXPERIENCE, LEADERSHIP ACTIVITIES, SKILLS/INTERESTS</td><td>EDUCATION, EXPERIENCE, ACTIVITIES, SKILLS</td></tr>
+        <tr><td>Headings</td><td>Bold capitals with a line to the margin</td><td>Bold, underlined capitals</td></tr>
+        <tr><td>Dates</td><td>Full months: June 2026 - August 2026</td><td>Short months: Jun 2025 – Aug 2025</td></tr>
+        <tr><td>School line</td><td>University, then Leventhal on its own bold line</td><td>University, Leventhal School of Accounting - city, state</td></tr>
+        <tr><td>Location</td><td>After a comma: Harlow &amp; Kim LLP, Los Angeles, CA</td><td>After a hyphen: Delmar &amp; Co. CPAs - San Diego, CA</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 03 ANATOMY -->
+<section class="step" id="anatomy">
+  <div class="sh"><span class="idx">03</span><h2>Tap the sample resume</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Tap any numbered part to see the rule behind it, or start the tour. Switch between the undergrad and grad samples to compare.</p>
+  <div class="anat-tools">
+    <div class="trk" role="group" aria-label="Which sample to show" style="margin-top:0">
+      <button class="btn small" type="button" data-tr="ug" aria-pressed="true">Undergrad sample</button>
+      <button class="btn small" type="button" data-tr="gr" aria-pressed="false">Grad sample</button>
+    </div>
+    <button class="btn primary small" type="button" id="tourStart">Start the tour</button>
+    <button class="btn small" type="button" id="markTog" aria-pressed="true">Numbers on</button>
+  </div>
+  <div class="anat">
+    <div>
+      <div class="paper lvu markers" id="paperU" aria-label="Sample undergraduate accounting resume. Each numbered part is a button.">
+        <div class="hs" data-k="name"><p class="rn">Alex Trojan</p></div>
+        <div class="hs" data-k="contact"><p class="rc">(213) 555-0175 • atrojan@usc.edu • linkedin.com/in/alextrojan</p></div>
+        <div class="hs" data-k="heading"><p class="rh">Education</p></div>
+        <div class="hs" data-k="school"><p class="rl"><span><b>University of Southern California,</b> Los Angeles, CA</span><span>Expected May 2027</span></p></div>
+        <div class="hs" data-k="lev"><p><b>Leventhal School of Accounting</b></p></div>
+        <div class="hs" data-k="degree"><p><i>Bachelor of Science, Accounting – STEM Designated</i></p></div>
+        <div class="hs" data-k="gpa"><p>Cumulative GPA: 3.58 · Major GPA: 3.66</p><p><b>Honors:</b> Dean's List (four semesters)</p></div>
+        <p class="rh">Work Experience</p>
+        <div class="hs" data-k="employer"><p class="rl"><span><b>Harlow &amp; Kim LLP,</b> Los Angeles, CA</span><span>June 2026 - August 2026</span></p></div>
+        <div class="hs" data-k="title"><p><i>Audit Intern</i></p></div>
+        <div class="hs" data-k="bullet"><ul><li>Tested accounts receivable for two manufacturing clients, tying 80 invoices to cash receipts</li></ul></div>
+        <ul><li>Documented internal control walkthroughs in workpapers reviewed by the audit senior</li></ul>
+        <p class="rl"><span><b>Westside Market,</b> Los Angeles, CA</span><span>June 2023 - August 2024</span></p>
+        <p><i>Cashier and Inventory Associate</i></p>
+        <ul><li>Reconciled cash drawers at shift close with zero variances over 14 months</li></ul>
+        <div class="hs" data-k="leader"><p class="rh">Leadership Activities</p><p class="rl"><span><b>Trojan Accounting Society</b></span><span>September 2025 - Present</span></p><p><i>Treasurer</i></p><ul><li>Manage a $40K annual budget and reconcile the club's bank account each month</li></ul></div>
+        <div class="hs" data-k="volunteer"><p class="rh">Volunteer Activities</p><p class="rl"><span><b>Volunteer Income Tax Assistance,</b> Los Angeles, CA</span><span>January 2025 - April 2025</span></p></div>
+        <p class="rh">Skills/Interests</p>
+        <div class="hs" data-k="skills"><p><b>Languages:</b> Fluent in Korean</p><p><b>Applications:</b> Microsoft Excel (pivot tables, XLOOKUP), QuickBooks, Tableau</p><p><b>Interests:</b> Pickup basketball, true-crime podcasts, Trojan football</p></div>
+      </div>
+      <div class="paper lvg markers" id="paperG" hidden aria-label="Sample graduate accounting resume. Each numbered part is a button.">
+        <div class="hs" data-k="name"><p class="rn">Jordan (Jo) Trojan</p></div>
+        <div class="hs" data-k="contact"><p class="rc">(213) 555-0188 • jtrojan@usc.edu • linkedin.com/in/jotrojan</p></div>
+        <div class="hs" data-k="heading"><p class="rh">Education</p></div>
+        <div class="hs" data-k="school"><p class="rl"><span><b>University of Southern California, Leventhal School of Accounting</b> - Los Angeles, CA</span><span>May 2027</span></p></div>
+        <div class="hs" data-k="degree"><p><i>Master of Accounting</i></p></div>
+        <div class="hs" data-k="course"><p>Relevant Coursework: Advanced Auditing, Accounting Information Systems, Federal Taxation · GPA: 3.71</p></div>
+        <div class="gap"></div>
+        <p class="rl"><span><b>University of California, Santa Barbara</b> - Santa Barbara, CA</span><span>Jun 2026</span></p>
+        <p><i>Bachelor of Arts, Economics; Minor: Accounting</i></p>
+        <div class="hs" data-k="honors"><p>Cumulative GPA: 3.82</p><p>Honors: <i>summa cum laude</i>, Dean's Honors</p></div>
+        <p class="rh">Experience</p>
+        <div class="hs" data-k="employer"><p class="rl"><span><b>Delmar &amp; Co. CPAs</b> - San Diego, CA</span><span>Jun 2025 – Aug 2025</span></p></div>
+        <div class="hs" data-k="title"><p><i>Audit Intern</i></p></div>
+        <div class="hs" data-k="bullet"><ul><li>Tested revenue and cash for three nonprofit clients, tying out 120 sample items to source documents</li></ul></div>
+        <ul><li>Drafted memos on control walkthroughs for the audit senior's review</li></ul>
+        <div class="gap"></div>
+        <p class="rl"><span><b>University of California, Santa Barbara</b> - Santa Barbara, CA</span><span>Sep 2023 – Jun 2026</span></p>
+        <p><i>Accounting Tutor</i></p>
+        <ul><li>Tutored 25 students each quarter in financial and managerial accounting</li></ul>
+        <div class="hs" data-k="activities"><p class="rh">Activities</p><p class="rl"><span><b>Volunteer Income Tax Assistance,</b> <i>Tax Preparer</i></span><span>Jan 2025 – Apr 2025</span></p><ul><li>Prepared 60 federal and state returns for low-income families, claiming $45K in refundable credits</li></ul></div>
+        <p class="rh">Skills</p>
+        <div class="hs" data-k="skills"><ul><li><i>Certifications:</i> Passed two parts of the CPA exam: AUD and FAR</li><li><i>Technical:</i> Microsoft Excel (pivot tables, XLOOKUP), QuickBooks, Alteryx, Tableau</li><li><i>Languages:</i> Fluent in Spanish, Conversational in Mandarin</li></ul></div>
+      </div>
+    </div>
+    <aside class="rulepanel" id="rulepanel" aria-live="polite">
+      <p class="k" id="rpK">Part 0 of 0</p>
+      <h3 id="rpT">Tap a numbered part</h3>
+      <p id="rpR">Every line on a Leventhal resume follows a rule. Tap a number on the page, or start the tour.</p>
+      <p class="note rwhy" id="rpW"></p>
+      <div class="nav2"><button class="btn small" type="button" id="rpPrev">← Back</button><button class="btn primary small" type="button" id="rpNext">Next part →</button></div>
+    </aside>
+  </div>
+  <p class="src">Sample resumes written for this page. The people and employers are made up. Layout follows Leventhal's resume guidelines and its undergraduate accounting sample.</p>
+</section>
+
+<!-- 04 SAME JOB, DIFFERENT RESUME -->
+<section class="step" id="tailor">
+  <div class="sh"><span class="idx">04</span><h2>Same job, different resume</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>Audit, tax, advisory, and industry roles all want accounting students, but they read your experience differently.</p>
+  <div class="pv-rules">
+    <div data-say><b>The facts stay fixed</b><p>Employer, title, and dates never change between versions. Only the bullets do.</p></div>
+    <div data-say><b>Lead with what they want</b><p>Read the posting, then put the true details that match it first, in its words.</p></div>
+    <div data-say><b>Keep a master resume</b><p>Write every bullet you could use in one long file. Each application is a cut of it.</p></div>
+  </div>
+  <p class="sub" data-say>Open an experience, then flip between the four versions. Highlighted words are the ones that changed to fit each path.</p>
+  <div class="pv-legend" id="pvLegend"></div>
+  <div class="pv-list" id="pvList"></div>
+  <div class="pv-drill">
+    <h3 style="margin-top:30px">Which version would you send?</h3>
+    <p class="sub" data-say>Read each posting, then pick the version that fits it.</p>
+    <div class="mc" data-answer="0">
+      <div class="mc-head"><p class="stem" data-say>Assurance Intern: "Test internal controls, vouch transactions to source documents, and document your work in audit workpapers."</p></div>
+      <div class="opts"><button class="opt" type="button">Audit</button><button class="opt" type="button">Tax</button><button class="opt" type="button">Advisory</button><button class="opt" type="button">Industry</button></div>
+      <div class="why" hidden><p data-say>Controls, vouching, workpapers. The audit versions lead with testing and documenting.</p></div>
+    </div>
+    <div class="mc" data-answer="1">
+      <div class="mc-head"><p class="stem" data-say>Tax Intern: "Prepare individual and partnership returns, research tax questions, and explain filing requirements to clients."</p></div>
+      <div class="opts"><button class="opt" type="button">Audit</button><button class="opt" type="button">Tax</button><button class="opt" type="button">Advisory</button><button class="opt" type="button">Industry</button></div>
+      <div class="why" hidden><p data-say>Returns, research, and client explanations: that's the tax version.</p></div>
+    </div>
+    <div class="mc" data-answer="3">
+      <div class="mc-head"><p class="stem" data-say>Corporate Accounting Intern: "Support the month-end close, post journal entries, and prepare budget-to-actual variance reports."</p></div>
+      <div class="opts"><button class="opt" type="button">Audit</button><button class="opt" type="button">Tax</button><button class="opt" type="button">Advisory</button><button class="opt" type="button">Industry</button></div>
+      <div class="why" hidden><p data-say>Close, entries, and variance reports happen inside a company. Send the industry version.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DEGREE -->
+<section class="step" id="program">
+  <div class="sh"><span class="idx">05</span><h2>Write your degree line</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Use your degree's exact name. Pick your program to see how its education section should look.</p>
+  <div class="picker" role="group" aria-label="Choose your program" id="progPick"></div>
+  <div class="progout"><div class="paper" id="progPaper"></div></div>
+  <p class="prognote" id="progNote" aria-live="polite"></p>
+  <p class="src">Based on Leventhal's resume guidelines and sample resumes. Always check the exact degree name on your USC records.</p>
+</section>
+
+<!-- 06 DETAIL DRILLS -->
+<section class="step drills" id="details">
+  <div class="sh"><span class="idx">06</span><h2>Detail drills</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Six quick calls on the small rules that reviewers notice first. Each option is shown in resume type.</p>
+  <div class="mc" data-answer="1">
+    <div class="mc-head"><p class="stem" data-say>Which date range follows the grad guide?</p></div>
+    <div class="opts"><button class="opt" type="button">September 2024 - May 2025</button><button class="opt" type="button">Sep 2024 – May 2025</button><button class="opt" type="button">9/24 – 5/25</button><button class="opt" type="button">Fall '24 – Spring '25</button></div>
+    <div class="why" hidden><p data-say>Short month names and four-digit years. Undergrads following the accounting sample write full months, so pick one style and use it everywhere.</p></div>
+  </div>
+  <div class="mc" data-answer="2">
+    <div class="mc-head"><p class="stem" data-say>Which bullet follows Leventhal's rules?</p></div>
+    <div class="opts"><button class="opt" type="button">• Prepared 3 reconciliations each month.</button><button class="opt" type="button">• Responsible for monthly reconciliations</button><button class="opt" type="button">• Prepared three bank reconciliations each month</button><button class="opt" type="button">• prepared three reconciliations monthly.</button></div>
+    <div class="why" hidden><p data-say>Action verb first, the number under 10 spelled out, and no period at the end.</p></div>
+  </div>
+  <div class="mc" data-answer="1">
+    <div class="mc-head"><p class="stem" data-say>You still work at the firm. Which verb starts the bullet?</p></div>
+    <div class="opts"><button class="opt" type="button">Conducted</button><button class="opt" type="button">Conduct</button><button class="opt" type="button">Conducting</button><button class="opt" type="button">Have conducted</button></div>
+    <div class="why" hidden><p data-say>Present tense for a current role, past tense once you've left.</p></div>
+  </div>
+  <div class="mc" data-answer="0">
+    <div class="mc-head"><p class="stem" data-say>Which employer line is formatted correctly for a grad resume?</p></div>
+    <div class="opts"><button class="opt" type="button"><b>Delmar &amp; Co. CPAs</b>&nbsp;- San Diego, CA</button><button class="opt" type="button">Delmar &amp; Co. CPAs - San Diego, California</button><button class="opt" type="button"><i>Delmar &amp; Co. CPAs</i>&nbsp;- San Diego, CA</button><button class="opt" type="button">DELMAR &amp; CO. CPAS, SAN DIEGO</button></div>
+    <div class="why" hidden><p data-say>Organization in bold, then city and an abbreviated state. Italics are for degrees and titles.</p></div>
+  </div>
+  <div class="mc plain" data-answer="3">
+    <div class="mc-head"><p class="stem" data-say>You've passed two parts of the CPA exam. Where does that go?</p></div>
+    <div class="opts"><button class="opt" type="button">Under your name in the header</button><button class="opt" type="button">In Education, after your GPA</button><button class="opt" type="button">As a bullet under your internship</button><button class="opt" type="button">In Skills, under Certifications</button></div>
+    <div class="why" hidden><p data-say>The guide puts completed CPA exam parts in Skills: Passed two parts of the CPA exam: AUD and FAR.</p></div>
+  </div>
+  <div class="mc" data-answer="2">
+    <div class="mc-head"><p class="stem" data-say>How should your degree appear?</p></div>
+    <div class="opts"><button class="opt" type="button"><b>Master of Accounting</b></button><button class="opt" type="button">MACC</button><button class="opt" type="button"><i>Master of Accounting</i></button><button class="opt" type="button">Masters in Accounting</button></div>
+    <div class="why" hidden><p data-say>The exact degree name, in italics. No abbreviations.</p></div>
+  </div>
+</section>
+
+<!-- 07 BULLETS -->
+<section class="step" id="bullets">
+  <div class="sh"><span class="idx">07</span><h2>Write bullets the Leventhal way</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>Leventhal teaches STAR: the situation or task, the action you took, and the result. On the page, that becomes one tight line that starts with the action.</p>
+  <div class="techs">
+    <div class="tech">
+      <h3>Most important information first</h3>
+      <p class="sub" data-say>The guide's test: imagine the reader only reads the first half of each bullet. Put the action and the scale up front.</p>
+      <div class="ba"><div class="bf"><span class="k">Before</span>Was asked by my manager to help with the year-end inventory count at two warehouses.</div>
+        <div class="af"><span class="k">After</span><span class="a-">Led</span> <span class="c-">year-end inventory counts at two warehouses,</span> <span class="r-">resolving $18K in variances before the audit</span></div></div>
+      <div class="acrkey" aria-hidden="true"><span><i style="background:var(--acr-a)"></i>Action</span><span><i style="background:var(--acr-c)"></i>Situation and scale</span><span><i style="background:var(--acr-r)"></i>Result</span></div>
+    </div>
+    <div class="tech">
+      <h3>Quantify, or give scope</h3>
+      <p class="sub" data-say>Did revenue rise, costs fall, or time get saved? Say by how much. If you can't put a number on it, say how big the task was.</p>
+      <div class="ba"><div class="bf"><span class="k">Before</span>Helped clients with their taxes</div>
+        <div class="af"><span class="k">After</span>Prepared 60 federal and state returns for low-income families, claiming $45K in refundable credits</div></div>
+    </div>
+  </div>
+  <div class="calcbox bld" id="builder">
+    <h3>Bullet builder</h3>
+    <p class="sub">Fill in the three parts. The checks apply Leventhal's rules: tense, no period, and numbers under 10 spelled out.</p>
+    <div class="cgrid">
+      <label for="bv">Action verb<input id="bv" type="text" list="verbList" value="Reconciled" autocomplete="off"></label>
+      <label for="bc">Situation and scale<input id="bc" type="text" value="the club's bank account and 200+ monthly transactions" autocomplete="off"></label>
+      <label for="br">Result<input id="br" type="text" value="closing 8 straight months with zero unexplained variances" autocomplete="off"></label>
+    </div>
+    <label class="curbox" for="bcur"><input type="checkbox" id="bcur"> I still have this role (use present tense)</label>
+    <datalist id="verbList"></datalist>
+    <div class="paper" aria-live="polite"><ul><li id="bOut"></li></ul></div>
+    <ul class="checks" id="bChecks"></ul>
+    <div class="cbtns"><button class="btn small" type="button" id="bClear">Clear and write my own</button><button class="btn small" type="button" id="bCopy">Copy bullet</button></div>
+    <p class="toast" id="bToast" aria-live="polite"></p>
+  </div>
+  <div class="verbs">
+    <h3>Pick a stronger verb</h3>
+    <p class="sub" data-say>Choose the skill you want to show, then tap a verb to drop it into the builder.</p>
+    <div class="picker" role="group" aria-label="Verb categories" id="verbCats"></div>
+    <div class="chipsx" id="verbChips"></div>
+  </div>
+</section>
+
+<!-- 08 CHECKLIST -->
+<section class="step" id="checklist">
+  <div class="sh"><span class="idx">08</span><h2>Format checklist</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Open your resume next to this page and tick each item. The list matches the version you picked at the top, and your ticks stay in this browser.</p>
+  <div class="meter"><div class="mbar"><div class="mfill" id="clFill"></div></div><b id="clCount">0 of 0</b></div>
+  <ul class="cl" id="clList"></ul>
+  <div class="cbtns"><button class="btn small" type="button" id="clReset">Clear all ticks</button></div>
+</section>
+
+<!-- 09 NEXT -->
+<section class="step" id="next">
+  <div class="sh"><span class="idx">09</span><h2>Next steps</h2><button class="btn small listen" type="button">Listen</button></div>
+  <div class="res">
+    <div data-say><b>Start from the template</b><p>Leventhal's guide asks you to build from the template it provides. Ask career services for the current version.</p></div>
+    <div data-say><b>Proofread, then check the PDF</b><p>After converting or uploading to a firm's site, open the file and make sure it looks the way you meant.</p></div>
+    <div data-say><b>Tailor every time</b><p>Use the Same job section above to lead with what each posting asks for.</p></div>
+  </div>
+  <div class="review">
+    <div><b>Want a second opinion?</b><p>Submit your resume and get feedback from someone who's been through recruiting.</p></div>
+    <a class="btn primary" id="reviewLink" href="#" target="_blank" rel="noopener">Submit your resume for review</a>
+  </div>
+  <h3 style="margin-top:30px">Leventhal vs. Marshall at a glance</h3>
+  <p class="sub" data-say>Business majors use the Marshall format instead. Open the Marshall page from the Resume Workshop menu for the full version.</p>
+  <div class="tblwrap card">
+    <table class="tw diff">
+      <thead><tr><th></th><th>Leventhal</th><th>Marshall</th></tr></thead>
+      <tbody>
+        <tr><td>Name and header</td><td>Centered</td><td>Your choice of alignment</td></tr>
+        <tr><td>Bullet endings</td><td>No periods</td><td>Samples end with periods</td></tr>
+        <tr><td>Numbers</td><td>Spell out numbers under 10</td><td>Not specified; be consistent</td></tr>
+        <tr><td>Tense</td><td>Present for current roles, past for past roles</td><td>Not specified; samples follow the same habit</td></tr>
+        <tr><td>Bullet method</td><td>STAR</td><td>Action, Context, Result</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 10 TEST -->
+<section class="step test" id="test">
+  <div class="sh"><span class="idx">10</span><h2>Quick test</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Ten questions on the Leventhal format. Pick an answer to see why.</p>
+  <div class="scorebar"><span class="score" id="score">0 / 0<small>answered 0 of 10</small></span><button class="btn small" type="button" id="resetTest">Reset test</button></div>
+  <div id="testq"></div>
+  <div class="done" id="done" hidden></div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Format rules summarize Leventhal Graduate Career Services' resume guidelines and the undergraduate accounting sample resume. The sample resumes and examples were written for this page. This page isn't an official USC resource: check with career services for the latest guide and template.</p>
+  </div>
+</footer>
+<div id="tip" hidden role="tooltip"></div>
+<script>
+(function(){
+  "use strict";
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const NS="http://www.w3.org/2000/svg";
+  const svgEl=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const LET="ABCD";
+
+  /* ---------- tooltip ---------- */
+  const tip=$("#tip");
+  function showTip(el,x,y){tip.textContent=el.getAttribute("data-tip");tip.hidden=false;
+    const w=tip.offsetWidth,h=tip.offsetHeight;let L=x+12,T=y-h-10;
+    if(L+w>innerWidth-8)L=x-w-12; if(T<8)T=y+14; tip.style.left=Math.max(8,L)+"px";tip.style.top=T+"px";}
+  document.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t)showTip(t,e.clientX,e.clientY);else tip.hidden=true;});
+  document.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t){const r=t.getBoundingClientRect();showTip(t,r.left+r.width/2,r.top);}});
+  document.addEventListener("focusout",()=>{tip.hidden=true;});
+  addEventListener("scroll",()=>{tip.hidden=true;},{passive:true});
+
+  /* ---------- reveal toggles ---------- */
+  $$(".reveal").forEach(b=>{const t=document.getElementById(b.getAttribute("aria-controls"));const show=b.textContent;
+    const hide=show.startsWith("Show as")?"Hide table":"Hide";
+    b.addEventListener("click",()=>{const open=t.hidden;t.hidden=!open;b.setAttribute("aria-expanded",String(open));b.textContent=open?hide:show;});});
+
+  /* ---------- timers ---------- */
+  let actx=null;
+  function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,actx.currentTime);g.gain.exponentialRampToValueAtTime(.2,actx.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+.5);o.connect(g).connect(actx.destination);o.start();o.stop(actx.currentTime+.55);}catch(e){}}
+  $$(".timer").forEach(b=>{const secs=+b.dataset.secs,label=b.textContent;let id=null,left=0;
+    const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+    b.addEventListener("click",()=>{
+      if(id){clearInterval(id);id=null;b.textContent=label;b.setAttribute("aria-pressed","false");return;}
+      try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();}catch(e){}
+      left=secs;b.textContent=fmt(left)+" · stop";b.setAttribute("aria-pressed","true");
+      id=setInterval(()=>{left--;if(left<=0){clearInterval(id);id=null;b.textContent="Time. Answer now";b.setAttribute("aria-pressed","false");beep();setTimeout(()=>{if(!id)b.textContent=label;},4000);return;}b.textContent=fmt(left)+" · stop";},1000);
+    });});
+
+  /* ---------- steppers ---------- */
+  $$(".stepper").forEach(s=>{const steps=$$(".st",s),next=$(".next",s),reset=$(".reset",s);let i=0;
+    const upd=()=>{next.hidden=i>=steps.length;next.textContent="Reveal step "+(i+1)+" of "+steps.length;};
+    next.addEventListener("click",()=>{if(i<steps.length){steps[i].hidden=false;i++;upd();}});
+    reset.addEventListener("click",()=>{steps.forEach(x=>x.hidden=true);i=0;upd();});upd();});
+
+
+  const PAGEKEY="leventhal-resume";
+  /* Resume review form: paste the https:// link to the Google Form here when it is ready. Until then the button reads "Review form opens soon". */
+  const REVIEW_FORM="";
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const store={get(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+  let TRACK=store.get("lv-track")==="gr"?"gr":"ug";
+
+  /* ---------- 03 tap-the-resume (two samples) ---------- */
+  const HSU=[
+    {k:"name",t:"Your name",r:"Centered, in bold capitals.",w:"Leventhal centers the whole header: name and contact line."},
+    {k:"contact",t:"Contact line",r:"Phone, email, and LinkedIn on one centered line, separated by round bullets with a space on each side.",w:"Use an email you check. A mailing address is optional; city, state, and ZIP are enough."},
+    {k:"heading",t:"Section headings",r:"Bold capitals with a line running to the margin.",w:"The undergrad sample uses EDUCATION, WORK EXPERIENCE, LEADERSHIP ACTIVITIES, VOLUNTEER ACTIVITIES, and SKILLS/INTERESTS."},
+    {k:"school",t:"University line",r:"University in bold, then the city and state. Your graduation date sits at the right margin.",w:"Write Expected before the date until you graduate."},
+    {k:"lev",t:"School line",r:"Leventhal School of Accounting gets its own bold line under the university.",w:"Double majors add Marshall School of Business the same way, with its own degree and GPA."},
+    {k:"degree",t:"Degree",r:"Your exact degree in italics: Bachelor of Science, Accounting – STEM Designated.",w:"No abbreviations in the degree name."},
+    {k:"gpa",t:"GPA and honors",r:"Cumulative GPA, plus your major GPA if it helps. List GPA unless it's below 3.0.",w:"Transfer students can add a transfer GPA line, as the sample shows."},
+    {k:"employer",t:"Employer line",r:"Employer in bold, then city and state on the same line. Dates at the right margin.",w:"Most recent job first."},
+    {k:"title",t:"Position title",r:"Your title in italics, on its own line.",w:"Capitalize it the way the employer does: Audit Intern."},
+    {k:"bullet",t:"A Leventhal bullet",r:"Action verb first, most important information first, and no period at the end.",w:"Test: if the reader stops halfway through, did they still get the point?"},
+    {k:"leader",t:"Leadership Activities",r:"Organization in bold, your role in italics, and bullets like any job.",w:"Present tense for a role you still hold: Manage, Reconcile."},
+    {k:"volunteer",t:"Volunteer Activities",r:"A volunteer role can be a single line: organization, location, and dates.",w:"Add bullets when the work fits the job, like tax prep for a tax role."},
+    {k:"skills",t:"Skills and interests",r:"Bold labels: Languages, Applications, Interests. Give your fluency level for each language.",w:"Name specific tools and features: Excel (pivot tables, XLOOKUP)."},
+  ];
+  const HSG=[
+    {k:"name",t:"Your name",r:"Centered, in capitals, with a 1.5 pt line under it (Word's bottom border).",w:"Go by a nickname or an English name? Put it in parentheses: Jordan (Jo) Trojan."},
+    {k:"contact",t:"Contact line",r:"Centered, in 10 point, with round bullets and a space on each side.",w:"A physical address is optional, and only city, state, and ZIP. LinkedIn is optional too."},
+    {k:"heading",t:"Section headings",r:"Bold, underlined capitals: EDUCATION, EXPERIENCE, ACTIVITIES, SKILLS.",w:"Keep the space after each heading the same size as your font."},
+    {k:"school",t:"School line",r:"School in bold, then a hyphen with the city and state. The date sits at the right margin.",w:"Abbreviate the state here (CA), but spell states out inside bullets."},
+    {k:"degree",t:"Degree",r:"The exact degree name in italics: Master of Accounting or Master of Business Taxation.",w:"No abbreviations like MAcc on the resume itself."},
+    {k:"course",t:"Coursework and GPA",r:"Relevant Coursework lists courses you've taken or are taking. List your GPA unless it's below 3.0.",w:"Pick courses that match the role: Advanced Auditing for audit, Federal Taxation for tax."},
+    {k:"honors",t:"Honors",r:"Words from other languages go in italics: summa cum laude, magna cum laude.",w:"Honors sit with the degree they belong to."},
+    {k:"employer",t:"Employer line",r:"Employer in bold, a hyphen, city and state. Dates at the right margin with short months: Jun 2025 – Aug 2025.",w:"Summer 2025 is also fine for a summer role."},
+    {k:"title",t:"Position title",r:"Your title in italics, under the employer.",w:"Capitalize the first letter of each word."},
+    {k:"bullet",t:"A Leventhal bullet",r:"Action verb first, no period, and numbers under 10 spelled out: three nonprofit clients, but 120 sample items.",w:"One line if you can, two at most. Past tense for past roles."},
+    {k:"activities",t:"Activities",r:"Organization in bold, your role after a comma, dates on the right.",w:"Describe what you did, not what the organization does."},
+    {k:"skills",t:"Skills",r:"Small round bullets, with subheadings followed by a colon.",w:"Passed part of the CPA exam? It goes here under Certifications."},
+  ];
+  const wide=matchMedia("(min-width:761px)");
+  function setupPaper(paper,HS){return HS.map((h,i)=>{const el=$(`.hs[data-k="${h.k}"]`,paper);el.dataset.n=i+1;el.tabIndex=0;el.setAttribute("role","button");el.setAttribute("aria-label",`Part ${i+1}: ${h.t}`);return el;});}
+  const P={ug:{paper:$("#paperU"),HS:HSU},gr:{paper:$("#paperG"),HS:HSG}};
+  P.ug.els=setupPaper(P.ug.paper,HSU);P.gr.els=setupPaper(P.gr.paper,HSG);
+  let cur=-1;
+  function pick(i,scroll){const {paper,HS,els}=P[TRACK];if(i<0||i>=HS.length)return;cur=i;const h=HS[i];
+    els.forEach((e,k)=>e.classList.toggle("on",k===i));
+    $$(".hs-pop").forEach(x=>x.remove());
+    if(wide.matches){$("#rpK").textContent=`Part ${i+1} of ${HS.length}`;$("#rpT").textContent=h.t;$("#rpR").textContent=h.r;$("#rpW").textContent=h.w;
+      $("#rpPrev").disabled=i===0;$("#rpNext").textContent=i===HS.length-1?"Back to part 1":"Next part →";
+      if(scroll)els[i].scrollIntoView({block:"nearest",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+    else{const pop=document.createElement("div");pop.className="hs-pop";
+      pop.innerHTML=`<b>${i+1} · ${esc(h.t)}</b>${esc(h.r)} <span style="color:var(--fg-2)">${esc(h.w)}</span><div class="nav2" style="display:flex;gap:8px;margin-top:8px"><button class="btn small" type="button" data-go="${i-1}" ${i===0?"disabled":""}>← Back</button><button class="btn primary small" type="button" data-go="${i===HS.length-1?0:i+1}">${i===HS.length-1?"Back to part 1":"Next part →"}</button></div>`;
+      els[i].insertAdjacentElement("afterend",pop);if(scroll)els[i].scrollIntoView({block:"center"});}}
+  function resetPanel(){cur=-1;Object.values(P).forEach(p=>p.els.forEach(e=>e.classList.remove("on")));$$(".hs-pop").forEach(x=>x.remove());
+    $("#rpK").textContent=`${P[TRACK].HS.length} parts`;$("#rpT").textContent="Tap a numbered part";$("#rpR").textContent="Every line on a Leventhal resume follows a rule. Tap a number on the page, or start the tour.";$("#rpW").textContent="";$("#rpPrev").disabled=true;$("#rpNext").textContent="Next part →";}
+  Object.values(P).forEach(({paper})=>{
+    paper.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){e.stopPropagation();pick(+g.dataset.go,true);return;}const el=e.target.closest(".hs");if(el)pick(+el.dataset.n-1,false);});
+    paper.addEventListener("keydown",e=>{const el=e.target.closest(".hs");if(el&&(e.key==="Enter"||e.key===" ")){e.preventDefault();pick(+el.dataset.n-1,false);}});});
+  $("#rpNext").addEventListener("click",()=>pick(cur>=P[TRACK].HS.length-1?0:cur+1,true));
+  $("#rpPrev").addEventListener("click",()=>pick(Math.max(0,cur-1),true));
+  $("#tourStart").addEventListener("click",()=>{pick(0,true);if(wide.matches)$("#anatomy .anat").scrollIntoView({block:"start"});});
+  $("#markTog").addEventListener("click",e=>{const on=!P.ug.paper.classList.contains("markers");Object.values(P).forEach(p=>p.paper.classList.toggle("markers",on));e.currentTarget.setAttribute("aria-pressed",String(on));e.currentTarget.textContent=on?"Numbers on":"Numbers off";});
+
+  /* ---------- 05 degree picker ---------- */
+  const L=(a,b)=>`<p class="rl"><span>${a}</span><span>${b||""}</span></p>`;
+  const PROG=[
+    {k:"bsacc",tr:"ug",n:"Accounting (BS)",h:()=>L("<b>University of Southern California,</b> Los Angeles, CA","Expected May 20XX")+"<p><b>Leventhal School of Accounting</b></p><p><i>Bachelor of Science, Accounting – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.61</p><p><b>Honors:</b> Dean's List (six semesters)</p>",
+      note:"The university and location on one line, Leventhal on its own bold line, then the degree in italics. Units completed can follow your GPA if you want to show them."},
+    {k:"dbl",tr:"ug",n:"Accounting + Business double major",h:()=>L("<b>University of Southern California,</b> Los Angeles, CA","Expected May 20XX")+"<p><b>Leventhal School of Accounting</b></p><p><i>Bachelor of Science, Accounting – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.61</p><p><b>Marshall School of Business</b></p><p><i>Bachelor of Science, Business Administration – Real Estate Finance – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.45</p>",
+      note:"Each school gets its own bold line, degree, and major GPA, all under one University of Southern California heading."},
+    {k:"acfn",tr:"ug",n:"Accounting and Finance (ACFN)",h:()=>"<p><b>University of Southern California</b></p>"+L("Leventhal School of Accounting and Marshall School of Business","May 20XX")+"<p>Bachelor of Science - Accounting and Finance (ACFN) – STEM Designated</p>",
+      note:"Name both schools, Leventhal first, then the joint degree with ACFN in parentheses."},
+    {k:"macc",tr:"gr",n:"Master of Accounting (MAcc)",h:()=>L("<b>University of Southern California, Leventhal School of Accounting</b> - Los Angeles, CA","May 20XX")+"<p><i>Master of Accounting</i></p><p>Relevant Coursework: Advanced Auditing, Accounting Information Systems · GPA: 3.65</p><div class=\"gap\"></div>"+L("<b>University of California, Davis</b> - Davis, CA","Jun 20XX")+"<p><i>Bachelor of Arts, Economics; Minor: Accounting</i></p><p>Cumulative GPA: 3.78</p>",
+      note:"Your master's first, then your undergraduate degree, each with its school, location, and date. Write the degree out: Master of Accounting."},
+    {k:"mbt",tr:"gr",n:"Master of Business Taxation (MBT)",h:()=>L("<b>University of Southern California, Leventhal School of Accounting</b> - Los Angeles, CA","May 20XX")+"<p><i>Master of Business Taxation</i></p><p>Relevant Coursework: Taxation of Partnerships, Corporate Taxation · GPA: 3.70</p><div class=\"gap\"></div>"+L("<b>University of Southern California, Leventhal School of Accounting</b> - Los Angeles, CA","May 20XX")+"<p><i>Bachelor of Science, Accounting</i></p><p>Cumulative GPA: 3.55</p>",
+      note:"Same layout as the MAcc. Pick coursework that matches tax roles."},
+  ];
+  const progPick=$("#progPick");
+  progPick.innerHTML=PROG.map(p=>`<button class="btn" type="button" data-p="${p.k}" aria-pressed="false">${p.n}</button>`).join("");
+  function showProg(k){const p=PROG.find(x=>x.k===k);$$("button",progPick).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===k)));
+    const pp=$("#progPaper");pp.className="paper "+(p.tr==="gr"?"lvg":"lvu");pp.innerHTML=p.h();$("#progNote").textContent=p.note;}
+  progPick.addEventListener("click",e=>{const b=e.target.closest("[data-p]");if(b)showProg(b.dataset.p);});
+
+  /* ---------- 07 bullet builder (Leventhal rules) ---------- */
+  const VERBS={
+    "Analytical":["Analyzed","Assessed","Compared","Evaluated","Examined","Forecasted","Investigated","Reconciled","Researched","Verified"],
+    "Leadership":["Led","Coached","Directed","Facilitated","Guided","Mentored","Supervised","Trained","Delegated","Chaired"],
+    "Communication":["Presented","Explained","Drafted","Authored","Clarified","Reported","Summarized","Translated","Persuaded","Informed"],
+    "Organization":["Organized","Budgeted","Calculated","Consolidated","Coordinated","Processed","Recorded","Scheduled","Tabulated","Tracked"],
+    "Problem solving":["Resolved","Identified","Streamlined","Reduced","Restored","Rectified","Strengthened","Improved","Simplified","Solved"],
+    "Initiative":["Launched","Created","Established","Implemented","Initiated","Introduced","Revamped","Spearheaded","Expanded","Built"],
+  };
+  const IRREG=new Set(["led","built","ran","wrote","taught","drove","grew","won","made","sold","met","kept","gave","took","spoke","found","brought","bought","chose","held","oversaw","rebuilt","began","drew","saw","told","sent","spent","stood","understood","undertook","overcame"]);
+  const PRES=Object.fromEntries("Analyzed:Analyze,Assessed:Assess,Compared:Compare,Evaluated:Evaluate,Examined:Examine,Forecasted:Forecast,Investigated:Investigate,Reconciled:Reconcile,Researched:Research,Verified:Verify,Led:Lead,Coached:Coach,Directed:Direct,Facilitated:Facilitate,Guided:Guide,Mentored:Mentor,Supervised:Supervise,Trained:Train,Delegated:Delegate,Chaired:Chair,Presented:Present,Explained:Explain,Drafted:Draft,Authored:Author,Clarified:Clarify,Reported:Report,Summarized:Summarize,Translated:Translate,Persuaded:Persuade,Informed:Inform,Organized:Organize,Budgeted:Budget,Calculated:Calculate,Consolidated:Consolidate,Coordinated:Coordinate,Processed:Process,Recorded:Record,Scheduled:Schedule,Tabulated:Tabulate,Tracked:Track,Resolved:Resolve,Identified:Identify,Streamlined:Streamline,Reduced:Reduce,Restored:Restore,Rectified:Rectify,Strengthened:Strengthen,Improved:Improve,Simplified:Simplify,Solved:Solve,Launched:Launch,Created:Create,Established:Establish,Implemented:Implement,Initiated:Initiate,Introduced:Introduce,Revamped:Revamp,Spearheaded:Spearhead,Expanded:Expand,Built:Build,Prepared:Prepare,Tested:Test,Audited:Audit,Documented:Document,Managed:Manage,Ran:Run,Wrote:Write,Taught:Teach,Grew:Grow,Oversaw:Oversee,Held:Hold".split(",").map(x=>{const [a,b]=x.split(":");return [a.toLowerCase(),b];}));
+  const ALLV=new Set(Object.values(VERBS).flat().map(v=>v.toLowerCase()));
+  const WEAK=["helped","responsible","worked","assisted","was","did","participated","handled","tasked","duties"];
+  $("#verbList").innerHTML=[...ALLV].map(v=>`<option value="${v[0].toUpperCase()+v.slice(1)}">`).join("");
+  const bv=$("#bv"),bc=$("#bc"),brr=$("#br"),bcur=$("#bcur");
+  function bulletText(){const v=bv.value.trim(),c=bc.value.trim(),r=brr.value.trim();
+    let s=[v?v[0].toUpperCase()+v.slice(1):"",c].filter(Boolean).join(" ");if(r)s+=(s?", ":"")+r;return s.replace(/[.\s]+$/,"");}
+  const BOTH=new Set(["cut","set","put","read","spread"]);
+  const isPast=w=>!/eed$/.test(w)&&(/ed$/.test(w)||IRREG.has(w));
+  const presentOf=w=>PRES[w]||null;
+  function bUpdate(){const s=bulletText(),raw=bv.value.trim(),v=raw.toLowerCase().split(/\s+/)[0]||"",current=bcur.checked;
+    $("#bOut").textContent=s||"Your bullet appears here.";const C=[];
+    if(!v)C.push([false,"Start with an action verb."]);
+    else if(WEAK.includes(v))C.push([false,`"${raw}" is weak. Use a verb that shows what you did, like Reconciled, Prepared, or Led.`]);
+    else C.push([true,"Starts with an action verb."]);
+    if(v&&!WEAK.includes(v)&&!BOTH.has(v)){
+      if(current&&isPast(v))C.push([false,presentOf(v)?`You still have this role, so use present tense: "${presentOf(v)}" instead of "${raw}".`:`You still have this role, so use the present tense of "${raw}".`]);
+      else if(!current&&!isPast(v))C.push([false,`For a past role, use the past tense of "${raw}".`]);
+      else C.push([true,current?"Present tense for a current role.":"Past tense for a past role."]);}
+    C.push([true,"No period at the end (Leventhal's rule). The builder leaves it off."]);
+    const small=[...s.matchAll(/(^|[\s(])([1-9])(?=[\s,)]|$)/g)].map(m=>m[2]);
+    const W=["","one","two","three","four","five","six","seven","eight","nine"];
+    C.push(small.length?[false,`Spell out numbers under 10: "${W[+small[0]]}" instead of "${small[0]}", unless the digit has more impact.`]:[true,"Numbers under 10 are spelled out."]);
+    C.push(/\d|%|\$|\b(one|two|three|four|five|six|seven|eight|nine|ten|dozen|hundred|thousand)\b/i.test(s)?[true,"Shows scale or a result with a number."]:[false,"Add a number (#, %, $), or at least the scope of the work."]);
+    C.push(/\b(I|my|me|we|our)\b/.test(s)?[false,"Drop I, my, and we. Bullets leave out the subject."]:[true,"No first-person words."]);
+    C.push(s.length<=100?[true,`One line (${s.length} characters). Ideal.`]:s.length<=190?[true,`About two lines (${s.length} characters). That's the most the guide allows.`]:[false,`Too long (${s.length} characters). Keep it to one line, two at most.`]);
+    $("#bChecks").innerHTML=C.map(([ok,t])=>`<li class="${ok?"ok":"bad"}"><span class="m">${ok?"✓":"!"}</span><span>${esc(t)}</span></li>`).join("");}
+  [bv,bc,brr].forEach(x=>x.addEventListener("input",bUpdate));bcur.addEventListener("change",bUpdate);
+  $("#bClear").addEventListener("click",()=>{bv.value="";bc.value="";brr.value="";bUpdate();bv.focus();});
+  $("#bCopy").addEventListener("click",()=>{const s=bulletText(),t=$("#bToast");if(!s){t.textContent="Write a bullet first.";return;}
+    const done=()=>{t.textContent="Copied. Paste it into your resume.";};
+    const fail=()=>{const r=document.createRange();r.selectNodeContents($("#bOut"));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);t.textContent="Selected. Press Ctrl+C or Cmd+C to copy.";};
+    try{navigator.clipboard.writeText(s).then(done,fail);}catch(e){fail();}});
+  bUpdate();
+  const vc=$("#verbCats"),vch=$("#verbChips");
+  vc.innerHTML=Object.keys(VERBS).map((k,i)=>`<button class="btn" type="button" data-c="${k}" aria-pressed="${i===0}">${k}</button>`).join("");
+  function showVerbs(k){$$("button",vc).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.c===k)));vch.innerHTML=VERBS[k].map(v=>`<button type="button" data-v="${v}">${v}</button>`).join("");}
+  vc.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b)showVerbs(b.dataset.c);});
+  vch.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;let v=b.dataset.v;if(bcur.checked)v=presentOf(v.toLowerCase())||v;bv.value=v;bUpdate();$("#bToast").textContent=`Added "${bv.value}" to the builder.`;});
+  showVerbs("Analytical");
+
+  /* ---------- 08 checklist (track-aware) ---------- */
+  const CL=[
+    ["Page setup",[["One page, on letter-size paper"],["One professional font throughout (Times New Roman), 10 to 12 point"],["Margins: top and bottom 0.5\" to 1\", sides equal at 0.75\" to 1\""],["White space between sections, with consistent spacing"]]],
+    ["Header",[["Name centered, in capitals"],["A 1.5 pt line under your name","gr"],["Contact line centered, with round bullets between items"],["A professional email you check; address optional (city, state, ZIP)"]]],
+    ["Headings and details",[["Headings match the sample: EDUCATION, WORK EXPERIENCE, LEADERSHIP ACTIVITIES, SKILLS/INTERESTS","ug"],["Headings are EDUCATION, EXPERIENCE, ACTIVITIES, SKILLS in bold, underlined capitals","gr"],["Schools and organizations in bold; degrees and titles in italics"],["City and state after every school and employer; states abbreviated outside bullets"],["Dates right-aligned with short months and four-digit years (Jun 2025)","gr"],["Dates right-aligned and written the same way everywhere","ug"],["Most recent first in every section"]]],
+    ["Bullets",[["Round bullets, lined up"],["Every bullet starts with an action verb"],["Present tense for current roles, past tense for past ones"],["No periods at the ends of bullets"],["Numbers under 10 spelled out, unless the digit adds impact"],["One line per bullet, two at most"],["Results quantified, or scope given, wherever you can"]]],
+    ["Skills and final pass",[["Skills under labels with a colon (Technical, Languages, Certifications)"],["Fluency level listed for each language"],["Any CPA exam parts you've passed listed in Skills"],["GPA listed, unless it's below 3.0"],["Proofread, then opened the PDF after saving or uploading"]]],
+  ];
+  const CLK="rw-leventhal-cl",clSaved=store.get(CLK)||{};let clN=0;
+  $("#clList").innerHTML=CL.map(([g,items])=>`<li class="grp">${g}</li>`+items.map(([t,only])=>{const id="cl"+(clN++);return `<li${only?` data-only="${only}"`:""}><label for="${id}"><input type="checkbox" id="${id}"${clSaved[id]?" checked":""}><span>${t}</span></label></li>`;}).join("")).join("");
+  function clUpd(){$$("#clList li[data-only]").forEach(li=>li.hidden=li.dataset.only!==TRACK);
+    const bx=$$("#clList li:not([hidden]) input"),n=bx.filter(b=>b.checked).length,st={};$$("#clList input").forEach(b=>{if(b.checked)st[b.id]=1;});store.set(CLK,st);
+    $("#clCount").textContent=`${n} of ${bx.length}`;$("#clFill").style.width=(bx.length?n/bx.length*100:0)+"%";}
+  $("#clList").addEventListener("change",clUpd);
+  $("#clReset").addEventListener("click",()=>{$$("#clList input").forEach(b=>b.checked=false);clUpd();});
+
+  /* ---------- track switch ---------- */
+  function setTrack(t,user){TRACK=t;if(user)store.set("lv-track",t);
+    $$("[data-tr]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.tr===t)));
+    P.ug.paper.hidden=t!=="ug";P.gr.paper.hidden=t!=="gr";resetPanel();clUpd();
+    showProg(t==="gr"?"macc":"bsacc");}
+  document.addEventListener("click",e=>{const b=e.target.closest("[data-tr]");if(b)setTrack(b.dataset.tr,true);});
+  setTrack(TRACK,false);
+
+  /* ---------- 10 test ---------- */
+  const TEST=[
+    {q:"How long can a Leventhal resume be?",o:["One page, no exceptions","Two pages for grad students","As long as it needs to be","One page plus a skills page"],a:0,w:"One page on letter-size paper, no exceptions."},
+    {q:"How should a Leventhal bullet end?",o:["With a period","With a semicolon","With no punctuation","With an exclamation point"],a:2,w:"No periods at the end of bullets. Be consistent throughout."},
+    {q:"You still work at the firm. How should the bullet start?",o:["Reconciled","Reconcile","Reconciling","Was reconciling"],a:1,w:"Present tense for a current role, past tense once you've left."},
+    {q:"Your bullet says \"Audited 3 clients.\" What's the fix?",o:["Nothing","Audited three clients","Audited 3.0 clients","Audited III clients"],a:1,w:"Spell out numbers under 10 unless the digit has more impact."},
+    {q:"How are degrees and position titles set?",o:["Bold","Underlined","Italics","All capitals"],a:2,w:"Italics. Schools and organizations are in bold."},
+    {q:"How is the header aligned?",o:["Left","Right","Centered","Your choice"],a:2,w:"Leventhal centers your name and all contact information."},
+    {q:"Where do passed CPA exam parts go?",o:["In the header","In Education","In Skills, under Certifications","In a cover letter only"],a:2,w:"For example: Passed two parts of the CPA exam: AUD and FAR."},
+    {q:"Which date range matches the grad guide?",o:["June 2025 to August 2025","Jun 2025 – Aug 2025","6/25 – 8/25","Summer '25"],a:1,w:"Short month names and four-digit years. Summer 2025 is also allowed for a summer role."},
+    {q:"When should a state be spelled out?",o:["Always","Never","Inside bullet points","Only in the header"],a:2,w:"Abbreviate states after schools and employers, but spell them out in bullets."},
+    {q:"You're applying for an audit internship. Which version of your club treasurer role leads?",o:["Sponsorship and event promotion","Reconciling the bank account and testing reimbursements","Scheduling meetings","Presenting at the career fair"],a:1,w:"Audit postings ask for testing, reconciling, and documenting. Lead with those true details."},
+  ];
+  const DONE_MSG=(r,t)=>`<b>${r} of ${t}.</b> `+(r>=9?"You've got the details. Run the checklist on your own resume next.":r>=6?"Close. Redo the detail drills in step 06, then retake the test.":"Take the tour in step 03 once more, then try the detail drills.");
+
+  /* Same job, different resume: Leventhal tracks. Leventhal style: no periods, numbers under 10 spelled out. */
+  const PV={
+    tracks:[
+      {k:"audit",n:"Audit",c:"#2a78d6",tint:"#dbe9fb",lead:"accuracy and evidence",d:"test, reconcile, document"},
+      {k:"tax",n:"Tax",c:"#0c7a3e",tint:"#d9f2e2",lead:"rules applied correctly",d:"returns, research, compliance"},
+      {k:"adv",n:"Advisory",c:"#6b46c1",tint:"#ebe4fb",lead:"solving a client's problem",d:"analyze, recommend, explain"},
+      {k:"ind",n:"Industry",c:"#8a6200",tint:"#fff0c2",lead:"running the books inside a company",d:"budget, close, report"},
+    ],
+    items:[
+      {tag:"Volunteer",org:"Volunteer Income Tax Assistance",loc:"Los Angeles, CA",title:"Tax Preparer",dates:"Jan 2025 – Apr 2025",v:{
+        audit:{b:["[[Reviewed]] W-2s, 1099s, and other [[source documents]] against client records before every filing","Passed a [[two-step quality review]] on all 60 returns, with zero rejected by the IRS"],note:"Tax prep told as audit work: checking documents and passing a review."},
+        tax:{b:["Prepared 60 [[federal and state returns]] for low-income families, claiming $45K in [[refundable credits]]","Explained [[filing status]], [[dependents]], and credit eligibility to clients in English and Spanish"],note:"The obvious fit. Lead with returns, credits, and the tax concepts you can explain."},
+        adv:{b:["[[Interviewed]] clients about their finances and [[recommended]] withholding changes for the next tax year","[[Redesigned]] the intake checklist, cutting average appointment time from 75 minutes to 50"],note:"Shows client conversations and a process you improved."},
+        ind:{b:["[[Tracked]] 60 returns from intake to e-filing in a [[shared log]] used by the site coordinator","Trained six new volunteers on tax software and [[site procedures]]"],note:"Frames the role as organized, reliable operations."}}},
+      {tag:"Student leadership",org:"Trojan Accounting Society",loc:"Los Angeles, CA",title:"Treasurer",dates:"Sep 2025 – Present",v:{
+        audit:{b:["[[Reconcile]] the club's bank account monthly and [[document]] every transaction with receipts","[[Test]] reimbursement requests against club policy, catching $900 in [[duplicate claims]]"],note:"Present tense for a current role. Leads with reconciling, testing, and documenting."},
+        tax:{b:["Track [[sponsor payments]] and issue [[donation acknowledgment letters]] for each contribution","[[Research]] [[sales tax]] rules for merchandise sold at events and set up collection"],note:"Even a club role has tax angles: donations and sales tax."},
+        adv:{b:["[[Analyze]] event costs and [[recommend]] budget changes, freeing $3K for career programs","[[Present]] quarterly financial updates to a 10-person executive board"],note:"Turns the treasurer job into analysis and advice for leaders."},
+        ind:{b:["Manage a [[$40K annual budget]] and track spending against plan, finishing last year 5% under budget","Prepare [[monthly financial statements]] and [[variance reports]] for student government funding reviews"],note:"Budgets, statements, and variance reports: what corporate accounting teams do."}}},
+      {tag:"Part-time job",org:"Westside Market",loc:"Los Angeles, CA",title:"Cashier and Inventory Associate",dates:"Jun 2023 – Aug 2024",v:{
+        audit:{b:["[[Counted]] and [[reconciled]] cash drawers at shift close with zero variances over 14 months","Performed [[cycle counts]] and flagged [[inventory discrepancies]] to the store manager"],note:"A grocery job, told as cash controls and inventory testing."},
+        tax:{b:["Applied [[sales tax]] rules to [[taxable and exempt items]] at checkout, including prepared food","Processed [[tax-exempt purchases]] for nonprofit customers using their exemption certificates"],note:"Retail work touches sales tax every day. Say so."},
+        adv:{b:["[[Identified]] a recurring loss in the produce section and [[proposed]] a receiving checklist the manager adopted","[[Suggested]] a shelf layout that cut restocking time by an hour each shift"],note:"Shows you spot problems and suggest fixes."},
+        ind:{b:["Recorded [[receiving logs]] and matched deliveries to [[purchase orders]] for 30+ vendors","Supported [[month-end inventory counts]] for a store with $2M in yearly sales"],note:"Purchase orders and month-end counts are core industry accounting tasks."}}},
+    ],
+  };
+
+  /* ---------- same job, different resume (expects PV and REVIEW_FORM) ---------- */
+  (function(){
+    const box=$("#pvList");if(!box||typeof PV==="undefined")return;
+    const T=PV.tracks,tv=t=>`--tline:${t.c};--ttint:${t.tint}`;
+    const kw=s=>esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="kw">$1</span>');
+    const kws=s=>[...s.matchAll(/\[\[(.+?)\]\]/g)].map(m=>m[1]);
+    $("#pvLegend").innerHTML=T.map(t=>`<span style="${tv(t)}"><i></i><b>${t.n}</b>&nbsp;${t.d}</span>`).join("");
+    const head=it=>`<p class="rl"><span><b>${esc(it.org)}</b></span><span>${esc(it.loc)}</span></p><p class="rl"><span><i>${esc(it.title)}</i></span><span>${esc(it.dates)}</span></p>`;
+    box.innerHTML=PV.items.map((it,i)=>`<article class="pv" data-i="${i}">
+      <button class="pv-head" type="button" aria-expanded="false" aria-controls="pvb${i}">
+        <span><span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
+        <span class="pv-cta">Tailor it ▾</span>
+      </button>
+      <div class="pv-body" id="pvb${i}" hidden>
+        <p class="pv-ask">Tailor this job for</p>
+        <div class="pv-tracks" role="group" aria-label="Tailor ${esc(it.org)} for">${T.map((t,k)=>`<button type="button" data-t="${t.k}" style="${tv(t)}" aria-pressed="${k===0}"><i></i>${t.n}</button>`).join("")}</div>
+        <div class="paper pv-paper">${head(it)}<ul class="pv-ul"></ul></div>
+        <div class="pv-why" aria-live="polite"></div>
+        <div class="pv-act"><button class="btn small pv-all" type="button" aria-expanded="false">See all four side by side</button></div>
+        <div class="pv-four" hidden>${T.map(t=>`<div class="paper" style="${tv(t)}"><h4><i></i>${t.n}</h4><ul>${it.v[t.k].b.map(b=>`<li>${kw(b)}</li>`).join("")}</ul></div>`).join("")}</div>
+      </div></article>`).join("");
+    function show(art,tk){const it=PV.items[+art.dataset.i],t=T.find(x=>x.k===tk),v=it.v[tk];
+      $$(".pv-tracks button",art).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===tk)));
+      const pap=$(".pv-paper",art);pap.setAttribute("style",tv(t));
+      const ul=$(".pv-ul",art);ul.innerHTML=v.b.map(b=>`<li>${kw(b)}</li>`).join("");ul.classList.remove("pv-fade");void ul.offsetWidth;ul.classList.add("pv-fade");
+      $(".pv-why",art).innerHTML=`<span class="lead">${t.n} version · leads with ${esc(t.lead)}</span><p>${esc(v.note)}</p><div class="pv-kws">${kws(v.b.join(" ")).map(k=>`<span>${esc(k)}</span>`).join("")}</div>`;}
+    box.addEventListener("click",e=>{
+      const h=e.target.closest(".pv-head");
+      if(h){const art=h.closest(".pv"),open=!art.classList.contains("open");
+        $$(".pv",box).forEach(a=>{if(a!==art&&a.classList.contains("open")){a.classList.remove("open");$(".pv-body",a).hidden=true;$(".pv-head",a).setAttribute("aria-expanded","false");$(".pv-cta",a).textContent="Tailor it ▾";}});
+        art.classList.toggle("open",open);$(".pv-body",art).hidden=!open;h.setAttribute("aria-expanded",String(open));$(".pv-cta",art).textContent=open?"Close ▴":"Tailor it ▾";
+        if(open){show(art,($('.pv-tracks button[aria-pressed="true"]',art)||{}).dataset?.t||T[0].k);if(art.getBoundingClientRect().top<70)art.scrollIntoView({block:"start"});}
+        return;}
+      const tb=e.target.closest(".pv-tracks button");if(tb){show(tb.closest(".pv"),tb.dataset.t);return;}
+      const all=e.target.closest(".pv-all");if(all){const f=$(".pv-four",all.closest(".pv")),o=f.hidden;f.hidden=!o;all.setAttribute("aria-expanded",String(o));all.textContent=o?"Hide side-by-side view":"See all four side by side";}
+    });
+  })();
+  (function(){const rl=$("#reviewLink");if(!rl)return;
+    if(/^https:\/\//.test(REVIEW_FORM)){rl.href=REVIEW_FORM;}
+    else{rl.removeAttribute("href");rl.setAttribute("aria-disabled","true");rl.classList.add("off");rl.textContent="Review form opens soon";}})();
+  const testq=$("#testq");
+  TEST.forEach((t,n)=>{const d=document.createElement("div");d.className="mc";d.dataset.answer=t.a;d.dataset.group="test";
+    d.innerHTML=`<div class="mc-head"><p class="stem" data-say="Question ${n+1}. ${t.q.replace(/"/g,"&quot;")}"><span class="qn">Q${n+1}</span>${t.q}</p><button class="btn small qlisten" type="button" aria-label="Listen to question ${n+1}">Listen</button></div>
+      <div class="opts">${t.o.map(o=>`<button class="opt" type="button" data-say="${o.replace(/"/g,"&quot;")}">${o}</button>`).join("")}</div>
+      <div class="why" hidden><p data-say="${t.w.replace(/"/g,"&quot;")}">${t.w}</p></div>`;
+    testq.appendChild(d);});
+
+  /* ---------- multiple choice engine ---------- */
+  function setupMC(mc){const opts=$$(".opt",mc);
+    opts.forEach((o,i)=>{if(!o.querySelector(".L")){const x=document.createElement("span");x.className="x";while(o.firstChild)x.appendChild(o.firstChild);
+        const L=document.createElement("span");L.className="L";L.textContent=LET[i];o.append(L,x);
+        o.dataset.say=LET[i]+". "+(o.dataset.say||x.textContent);}
+      o.addEventListener("click",()=>answer(mc,i));});}
+  function answer(mc,i){if(mc.dataset.done)return;mc.dataset.done="1";const a=+mc.dataset.answer,opts=$$(".opt",mc);
+    opts.forEach((o,k)=>{o.disabled=true;if(k===a){o.classList.add("right");o.insertAdjacentHTML("beforeend",`<span class="tag">✓ ${k===i?"Correct":"Answer"}</span>`);}
+      else if(k===i){o.classList.add("wrong");o.insertAdjacentHTML("beforeend",`<span class="tag">✕ Your pick</span>`);}});
+    mc.dataset.correct=String(i===a);$(".why",mc).hidden=false;if(mc.dataset.group==="test")score();}
+  function resetMC(mc){delete mc.dataset.done;delete mc.dataset.correct;$$(".opt",mc).forEach(o=>{o.disabled=false;o.classList.remove("right","wrong");const t=$(".tag",o);if(t)t.remove();});$(".why",mc).hidden=true;}
+  $$(".mc").forEach(setupMC);
+  function score(){const qs=$$('.mc[data-group="test"]'),done=qs.filter(q=>q.dataset.done),right=done.filter(q=>q.dataset.correct==="true").length;
+    $("#score").innerHTML=`${right} / ${done.length}<small>answered ${done.length} of ${qs.length}</small>`;
+    const box=$("#done");if(done.length===qs.length){box.hidden=false;
+      box.innerHTML=typeof DONE_MSG==="function"?DONE_MSG(right,qs.length):`<b>${right} of ${qs.length}.</b> `+(right>=11?"You're ready. Run the recommendation in step 09 out loud once more and get some sleep.":right>=8?"Solid. Re-read the explanations you missed, then run steps 04 and 09 out loud.":"Go back to the primer in step 01, then retake the test. The terms will stick on the second pass.");}
+    else box.hidden=true;}
+  $("#resetTest").addEventListener("click",()=>{$$('.mc[data-group="test"]').forEach(resetMC);score();$("#test").scrollIntoView();});
+  score();
+
+  /* ---------- read aloud, with a voice menu ---------- */
+  const synth=window.speechSynthesis,rateSel=$("#rate"),vSel=$("#voicePick");
+  try{const r=localStorage.getItem(PAGEKEY+"-rate");if(r)rateSel.value=r;}catch(e){}
+  rateSel.addEventListener("change",()=>{try{localStorage.setItem(PAGEKEY+"-rate",rateSel.value);}catch(e){}});
+  let speakingBtn=null,voice=null,voices=[];
+  const vrank=v=>(/natural|neural/i.test(v.name)?0:/premium/i.test(v.name)?1:/enhanced/i.test(v.name)?2:/google/i.test(v.name)?3:4)+(/^en[-_]US/i.test(v.lang)?0:.5);
+  function loadVoices(){
+    if(!synth)return;
+    voices=synth.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>vrank(a)-vrank(b)||a.name.localeCompare(b.name));
+    if(!vSel)return;
+    let saved=null;try{saved=localStorage.getItem(PAGEKEY+"-voice");}catch(e){}
+    vSel.innerHTML=voices.length?voices.map((v,i)=>`<option value="${i}">${v.name.replace(/[<>&"]/g,"")}${vrank(v)<2?" (natural)":""}</option>`).join(""):'<option value="">Browser default</option>';
+    let idx=voices.findIndex(v=>v.name===saved);if(idx<0)idx=0;
+    if(voices.length)vSel.value=String(idx);voice=voices[idx]||null;
+  }
+  if(vSel)vSel.addEventListener("change",()=>{voice=voices[+vSel.value]||null;try{localStorage.setItem(PAGEKEY+"-voice",voice?voice.name:"");}catch(e){}});
+  loadVoices();
+  if(synth&&"onvoiceschanged" in synth)synth.addEventListener("voiceschanged",loadVoices);
+  function textOf(el){return(el.getAttribute("data-say")||el.innerText||"").replace(/\s+/g," ").trim();}
+  function visible(el){return!!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+  function stop(){if(synth)synth.cancel();if(speakingBtn){speakingBtn.textContent=speakingBtn.dataset.label;speakingBtn.setAttribute("aria-pressed","false");speakingBtn=null;}}
+  function speakChunks(btn,chunks){
+    if(!synth||!chunks.length)return;
+    if(speakingBtn===btn){stop();return;}
+    stop();
+    speakingBtn=btn;btn.dataset.label=btn.dataset.label||btn.textContent;btn.textContent="Stop";btn.setAttribute("aria-pressed","true");
+    chunks.forEach((c,i)=>{const u=new SpeechSynthesisUtterance(c);u.rate=+rateSel.value;if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang="en-US";
+      if(i===chunks.length-1)u.onend=()=>{if(speakingBtn===btn)stop();};synth.speak(u);});
+  }
+  function speak(btn,els){const chunks=[];els.filter(visible).forEach(el=>{textOf(el).split(/(?<=[.?!])\s+(?=[A-Z0-9"“])/).forEach(c=>{if(c)chunks.push(c);});});speakChunks(btn,chunks);}
+  if(!synth){$$(".listen,.qlisten").forEach(b=>b.hidden=true);$(".speed").hidden=true;const vb=$(".voicebar");if(vb)vb.hidden=true;}
+  else{
+    $$(".listen").forEach(b=>{b.dataset.label=b.textContent;b.addEventListener("click",()=>{const sec=b.closest("section");speak(b,$$("[data-say]",sec).filter(el=>!el.parentElement.closest("[data-say]")));});});
+    document.addEventListener("click",e=>{const b=e.target.closest(".qlisten");if(!b)return;const mc=b.closest(".mc");speak(b,$$("[data-say]",mc).filter(el=>!el.parentElement.closest("[data-say]")));});
+    const vt=$("#voiceTest");if(vt){vt.dataset.label=vt.textContent;vt.addEventListener("click",()=>speakChunks(vt,["Hi. This is how I'll read your case.","Pick another voice if this one sounds robotic."]));}
+  }
+  /* ---------- rail highlight ---------- */
+  const chips=$$("#chips a"),map=new Map(chips.map(a=>[a.getAttribute("href").slice(1),a]));
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){chips.forEach(c=>c.classList.remove("on"));const a=map.get(en.target.id);if(a){a.classList.add("on");const p=a.parentElement;p.scrollTo({left:a.offsetLeft-p.clientWidth/2+a.offsetWidth/2,behavior:"smooth"});}}});},{rootMargin:"-45% 0px -50% 0px"});
+    $$("section.step").forEach(s=>io.observe(s));
+  }
+})();
+</script>
+</body></html>

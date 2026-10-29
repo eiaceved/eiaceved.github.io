@@ -1,0 +1,1294 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Marshall Resume Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: one reading column (max 820px) under a sticky step rail. Every step runs the same loop:
+   interviewer prompt -> your move -> reveal a strong answer. Exhibits sit inside the column like workpapers. */
+:root{
+  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8eef0; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
+  --accent:#0d6b61; --accent-ink:#0a5a51; --accent-soft:#dbeeea; --on-accent:#ffffff;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#e2e8ea; --axis:#b6c1c7;
+  --good:#0ca30c; --good-ink:#006300; --crit:#d03b3b; --crit-ink:#ad2828;
+  --h1:#e6f0fc; --h2:#b7d3f6; --h3:#6da7ec; --h4:#2a78d6; --h5:#104281;
+  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#13202a; --tip-fg:#ffffff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+    --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+    --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+    --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+    --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+  --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+  --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+  --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+  --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:86%;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--accent-ink)}
+b,strong{font-weight:700}
+.eyebrow,.lbl,.who{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.rail-in{max-width:820px;margin:0 auto;padding:8px 20px;display:flex;gap:10px;align-items:center}
+.chips{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;padding-block:2px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{font:500 12px var(--mono);padding:5px 9px;border-radius:999px;color:var(--fg-2);white-space:nowrap;text-decoration:none}
+.chips a:hover{background:var(--surface-2)}
+.chips a.on{background:var(--fg);color:var(--bg)}
+.speed{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);flex:none}
+.speed select{font:500 12px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 4px}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .eyebrow{color:var(--accent-ink);margin-bottom:14px}
+.hero h1{font-size:clamp(40px,8vw,64px);line-height:1;font-weight:800;font-stretch:80%}
+.lede{font-size:21px;line-height:1.5;color:var(--fg-2);max-width:36em;margin-top:18px}
+.how{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:15px;line-height:1.4;counter-increment:how}
+.how li::before{content:counter(how);display:block;font:600 12px var(--mono);color:var(--accent-ink);margin-bottom:4px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* steps */
+.step{padding-block:52px;border-top:1px solid var(--line);scroll-margin-top:56px}
+.sh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.idx{font:600 13px var(--mono);color:var(--accent-ink)}
+.sh h2{font-size:clamp(26px,4.4vw,32px);line-height:1.15;font-weight:750}
+.sh .listen{margin-left:auto}
+.sub{color:var(--fg-2);margin-top:8px;max-width:40em}
+
+.btn{font:600 14px/1.2 var(--body);border-radius:8px;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.small{font-size:13px;padding:6px 10px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+
+.iv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:22px}
+.who{color:var(--muted);margin-bottom:8px}
+.iv p{font-size:19px;line-height:1.55}
+.iv p:last-child{margin-bottom:0}
+
+.move{display:flex;gap:12px 16px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-block:14px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.move .lbl{color:var(--accent-ink);flex:none}
+.move p{margin:0;flex:1 1 260px;min-width:0;font-weight:600}
+.move .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+.ans{background:var(--accent-soft);border-radius:var(--r);padding:20px 22px;margin-top:14px}
+.ans .who{color:var(--accent-ink)}
+.ans h3{font-size:19px;margin:18px 0 8px;font-weight:700}
+.ans h3:first-of-type{margin-top:4px}
+.ans ul{margin:0 0 .6em;padding-left:1.2em}
+.ans li{margin-bottom:.35em}
+.script{font-size:18px;line-height:1.6}
+.script p{margin-bottom:.7em}
+.note{font-size:15px;color:var(--fg-2)}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.facts div{background:var(--surface);padding:12px 14px;min-width:0}
+.facts .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:4px}
+.facts .d{font-size:13px;color:var(--fg-2);line-height:1.35;margin-top:2px}
+
+/* primer */
+.def{font:600 clamp(21px,3.4vw,26px)/1.35 var(--display);font-stretch:92%;margin-top:22px;max-width:30em}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.panel h3{font-size:19px;font-weight:700}
+.panel .tag{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 8px}
+.panel ul{margin:0;padding-left:1.1em;font-size:16px}
+.panel li{margin-bottom:.3em}
+.cycle{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.cycle li{position:relative;background:var(--surface-2);border-radius:8px;padding:12px 12px 10px;min-width:0}
+.cycle li b{display:block;font:700 17px var(--display);font-stretch:88%}
+.cycle li span{font-size:14px;color:var(--fg-2);line-height:1.35;display:block;margin-top:2px}
+.cycle li:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:12px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:translateY(-50%) rotate(45deg)}
+.cycle-note{font:500 12px var(--mono);color:var(--muted);margin-top:10px}
+.vocab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.term b{display:block;font:700 16px var(--display);font-stretch:90%;margin-bottom:3px}
+.term p{margin:0;font-size:15px;line-height:1.45;color:var(--fg-2)}
+.h-sec{font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+
+/* qa list */
+.qa{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.qa li{background:var(--surface);border-radius:8px;padding:12px 14px}
+.qa .q{font-weight:700}
+.qa .a{color:var(--fg-2);margin-top:2px}
+.qa .a::before{content:"Interviewer: ";font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* framework tree */
+.tree{margin-top:6px}
+.root{background:var(--fg);color:var(--bg);border-radius:8px;padding:12px 16px;font:700 18px/1.3 var(--display);font-stretch:90%;text-align:center;position:relative}
+.root::after{content:"";position:absolute;left:50%;bottom:-16px;width:2px;height:16px;background:var(--muted)}
+.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:14px;border-top:2px solid var(--muted)}
+.branch{background:var(--surface);border-radius:8px;padding:12px 13px;min-width:0}
+.branch .n{font:600 12px var(--mono);color:var(--accent-ink)}
+.branch b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin:2px 0 6px}
+.branch ul{margin:0;padding-left:1.05em;font-size:14.5px;line-height:1.4}
+.branch li{margin-bottom:.3em}
+
+/* exhibits */
+.ex{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px}
+.ex-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.ex-t{font:700 18px var(--display);font-stretch:88%}
+.ex-ref{font:500 12px var(--mono);color:var(--muted)}
+.ex-s{font-size:14px;color:var(--fg-2);margin-top:2px}
+.ex figcaption,.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:12px}
+.multiples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mini{border:1px solid var(--grid);border-radius:8px;padding:10px 10px 4px;min-width:0}
+.mini .nm{font-weight:700;font-size:14.5px;line-height:1.25;min-height:2.5em}
+.mini .ch{font:500 12px var(--mono);color:var(--fg-2)}
+.mini svg{display:block;width:100%;height:auto;margin-top:4px}
+.tblwrap{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+
+.hbar{margin-top:16px}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 14px;align-items:center;padding-block:9px;border-bottom:1px solid var(--grid)}
+.hrow:last-of-type{border-bottom:0}
+.hlab b{display:block;font-size:15px;line-height:1.3}
+.hlab span{font-size:13px;color:var(--fg-2);line-height:1.3;display:block}
+.track{position:relative;height:26px}
+.bar{position:absolute;left:0;top:5px;height:16px;border-radius:0 4px 4px 0;background:var(--s1);min-width:2px}
+.bar.b2{background:var(--s2)}
+.bval{position:absolute;top:2px;font:600 13px var(--mono);color:var(--fg);white-space:nowrap;padding-left:6px}
+.tol{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px solid var(--fg-2)}
+.axis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:14px}
+.ticks{position:relative;height:18px;font:500 11px var(--mono);color:var(--muted);border-top:1px solid var(--axis)}
+.ticks span{position:absolute;top:3px;transform:translateX(-50%)}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+.status{font:600 12px var(--mono);display:inline-flex;gap:5px;align-items:center;margin-top:3px}
+.status.bad{color:var(--crit-ink)} .status.ok{color:var(--good-ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--fg-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tolnote{font:500 12px var(--mono);color:var(--fg-2);margin-top:8px}
+
+/* given table + calc steps */
+.given{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.given div{background:var(--surface);padding:11px 13px;min-width:0}
+.given .k{font-size:13px;color:var(--fg-2);line-height:1.3}
+.given .v{font:700 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.calc{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.calc li{background:var(--surface);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;align-items:center}
+.calc .t{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);grid-column:1/-1}
+.calc .f{font-size:16px;min-width:0}
+.calc .r{font:700 20px var(--display);font-stretch:88%;text-align:right;white-space:nowrap}
+.stepper .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset span{font:500 12px var(--mono);background:var(--surface);border-radius:6px;padding:4px 8px;color:var(--fg-2)}
+.chipset b{color:var(--fg)}
+
+/* heat map */
+.heat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:12px}
+.heat svg{width:100%;height:auto;display:block}
+.heat svg text{font-family:var(--mono)}
+.reg{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.reg li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14.5px;line-height:1.3;padding-block:6px;border-bottom:1px solid var(--grid)}
+.reg .id{width:28px;height:28px;border-radius:50%;background:var(--dot);color:var(--dot-ink);font:600 11px var(--mono);display:grid;place-items:center}
+.reg .sc{font:600 13px var(--mono);color:var(--fg-2);text-align:right;white-space:nowrap}
+.ramp{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);margin-top:10px}
+.ramp i{width:22px;height:10px;display:inline-block;border-radius:2px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.phase{background:var(--surface);border-radius:8px;padding:12px 14px;min-width:0}
+.phase .d{font:600 12px var(--mono);color:var(--accent-ink)}
+.phase b{display:block;font:700 18px var(--display);font-stretch:88%;margin:2px 0 6px}
+.phase ul{margin:0;padding-left:1.05em;font-size:15px;line-height:1.4}
+.phase li{margin-bottom:.35em}
+.struct{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.struct span{font:600 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--surface);color:var(--fg)}
+
+/* drivers */
+.drivers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.drivers div{background:var(--surface);border-radius:8px;padding:11px 13px;min-width:0}
+.drivers b{display:block;font:700 16px var(--display);font-stretch:90%}
+.drivers p{margin:2px 0 0;font-size:15px;color:var(--fg-2);line-height:1.45}
+.eq{font:600 15px var(--mono);background:var(--surface);border-radius:8px;padding:10px 14px;margin:6px 0 12px;overflow-x:auto}
+.drill{margin-top:34px}
+.drill h3{font-size:22px;font-weight:750}
+
+/* multiple choice */
+.mc{margin-top:20px}
+.mc-head{display:flex;gap:10px;align-items:flex-start}
+.stem{font-weight:700;font-size:18px;line-height:1.45;margin:0 0 10px;flex:1;min-width:0}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:16px;line-height:1.45;cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt .L{font:600 13px/1.6 var(--mono);color:var(--muted);flex:none}
+.opt .x{flex:1;min-width:0}
+.opt .tag{font:600 12px/1.7 var(--mono);white-space:nowrap;flex:none}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.opt.right .tag{color:var(--good-ink)}
+.opt.wrong{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 9%,var(--surface))}
+.opt.wrong .tag{color:var(--crit-ink)}
+.why{margin-top:10px;padding:13px 16px;border-radius:8px;background:var(--surface-2);font-size:16px}
+.why p:last-child{margin-bottom:0}
+.test .mc{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}
+.test .mc:first-of-type{border-top:0;padding-top:0}
+.qn{font:600 13px var(--mono);color:var(--accent-ink);display:block;margin-bottom:2px}
+.scorebar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:5;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--line)}
+.score{font:700 22px var(--display);font-stretch:86%}
+.score small{font:500 12px var(--mono);color:var(--muted);margin-left:6px}
+.done{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:24px}
+
+footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-fg);font:500 12px/1.4 var(--mono);padding:6px 9px;border-radius:6px;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+@media (max-width:760px){
+  .branches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heat{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:minmax(0,1fr)}
+  .multiples{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .split,.vocab,.drivers{grid-template-columns:minmax(0,1fr)}
+  .cycle{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cycle li:nth-child(2)::after{display:none}
+  .given{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hrow,.axis{grid-template-columns:minmax(0,1fr)}
+  .axis>div:first-child{display:none}
+  .iv p{font-size:18px}
+  .speed span{display:none}
+}
+@media (max-width:420px){
+  .branches{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ans:not([hidden]),.why:not([hidden]),.calc li:not([hidden]){animation:rise .28s ease-out}
+  @keyframes rise{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+  html{scroll-behavior:smooth}
+}
+[hidden]:not([hidden=until-found i]){display:none!important}
+/* scoring register */
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.scorer li{grid-template-columns:auto minmax(0,1fr) auto}
+.scorer .nm{min-width:0}
+.pick{display:flex;gap:6px;align-items:center}
+.pick select{font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 4px;min-width:44px}
+.pick .sc{min-width:34px}
+.reg .w{display:block;font-size:13px;color:var(--fg-2);margin-top:2px;line-height:1.35}
+.reg .nm b{font-weight:600}
+.mytop{font:600 15px/1.4 var(--body);margin:12px 0 0;color:var(--fg)}
+.mapnote{font:500 12px var(--mono);color:var(--fg-2);margin:8px 0 0}
+.bar.b3{background:var(--fg-2)}
+/* voice menu */
+.voicebar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:22px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.voicebar label{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.voicebar select{flex:1 1 220px;min-width:0;max-width:100%;font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 6px}
+.vhint{flex-basis:100%;margin:0;font-size:14px;line-height:1.45;color:var(--fg-2)}
+@media (max-width:600px){.given>div:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:420px){
+  .scorer li{grid-template-columns:auto minmax(0,1fr)}
+  .scorer .pick{grid-column:2}
+}
+</style>
+<style>
+/* calculators */
+.calcbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px}
+.calcbox h3{font-size:19px;font-weight:700;margin:0 0 4px}
+.calcbox .sub{margin-top:2px;font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 14px;margin-top:12px}
+.cgrid label{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.3;color:var(--fg-2);min-width:0}
+.cgrid input,.cgrid select{font:500 15px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:7px 8px;width:100%;min-width:0}
+.cout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.cout div{background:var(--surface-2);border-radius:8px;padding:10px 12px;min-width:0}
+.cout .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cout .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:3px}
+.cnote{font-size:15px;line-height:1.5;color:var(--fg-2);margin:12px 0 0}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.gb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.gb .ans{margin-top:0}
+@media (max-width:600px){.gb{grid-template-columns:minmax(0,1fr)}}
+.reps{display:grid;gap:12px;margin-top:14px}
+.rep{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.rep .rq{font-weight:700;font-size:17px;margin:0 0 8px}
+.rep .acts{display:flex;gap:8px;flex-wrap:wrap}
+.rep .ans{margin-top:12px}
+.tw th,.tw td{white-space:normal}
+@media (max-width:600px){.tw th,.tw td{padding:6px 5px;font-size:13.5px}.tw th{font-size:10px}}
+</style>
+<style>
+/* Marshall Resume Workshop: the hub's case-page system, re-keyed to USC gold.
+   The resume itself is drawn as a white Times New Roman page in both themes, because that is the real artifact. */
+:root{
+  --accent:#ffcc00; --accent-ink:#7a5a00; --accent-soft:#fff4c7; --on-accent:#1f1a00;
+  --cardinal:#990000; --cardinal-ink:#990000;
+  --paper:#ffffff; --paper-ink:#111111; --paper-rule:#111111; --paper-muted:#555555;
+  --hl:#ffe27a; --hl-line:#c79a00; --badge:#ffcc00; --badge-ink:#1f1a00;
+  --acr-a:#2a78d6; --acr-c:#8a6d00; --acr-r:#0c7a3e;
+  --serif:"Times New Roman",Times,"Liberation Serif","Nimbus Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --accent:#ffcc00; --accent-ink:#ffd84d; --accent-soft:#2a240c; --on-accent:#1f1a00;
+    --cardinal:#c23b3b; --cardinal-ink:#ff8a80;
+    --acr-a:#7fb2f0; --acr-c:#ffd84d; --acr-r:#5fd08f;
+  }
+}
+:root[data-theme="dark"]{
+  --accent:#ffcc00; --accent-ink:#ffd84d; --accent-soft:#2a240c; --on-accent:#1f1a00;
+  --cardinal:#c23b3b; --cardinal-ink:#ff8a80;
+  --acr-a:#7fb2f0; --acr-c:#ffd84d; --acr-r:#5fd08f;
+}
+:focus-visible{outline-color:var(--accent-ink)}
+.chips a.on{background:var(--accent);color:var(--on-accent)}
+.hero .eyebrow{color:var(--accent-ink)}
+.goldbar{height:6px;background:linear-gradient(90deg,var(--accent) 0 72%,var(--cardinal) 72% 100%);border-radius:3px;margin-bottom:18px;max-width:180px}
+
+/* why it matters */
+.signal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.signal div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.signal b{display:block;font:700 17px/1.25 var(--display);font-stretch:90%;margin-bottom:4px}
+.signal p{margin:0;font-size:15px;color:var(--fg-2);line-height:1.45}
+@media (max-width:640px){.signal{grid-template-columns:minmax(0,1fr)}}
+
+/* rule cards */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px;padding:0;list-style:none}
+.rules li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0;font-size:16px;line-height:1.4}
+.rules .n{font:600 12px/1.9 var(--mono);color:var(--accent-ink);flex:none}
+@media (max-width:640px){.rules{grid-template-columns:minmax(0,1fr)}}
+
+/* the paper */
+.paper{background:var(--paper);color:var(--paper-ink);font-family:var(--serif);font-size:13.5px;line-height:1.28;padding:26px 28px 26px 34px;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.08);position:relative;min-width:0}
+.paper p{margin:0}
+.paper .rn{font-size:21px;font-weight:700;line-height:1.1}
+.paper .rc{font-size:12.5px;margin-top:3px}
+.paper .rh{font-weight:700;text-transform:uppercase;border-bottom:1px solid var(--paper-rule);margin-top:12px;padding-bottom:1px;font-size:13.5px;letter-spacing:.01em}
+.paper .rl{display:flex;justify-content:space-between;gap:14px}
+.paper .rl > span:first-child{min-width:0}
+.paper .rl > span:last-child{text-align:right;margin-left:auto;white-space:nowrap;flex:none}
+.paper .gap{height:7px}
+.paper ul{margin:1px 0 0;padding-left:26px}
+.paper li{margin:0;padding-left:2px}
+.paper i{font-style:italic}
+.paper .lab{font-weight:700}
+@media (max-width:520px){.paper{font-size:11.5px;padding:18px 14px 18px 26px}.paper .rn{font-size:18px}.paper .rc{font-size:11px}.paper .rh{font-size:11.5px}.paper ul{padding-left:18px}}
+
+/* hotspots */
+.hs{position:relative;border-radius:2px;cursor:pointer;outline:1px dashed transparent;outline-offset:1px;transition:background .15s}
+.hs:hover{outline-color:var(--hl-line)}
+.hs:focus-visible{outline:2px solid var(--hl-line)}
+.hs.on{background:var(--hl);outline:1px solid var(--hl-line)}
+.markers .hs[data-n]::before{content:attr(data-n);position:absolute;left:-27px;top:0;width:19px;height:19px;border-radius:50%;background:var(--badge);color:var(--badge-ink);font:700 11px/19px var(--body);text-align:center;box-shadow:0 0 0 1.5px var(--paper)}
+@media (max-width:520px){.markers .hs[data-n]::before{left:-23px;width:17px;height:17px;font-size:10px;line-height:17px}}
+.hs-pop{font-family:var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--hl-line);border-radius:8px;padding:10px 12px;margin:6px 0 8px;font-size:14.5px;line-height:1.45}
+.hs-pop b{display:block;font-family:var(--display);font-stretch:90%;font-size:15px;margin-bottom:2px}
+
+.anat{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.rulepanel{position:sticky;top:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.rulepanel .k{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+.rulepanel h3{margin:6px 0 6px;font-size:21px}
+.rulepanel p{font-size:16px;line-height:1.5;margin:0 0 8px}
+.rulepanel .rwhy{margin-top:8px;font-size:15px}
+.rulepanel .nav2{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.anat-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+@media (max-width:760px){.anat{grid-template-columns:minmax(0,1fr)}.rulepanel{display:none}}
+@media (min-width:900px){.anat{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);width:min(1120px,calc(100vw - 56px));margin-left:calc(50% - min(560px,calc(50vw - 28px)))}}
+@media (max-width:520px){.hs-pop{font-size:13.5px}}
+
+/* program picker */
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.picker .btn{font-size:13.5px;padding:7px 11px}
+.emph{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:15px;color:var(--fg-2)}
+.emph select{font:500 14px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;max-width:100%}
+.progout{margin-top:12px}
+.progout .paper{padding:18px 20px}
+.prognote{margin-top:10px;font-size:15.5px;color:var(--fg-2)}
+
+/* section guide */
+.secs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.secs article{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.secs h3{font-size:18px;margin:0 0 2px}
+.secs .req{font:600 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--accent);color:var(--on-accent);vertical-align:2px;margin-left:6px}
+.secs .req.ropt{background:var(--surface-2);color:var(--fg-2)}
+.secs ul{margin:8px 0 0;padding-left:18px;font-size:15px;line-height:1.45}
+.secs li+li{margin-top:4px}
+.secs .no{color:var(--crit-ink)}
+@media (max-width:640px){.secs{grid-template-columns:minmax(0,1fr)}}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;margin-top:12px}
+.ba > div{border-radius:8px;padding:12px 14px;min-width:0;font-size:16px;line-height:1.45}
+.ba .bf{background:var(--surface-2);color:var(--fg-2)}
+.ba .af{background:var(--surface);border:1px solid var(--line)}
+.ba .k{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+@media (max-width:640px){.ba{grid-template-columns:minmax(0,1fr)}}
+.a-,.c-,.r-{border-bottom:2.5px solid;padding-bottom:0}
+.a-{border-color:var(--acr-a)} .c-{border-color:var(--acr-c)} .r-{border-color:var(--acr-r)}
+.acrkey{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font:500 12px var(--mono);color:var(--fg-2)}
+.acrkey span{display:inline-flex;align-items:center;gap:6px}
+.acrkey i{display:inline-block;width:16px;height:3px;border-radius:2px}
+.techs{display:grid;gap:18px;margin-top:6px}
+.tech h3{margin:20px 0 2px}
+
+/* builder */
+.bld .cgrid{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr) minmax(0,1.6fr)}
+@media (max-width:700px){.bld .cgrid{grid-template-columns:minmax(0,1fr)}}
+.bld .paper{margin-top:14px;padding:16px 18px 16px 22px;font-size:14.5px}
+.checks{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:5px;font-size:15px}
+.checks li{display:flex;gap:8px;align-items:flex-start}
+.checks .m{font:700 13px/1.5 var(--mono);flex:none;width:16px}
+.checks .ok .m{color:var(--good-ink)} .checks .bad .m{color:var(--crit-ink)}
+.verbs{margin-top:16px}
+.verbs .picker .btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.chipsx{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chipsx button{font:500 13.5px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipsx button:hover{border-color:var(--accent-ink)}
+.toast{font:500 13px var(--mono);color:var(--accent-ink);min-height:1.4em;margin-top:8px}
+
+/* checklist */
+.meter{display:flex;align-items:center;gap:12px;margin-top:14px}
+.meter .mbar{flex:1;height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.meter .mfill{height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .25s}
+.meter b{font:700 18px var(--display);font-stretch:86%;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cl{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+.cl label{display:flex;gap:11px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 13px;cursor:pointer;font-size:16px;line-height:1.4}
+.cl input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent-ink);flex:none}
+.cl .grp{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+.cl label:has(input:checked){background:var(--accent-soft);border-color:transparent}
+
+/* rubric */
+.rub{display:grid;gap:10px;margin-top:16px}
+.rub fieldset{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:12px 14px 14px;margin:0;min-width:0}
+.rub legend{font:700 17px var(--display);font-stretch:90%;padding:0 4px}
+.rub legend small{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+.lv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.lv.na{grid-template-columns:repeat(5,minmax(0,1fr))}
+.lv label{display:block;cursor:pointer;min-width:0}
+.lv input{position:absolute;opacity:0;pointer-events:none}
+.lv span{display:block;text-align:center;border:1px solid var(--line);border-radius:7px;padding:7px 4px;font:600 13px/1.25 var(--body);color:var(--fg-2)}
+.lv input:focus-visible+span{outline:2px solid var(--accent-ink);outline-offset:2px}
+.lv input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.lv input.l3:checked+span,.lv input.l4:checked+span{background:var(--cardinal);border-color:var(--cardinal);color:#fff}
+.desc{font-size:15px;color:var(--fg-2);margin:8px 0 0;min-height:1.4em}
+@media (max-width:560px){.lv,.lv.na{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.verdict{margin-top:14px;border-radius:var(--r);padding:16px 18px;background:var(--surface-2)}
+.verdict b{display:block;font:750 24px/1.15 var(--display);font-stretch:86%}
+.verdict p{margin:6px 0 0;font-size:16px}
+.verdict.v1{background:var(--accent-soft)}
+
+/* compare */
+.cmp th:nth-child(2){color:var(--accent-ink)} .cmp th:nth-child(3){color:var(--cardinal-ink)}
+.cmp td:first-child{font-weight:600;white-space:nowrap}
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.res div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.res b{display:block;font:700 17px/1.25 var(--display);font-stretch:90%}
+.res p{margin:6px 0 0;font-size:15px;color:var(--fg-2)}
+.res code{font:500 12.5px var(--mono);color:var(--fg);background:var(--surface-2);padding:1px 5px;border-radius:4px}
+@media (max-width:640px){.res{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.meter .mfill,.hs{transition:none}}
+</style>
+<style>
+/* Same job, different resume: one experience, four tailored versions. Track colors sit on white paper, so they are fixed. */
+.pv-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.pv-rules div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;min-width:0}
+.pv-rules b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin-bottom:3px}
+.pv-rules p{margin:0;font-size:15px;color:var(--fg-2);line-height:1.45}
+@media (max-width:640px){.pv-rules{grid-template-columns:minmax(0,1fr)}}
+.pv-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:16px;font-size:14px;color:var(--fg-2)}
+.pv-legend span{display:inline-flex;align-items:center;gap:7px}
+.pv-legend i{width:10px;height:10px;border-radius:50%;background:var(--tline);flex:none}
+.pv-list{display:grid;gap:10px;margin-top:14px}
+.pv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:0}
+.pv.open{border-color:var(--fg-2)}
+.pv-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center;width:100%;padding:16px 18px;background:none;border:0;text-align:left;cursor:pointer;color:var(--fg);font:inherit;border-radius:12px}
+.pv-head:hover{background:var(--surface-2)}
+.pv-tag{font:600 10.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block}
+.pv-org{display:block;font:750 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.pv-role{display:block;font-size:15px;color:var(--fg-2);margin-top:1px}
+.pv-cta{grid-row:1/4;grid-column:2;font:600 13px var(--body);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap;background:var(--surface)}
+.pv.open .pv-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pv-body{padding:0 18px 18px}
+.pv-ask{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px}
+.pv-tracks{display:flex;flex-wrap:wrap;gap:6px}
+.pv-tracks button{font:600 14px var(--body);border-radius:999px;padding:7px 14px;border:1.5px solid var(--tline);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pv-tracks button i{width:9px;height:9px;border-radius:50%;background:var(--tline);flex:none}
+.pv-tracks button[aria-pressed="true"]{background:var(--tline);color:#ffffff}
+.pv-tracks button[aria-pressed="true"] i{background:#ffffff}
+.pv-paper{margin-top:12px;padding:16px 18px 16px 22px}
+.pv-paper ul{margin-top:2px}
+.kw{background:var(--ttint);box-shadow:inset 0 -2px 0 var(--tline);border-radius:2px;padding:0 1px}
+.pv-why{margin-top:12px;background:var(--surface-2);border-radius:8px;padding:12px 14px;font-size:15.5px;line-height:1.5}
+.pv-why .lead{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-bottom:3px}
+.pv-why p{margin:0}
+.pv-kws{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pv-kws span{font:500 12.5px var(--body);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.pv-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pv-four{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.pv-four .paper{padding:12px 14px 12px 16px;font-size:12.5px}
+.pv-four h4{margin:0 0 4px;font:700 12px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--tline);display:flex;align-items:center;gap:6px}
+.pv-four h4 i{width:8px;height:8px;border-radius:50%;background:var(--tline)}
+.pv-four ul{padding-left:16px}
+@media (max-width:640px){.pv-four{grid-template-columns:minmax(0,1fr)}}
+.pv-fade{animation:pvfade .28s ease}
+@keyframes pvfade{from{opacity:.25;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pv-fade{animation:none}}
+.pv-drill .mc{margin-top:16px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:15px;line-height:1.45;color:var(--fg-2);margin:4px 0 10px}
+.post b{color:var(--fg)}
+
+/* review request */
+.review{display:flex;gap:14px 20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:18px}
+.review > div{min-width:0;flex:1 1 280px}
+.review b{display:block;font:750 20px/1.2 var(--display);font-stretch:88%}
+.review p{margin:4px 0 0;font-size:15.5px;color:var(--fg-2)}
+.review .btn.off{opacity:.6;cursor:default}
+</style>
+
+<nav class="rail" aria-label="Workshop steps">
+  <div class="rail-in">
+    <div class="chips" id="chips">
+      <a href="#why">Why</a><a href="#rules">The rules</a><a href="#anatomy">Anatomy</a><a href="#tailor">Same job</a><a href="#program">Your program</a><a href="#sections">Sections</a><a href="#bullets">Bullets</a><a href="#builder">Builder</a><a href="#checklist">Checklist</a><a href="#rubric">Score it</a><a href="#next">Next steps</a><a href="#test">Test</a>
+    </div>
+    <label class="speed" for="rate"><span>Speed</span>
+      <select id="rate" aria-label="Read-aloud speed">
+        <option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option><option value="1.3">1.3×</option>
+      </select>
+    </label>
+  </div>
+</nav>
+
+<main>
+<header class="hero wrap">
+  <div class="goldbar" aria-hidden="true"></div>
+  <p class="eyebrow">Resume Workshop · USC Marshall format · about 25 minutes</p>
+  <h1>Marshall Resume Workshop</h1>
+  <p class="lede" data-say>Recruiters who hire at USC read stacks of resumes in the Marshall format. When yours matches, it looks like it came from a Marshall student who did the prep. This page walks through the format piece by piece, then helps you write bullets, check your work, and score your resume the way career services does.</p>
+  <ol class="how">
+    <li><b>Tap the sample resume</b> to see the rule behind every line.</li>
+    <li><b>Build and fix bullets</b> with the bullet builder and drills.</li>
+    <li><b>Check and score</b> your own resume before you send it.</li>
+  </ol>
+  <div class="hero-actions">
+    <a class="btn primary" href="#anatomy">Tap the sample resume</a>
+    <a class="btn" href="#program">Find your program's education line</a>
+    <a class="btn" href="#checklist">Go to the checklist</a>
+  </div>
+  <div class="voicebar">
+    <label for="voicePick">Read-aloud voice</label>
+    <select id="voicePick"></select>
+    <button class="btn small" type="button" id="voiceTest">Try it</button>
+    <p class="vhint">Sounds robotic? Pick a voice marked "natural." For the most human voices, open this page in Microsoft Edge, which includes free natural voices.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 WHY -->
+<section class="step" id="why">
+  <div class="sh"><span class="idx">01</span><h2>Why the format matters</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>Marshall recommends its own resume format for on-campus recruiting. Firms that recruit at USC see it all season, so a resume in the house format reads as "Trojan, and prepared" before anyone reads a word.</p>
+  <div class="signal">
+    <div data-say><b>It signals where you're from</b><p>The layout is recognizable to recruiters who hire at USC. It tells them you used Marshall's resources.</p></div>
+    <div data-say><b>It's fast to scan</b><p>Resumes often get a few seconds on the first pass. A layout the reader already knows lets them find your school, GPA, and roles at a glance.</p></div>
+    <div data-say><b>It removes easy mistakes</b><p>Fonts, dates, and spacing are already decided, so your time goes into the part that wins interviews: the bullets.</p></div>
+  </div>
+  <p class="sub" data-say>Marshall describes a resume as a personal advertisement. Its job is to get you the interview, not to list everything you've done.</p>
+</section>
+
+<!-- 02 RULES -->
+<section class="step" id="rules">
+  <div class="sh"><span class="idx">02</span><h2>The format in eight rules</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>These come straight from the Marshall resume guide. Everything else on this page builds on them.</p>
+  <ul class="rules">
+    <li data-say><span class="n">1</span><span>One page, with consistent margins.</span></li>
+    <li data-say><span class="n">2</span><span>Times New Roman, 10 to 12 point, black text.</span></li>
+    <li data-say><span class="n">3</span><span>Education goes at the top.</span></li>
+    <li data-say><span class="n">4</span><span>Education, Experience, and Skills sections are required.</span></li>
+    <li data-say><span class="n">5</span><span>Reverse chronological order: most recent first.</span></li>
+    <li data-say><span class="n">6</span><span>Every experience lists its location and dates.</span></li>
+    <li data-say><span class="n">7</span><span>Consistent abbreviations, and no unexplained acronyms.</span></li>
+    <li data-say><span class="n">8</span><span>Consistent alignment, spacing, and bullet points throughout.</span></li>
+  </ul>
+  <div class="mc" data-answer="2">
+    <div class="mc-head"><p class="stem" data-say>Quick check: a friend's resume runs onto a second page because of a long Activities list. What's the Marshall fix?</p></div>
+    <div class="opts">
+      <button class="opt" type="button" data-say>Shrink the font to 9 point.</button>
+      <button class="opt" type="button" data-say>Keep two pages, since more experience looks better.</button>
+      <button class="opt" type="button" data-say>Cut to one page by keeping the activities that match the job and trimming the rest.</button>
+      <button class="opt" type="button" data-say>Move Education to the bottom to save space.</button>
+    </div>
+    <div class="why" hidden><p data-say>One page and 10 to 12 point are both rules, and Education stays on top. Marshall's advice is to skip the laundry list and keep what's relevant to the job you're applying for.</p></div>
+  </div>
+</section>
+
+<!-- 03 ANATOMY -->
+<section class="step" id="anatomy">
+  <div class="sh"><span class="idx">03</span><h2>Tap the sample resume</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>This is a sample resume in the Marshall format. Tap any numbered part to see the rule behind it, or use the tour buttons to walk through all of them in order.</p>
+  <div class="anat-tools">
+    <button class="btn primary small" type="button" id="tourStart">Start the tour</button>
+    <button class="btn small" type="button" id="markTog" aria-pressed="true">Numbers on</button>
+  </div>
+  <div class="anat">
+    <div class="paper markers" id="paper" aria-label="Sample Marshall-format resume. Each numbered part is a button.">
+      <div class="hs" data-k="name"><p class="rn">Tommy Trojan</p></div>
+      <div class="hs" data-k="contact"><p class="rc">(213) 555-0142 • ttrojan@usc.edu • linkedin.com/in/tommytrojan</p></div>
+
+      <div class="hs" data-k="heading"><p class="rh">Education</p></div>
+      <div class="hs" data-k="school"><p class="rl"><span><b>University of Southern California, Marshall School of Business</b></span><span>Los Angeles, CA</span></p></div>
+      <div class="hs" data-k="degree"><p class="rl"><span>Bachelor of Science in Business Administration (emphasis in Finance) – STEM Designated</span><span>May 2027</span></p></div>
+      <div class="hs" data-k="gpa"><p class="rl"><span>Minor in Data Analytics</span><span>GPA: 3.68</span></p></div>
+      <div class="hs" data-k="honors"><p><span class="lab">Honors:</span> Dean's List (four semesters), Trustee Scholarship</p><p><span class="lab">Relevant Coursework:</span> Corporate Finance, Financial Accounting, Business Analytics, Strategic Management</p></div>
+      <div class="gap"></div>
+      <div class="hs" data-k="abroad"><p class="rl"><span><b>Bocconi University</b></span><span>Milan, Italy</span></p><p class="rl"><span><i>USC Marshall International Exchange Program participant</i></span><span>January 2026 - May 2026</span></p></div>
+
+      <p class="rh">Experience</p>
+      <div class="hs" data-k="employer"><p class="rl"><span><b>Harbor Point Advisors</b></span><span>Los Angeles, CA</span></p></div>
+      <div class="hs" data-k="title"><p class="rl"><span><i>Strategy Consulting Intern</i></span><span>June 2026 - August 2026</span></p></div>
+      <div class="hs" data-k="bullet"><ul><li>Built a market sizing model for a regional grocery client, identifying a $40M opportunity across 12 new store sites.</li></ul></div>
+      <ul>
+        <li>Interviewed 25 store managers and turned the findings into a 15-slide deck presented to the client's COO.</li>
+        <li>Automated the team's weekly data pull in Excel Power Query, cutting reporting time from six hours to two.</li>
+      </ul>
+      <div class="gap"></div>
+      <p class="rl"><span><b>Trojan Coffee Co.</b></span><span>Los Angeles, CA</span></p>
+      <p class="rl"><span><i>Shift Lead (part-time)</i></span><span>September 2024 - May 2026</span></p>
+      <div class="hs" data-k="transfer"><ul><li>Trained eight new baristas on service standards, raising the store's customer rating from 4.2 to 4.7.</li><li>Reconciled the register for 300+ daily transactions with zero discrepancies over two semesters.</li></ul></div>
+
+      <div class="hs" data-k="lead"><p class="rh">Leadership &amp; Involvement</p><p class="rl"><span><b>Trojan Consulting Group</b></span><span>September 2024 - Present</span></p><p><i>Project Manager (September 2025 - Present)</i></p><ul><li>Lead five analysts on a pricing study for a local nonprofit, recommending a fee change projected to add $18K a year.</li></ul><p><i>Member (September 2024 - August 2025)</i></p></div>
+      <div class="gap"></div>
+      <div class="hs" data-k="linc"><p class="rl"><span><b>USC Marshall Learning about International Commerce (LInC)</b></span><span>January 2025 - May 2025</span></p><p><i>Student Participant</i></p><ul><li>Visited six companies in Seoul with a USC delegation to study how U.S. firms expand into Asia.</li></ul></div>
+
+      <p class="rh">Skills &amp; Interests</p>
+      <div class="hs" data-k="skills"><p><span class="lab">Languages:</span> Fluent in Spanish, Conversational in Korean</p><p><span class="lab">Computer Skills:</span> Microsoft Excel (vlookups, pivot tables, Power Query), PowerPoint, Tableau (intermediate), SQL (basic)</p></div>
+      <div class="hs" data-k="interests"><p><span class="lab">Interests:</span> Trail running, film photography, Trojan football, cooking regional Mexican food</p></div>
+    </div>
+    <aside class="rulepanel" id="rulepanel" aria-live="polite">
+      <p class="k" id="rpK">Part 0 of 0</p>
+      <h3 id="rpT">Tap a numbered part</h3>
+      <p id="rpR">Every line on a Marshall resume follows a rule. Tap a number on the page, or start the tour.</p>
+      <p class="note rwhy" id="rpW"></p>
+      <div class="nav2"><button class="btn small" type="button" id="rpPrev">← Back</button><button class="btn primary small" type="button" id="rpNext">Next part →</button></div>
+    </aside>
+  </div>
+  <p class="src">Sample resume written for this page. The person and employers are made up. Layout follows the Marshall samples in Handshake › Resources › Resume Guides.</p>
+</section>
+
+<!-- 04 SAME JOB, DIFFERENT RESUME -->
+<section class="step" id="tailor">
+  <div class="sh"><span class="idx">04</span><h2>Same job, different resume</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>You don't need a new job for every application. You need a new version of the jobs you already have.</p>
+  <div class="pv-rules">
+    <div data-say><b>The facts stay fixed</b><p>Employer, title, and dates never change between versions. Only the bullets do.</p></div>
+    <div data-say><b>Lead with what they want</b><p>Read the job description, then put the true details that match it first, in its words.</p></div>
+    <div data-say><b>Keep a master resume</b><p>Write every bullet you could ever use in one long file. Each application is a cut of it.</p></div>
+  </div>
+  <p class="sub" data-say>Open an experience, then flip between the four versions. Highlighted words are the ones that changed to fit each field.</p>
+  <div class="pv-legend" id="pvLegend"></div>
+  <div class="pv-list" id="pvList"></div>
+  <div class="pv-drill">
+    <h3 style="margin-top:30px">Which version would you send?</h3>
+    <p class="sub" data-say>Read each job posting, then pick the version of your resume that fits it.</p>
+    <div class="mc" data-answer="0">
+      <div class="mc-head"><p class="stem" data-say>Summer Analyst, Strategy: "Work on client teams to structure business problems, interview stakeholders, analyze data, and turn findings into clear recommendations."</p></div>
+      <div class="opts"><button class="opt" type="button">Consulting</button><button class="opt" type="button">Accounting</button><button class="opt" type="button">Marketing</button><button class="opt" type="button">Business Admin</button></div>
+      <div class="why" hidden><p data-say>Structure, interviews, analysis, and recommendations: the consulting versions lead with exactly that language.</p></div>
+    </div>
+    <div class="mc" data-answer="2">
+      <div class="mc-head"><p class="stem" data-say>Brand Marketing Intern: "Help plan product launches, build social content calendars, and track campaign results to grow our audience."</p></div>
+      <div class="opts"><button class="opt" type="button">Consulting</button><button class="opt" type="button">Accounting</button><button class="opt" type="button">Marketing</button><button class="opt" type="button">Business Admin</button></div>
+      <div class="why" hidden><p data-say>Launches, social content, and audience growth. Send the version that leads with customers and campaigns.</p></div>
+    </div>
+    <div class="mc" data-answer="1">
+      <div class="mc-head"><p class="stem" data-say>Staff Accountant Intern: "Support month-end close, prepare account reconciliations, and help track spending against budget."</p></div>
+      <div class="opts"><button class="opt" type="button">Consulting</button><button class="opt" type="button">Accounting</button><button class="opt" type="button">Marketing</button><button class="opt" type="button">Business Admin</button></div>
+      <div class="why" hidden><p data-say>Reconciliations and budgets. The accounting versions put those details first, even for a coffee job or a club role.</p></div>
+    </div>
+    <div class="mc" data-answer="3">
+      <div class="mc-head"><p class="stem" data-say>Operations Rotational Program: "Coordinate projects across teams, improve processes, and keep work on schedule."</p></div>
+      <div class="opts"><button class="opt" type="button">Consulting</button><button class="opt" type="button">Accounting</button><button class="opt" type="button">Marketing</button><button class="opt" type="button">Business Admin</button></div>
+      <div class="why" hidden><p data-say>Coordinating, process, and schedules. The business admin versions show you can run things.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PROGRAM -->
+<section class="step" id="program">
+  <div class="sh"><span class="idx">05</span><h2>Find your program's education line</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>The education section is where most formatting mistakes happen, because every program writes its degree a little differently. Pick yours to see exactly how it should look.</p>
+  <div class="picker" role="group" aria-label="Choose your program" id="progPick"></div>
+  <div class="emph" id="emphRow"><label for="emphSel">Emphasis</label><select id="emphSel"></select></div>
+  <div class="progout"><div class="paper" id="progPaper"></div></div>
+  <p class="prognote" id="progNote" aria-live="polite"></p>
+  <p class="src">Based on the Marshall and Leventhal sample resumes. Always check the exact degree name on your USC records.</p>
+</section>
+
+<!-- 05 SECTIONS -->
+<section class="step" id="sections">
+  <div class="sh"><span class="idx">06</span><h2>Section by section</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>What goes in each section, and the mistakes that cost points.</p>
+  <div class="secs">
+    <article data-say><h3>Header <span class="req">Required</span></h3><ul>
+      <li>Phone, an email you check, and your LinkedIn URL.</li>
+      <li>Use the same header on your resume, cover letter, and references.</li>
+      <li>Left, center, or right alignment is your choice.</li>
+      <li class="no">Skip your mailing address.</li></ul></article>
+    <article data-say><h3>Education <span class="req">Required</span></h3><ul>
+      <li>School, location, degree, graduation month and year.</li>
+      <li>Cumulative USC GPA only. Under 3.0, you may leave it off.</li>
+      <li>Your declared emphasis, honors, and relevant coursework.</li>
+      <li>Study abroad goes here.</li></ul></article>
+    <article data-say><h3>Experience <span class="req">Required</span></h3><ul>
+      <li>Internships, summer jobs, part-time work, and work-study all count.</li>
+      <li>Employer, location, title, and dates for every role.</li>
+      <li>Bullets about what you achieved, matched to the job description.</li>
+      <li class="no">Skip the laundry list of every task.</li></ul></article>
+    <article data-say><h3>Leadership &amp; Involvement <span class="req ropt">Optional</span></h3><ul>
+      <li>Clubs, teams, and programs where you led or contributed.</li>
+      <li>LInC and GLP go here, not in Education.</li>
+      <li>Several roles in one group stack under the group's name.</li>
+      <li class="no">Don't describe the club. Describe what you did in it.</li></ul></article>
+    <article data-say><h3>Skills &amp; Interests <span class="req">Required</span></h3><ul>
+      <li>Technical skills the job asks for, with specifics: Excel (vlookups, pivot tables).</li>
+      <li>A level for every language and tool: fluent, conversational, advanced, basic.</li>
+      <li>Interests are optional. Keep them professional and specific.</li></ul></article>
+    <article data-say><h3>Academic Projects <span class="req ropt">Optional</span></h3><ul>
+      <li>Use it when you need more content, or when a class project fits the job better than your work history.</li>
+      <li>Include the course, project name, and date.</li>
+      <li>Use the terms the job description uses.</li></ul></article>
+  </div>
+</section>
+
+<!-- 06 BULLETS -->
+<section class="step" id="bullets">
+  <div class="sh"><span class="idx">07</span><h2>Write bullets that show results</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>A list of duties tells the reader what your job was. A strong bullet tells them what you achieved and why it mattered.</p>
+  <div class="techs">
+    <div class="tech">
+      <h3>1 · Action, Context, Result</h3>
+      <p class="sub" data-say>Marshall's main technique. Start with a strong verb, add who, what, or where, and finish with the outcome. Put a number on it when you can.</p>
+      <div class="ba"><div class="bf"><span class="k">Before</span>Responsible for social media for a student club</div>
+        <div class="af"><span class="k">After</span><span class="a-">Grew</span> <span class="c-">the Trojan Consulting Group's Instagram from 400 to 1,900 followers in one semester,</span> <span class="r-">doubling info session sign-ups</span></div></div>
+      <div class="acrkey" aria-hidden="true"><span><i style="background:var(--acr-a)"></i>Action</span><span><i style="background:var(--acr-c)"></i>Context</span><span><i style="background:var(--acr-r)"></i>Result</span></div>
+    </div>
+    <div class="tech">
+      <h3>2 · Pull out transferable skills</h3>
+      <p class="sub" data-say>A job that isn't business related still shows communication, teamwork, leadership, accuracy, or initiative. Name the skill and show it.</p>
+      <div class="ba"><div class="bf"><span class="k">Before</span>Worked as a lifeguard</div>
+        <div class="af"><span class="k">After</span>Supervised safety for up to 200 swimmers a shift and trained six new guards on emergency procedures</div></div>
+    </div>
+    <div class="tech">
+      <h3>3 · Give awards context</h3>
+      <p class="sub" data-say>An award name means nothing to a stranger. Say what it was for and how selective it was.</p>
+      <div class="ba"><div class="bf"><span class="k">Before</span>Recipient of the Excellence Award</div>
+        <div class="af"><span class="k">After</span>Selected for a firm-wide award given to the top 5% of summer interns for client service</div></div>
+    </div>
+  </div>
+  <h3 style="margin-top:30px">Fix these bullets</h3>
+  <p class="sub" data-say>Rewrite each one out loud or on paper, then compare.</p>
+  <div class="reps">
+    <div class="rep"><p class="rq" data-say>1. "Helped with event planning for my sorority."</p><div class="acts"><button class="btn primary small reveal" type="button" aria-controls="f1" aria-expanded="false">Show a stronger version</button></div>
+      <div class="ans" id="f1" hidden><div class="script"><p data-say>"Planned a formal for 180 members, negotiating venue and catering contracts that came in 12% under budget."</p></div><p class="note" data-say>"Helped" hides your role. Name the event, its size, and a result.</p></div></div>
+    <div class="rep"><p class="rq" data-say>2. "Responsible for answering customer emails."</p><div class="acts"><button class="btn primary small reveal" type="button" aria-controls="f2" aria-expanded="false">Show a stronger version</button></div>
+      <div class="ans" id="f2" hidden><div class="script"><p data-say>"Resolved 40+ customer emails a day, cutting average response time from two days to six hours."</p></div><p class="note" data-say>"Responsible for" is a duty. Start with the action and add the scale and the result.</p></div></div>
+    <div class="rep"><p class="rq" data-say>3. "Was a member of the investing club and went to meetings."</p><div class="acts"><button class="btn primary small reveal" type="button" aria-controls="f3" aria-expanded="false">Show a stronger version</button></div>
+      <div class="ans" id="f3" hidden><div class="script"><p data-say>"Pitched a long position on a regional bank to the club's 30-member investment committee, which added it to the portfolio."</p></div><p class="note" data-say>Attending isn't an accomplishment. Pick one thing you produced and what came of it.</p></div></div>
+    <div class="rep"><p class="rq" data-say>4. "Did research on competitors for my internship."</p><div class="acts"><button class="btn primary small reveal" type="button" aria-controls="f4" aria-expanded="false">Show a stronger version</button></div>
+      <div class="ans" id="f4" hidden><div class="script"><p data-say>"Benchmarked pricing for eight competitors and identified a gap the marketing team used to reposition its entry-level plan."</p></div><p class="note" data-say>Say how much research, on what, and what the team did with it.</p></div></div>
+  </div>
+</section>
+
+<!-- 07 BUILDER -->
+<section class="step" id="builder">
+  <div class="sh"><span class="idx">08</span><h2>Bullet builder</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Fill in the three parts and watch your bullet appear in resume style. The checks below it flag what a reviewer would flag.</p>
+  <div class="calcbox bld">
+    <h3>Build an Action, Context, Result bullet</h3>
+    <div class="cgrid">
+      <label for="bv">Action verb<input id="bv" type="text" list="verbList" value="Streamlined" autocomplete="off"></label>
+      <label for="bc">Context: what, who, where<input id="bc" type="text" value="the club's member check-in process with a shared Google Form" autocomplete="off"></label>
+      <label for="br">Result: the outcome, with a number<input id="br" type="text" value="cutting event wait times from 15 minutes to 3" autocomplete="off"></label>
+    </div>
+    <datalist id="verbList"></datalist>
+    <div class="paper" aria-live="polite"><ul><li id="bOut"></li></ul></div>
+    <ul class="checks" id="bChecks"></ul>
+    <div class="cbtns"><button class="btn small" type="button" id="bClear">Clear and write my own</button><button class="btn small" type="button" id="bCopy">Copy bullet</button></div>
+    <p class="toast" id="bToast" aria-live="polite"></p>
+  </div>
+  <div class="verbs">
+    <h3>Pick a stronger verb</h3>
+    <p class="sub" data-say>Choose the skill you want the bullet to show, then tap a verb to drop it into the builder.</p>
+    <div class="picker" role="group" aria-label="Verb categories" id="verbCats"></div>
+    <div class="chipsx" id="verbChips"></div>
+  </div>
+</section>
+
+<!-- 08 CHECKLIST -->
+<section class="step" id="checklist">
+  <div class="sh"><span class="idx">09</span><h2>Format checklist</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Open your resume next to this page and tick each item. Your ticks stay in this browser so you can come back.</p>
+  <div class="meter"><div class="mbar"><div class="mfill" id="clFill"></div></div><b id="clCount">0 of 0</b></div>
+  <ul class="cl" id="clList"></ul>
+  <div class="cbtns"><button class="btn small" type="button" id="clReset">Clear all ticks</button></div>
+</section>
+
+<!-- 09 RUBRIC -->
+<section class="step" id="rubric">
+  <div class="sh"><span class="idx">10</span><h2>Score it like career services</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Marshall career services grades resumes on four levels, from Marshall Ready to Not Ready. Be honest with yourself: pick the level that fits each section, and the page tells you what to do next.</p>
+  <div class="rub" id="rub"></div>
+  <div class="verdict" id="verdict" aria-live="polite"><b>Pick a level for each section</b><p>Your overall level and next step appear here.</p></div>
+  <p class="src">Levels summarize Marshall's resume rubric, which is adapted from the National Association of Colleges and Employers.</p>
+</section>
+
+<!-- 10 NEXT -->
+<section class="step" id="next">
+  <div class="sh"><span class="idx">11</span><h2>Next steps</h2><button class="btn small listen" type="button">Listen</button></div>
+  <div class="res">
+    <div data-say><b>Start from the template</b><p>Marshall's fillable template and sample resumes are in <code>Handshake › Resources › Resume Guides</code>.</p></div>
+    <div data-say><b>Get instant feedback</b><p>Upload your resume to Quinncia, Marshall's AI reviewer, at <code>Handshake › Career Center › Resources</code>. It takes under a minute.</p></div>
+    <div data-say><b>Meet an advisor</b><p>Meet with a Marshall career advisor, especially if you scored Needs work or Not ready above.</p></div>
+  </div>
+  <div class="review">
+    <div><b>Want a second opinion?</b><p>Submit your resume and get feedback from someone who's been through recruiting.</p></div>
+    <a class="btn primary" id="reviewLink" href="#" target="_blank" rel="noopener">Submit your resume for review</a>
+  </div>
+  <h3 style="margin-top:30px">Marshall vs. Leventhal at a glance</h3>
+  <p class="sub" data-say>Accounting students follow Leventhal's format instead. The two look alike but differ in the details. Open the Leventhal page from the Resume Workshop menu for the full version.</p>
+  <div class="tblwrap card">
+    <table class="tw cmp">
+      <thead><tr><th></th><th>Marshall</th><th>Leventhal</th></tr></thead>
+      <tbody>
+        <tr><td>Name and header</td><td>Your choice of alignment</td><td>Centered, with a line under your name</td></tr>
+        <tr><td>Section headings</td><td>Bold capitals over a rule line</td><td>Bold, underlined capitals</td></tr>
+        <tr><td>Bullet endings</td><td>Samples end with periods</td><td>No periods</td></tr>
+        <tr><td>Dates</td><td>Full month names</td><td>Short months (Sep 2025), right-aligned</td></tr>
+        <tr><td>Bullet method</td><td>Action, Context, Result</td><td>STAR, with tense matching the job</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 11 TEST -->
+<section class="step test" id="test">
+  <div class="sh"><span class="idx">12</span><h2>Quick test</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>Ten questions on the Marshall format. Pick an answer to see why.</p>
+  <div class="scorebar"><span class="score" id="score">0 / 0<small>answered 0 of 10</small></span><button class="btn small" type="button" id="resetTest">Reset test</button></div>
+  <div id="testq"></div>
+  <div class="done" id="done" hidden></div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Format rules summarize the USC Marshall Resume Guide, the Marshall sample resumes, and Marshall's resume rubric. The sample resume and examples were written for this page. This page isn't an official USC resource: check Handshake for the latest guide.</p>
+  </div>
+</footer>
+<div id="tip" hidden role="tooltip"></div>
+<script>
+(function(){
+  "use strict";
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const NS="http://www.w3.org/2000/svg";
+  const svgEl=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const LET="ABCD";
+
+  /* ---------- tooltip ---------- */
+  const tip=$("#tip");
+  function showTip(el,x,y){tip.textContent=el.getAttribute("data-tip");tip.hidden=false;
+    const w=tip.offsetWidth,h=tip.offsetHeight;let L=x+12,T=y-h-10;
+    if(L+w>innerWidth-8)L=x-w-12; if(T<8)T=y+14; tip.style.left=Math.max(8,L)+"px";tip.style.top=T+"px";}
+  document.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t)showTip(t,e.clientX,e.clientY);else tip.hidden=true;});
+  document.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t){const r=t.getBoundingClientRect();showTip(t,r.left+r.width/2,r.top);}});
+  document.addEventListener("focusout",()=>{tip.hidden=true;});
+  addEventListener("scroll",()=>{tip.hidden=true;},{passive:true});
+
+  /* ---------- reveal toggles ---------- */
+  $$(".reveal").forEach(b=>{const t=document.getElementById(b.getAttribute("aria-controls"));const show=b.textContent;
+    const hide=show.startsWith("Show as")?"Hide table":"Hide";
+    b.addEventListener("click",()=>{const open=t.hidden;t.hidden=!open;b.setAttribute("aria-expanded",String(open));b.textContent=open?hide:show;});});
+
+  /* ---------- timers ---------- */
+  let actx=null;
+  function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,actx.currentTime);g.gain.exponentialRampToValueAtTime(.2,actx.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+.5);o.connect(g).connect(actx.destination);o.start();o.stop(actx.currentTime+.55);}catch(e){}}
+  $$(".timer").forEach(b=>{const secs=+b.dataset.secs,label=b.textContent;let id=null,left=0;
+    const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+    b.addEventListener("click",()=>{
+      if(id){clearInterval(id);id=null;b.textContent=label;b.setAttribute("aria-pressed","false");return;}
+      try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();}catch(e){}
+      left=secs;b.textContent=fmt(left)+" · stop";b.setAttribute("aria-pressed","true");
+      id=setInterval(()=>{left--;if(left<=0){clearInterval(id);id=null;b.textContent="Time. Answer now";b.setAttribute("aria-pressed","false");beep();setTimeout(()=>{if(!id)b.textContent=label;},4000);return;}b.textContent=fmt(left)+" · stop";},1000);
+    });});
+
+  /* ---------- steppers ---------- */
+  $$(".stepper").forEach(s=>{const steps=$$(".st",s),next=$(".next",s),reset=$(".reset",s);let i=0;
+    const upd=()=>{next.hidden=i>=steps.length;next.textContent="Reveal step "+(i+1)+" of "+steps.length;};
+    next.addEventListener("click",()=>{if(i<steps.length){steps[i].hidden=false;i++;upd();}});
+    reset.addEventListener("click",()=>{steps.forEach(x=>x.hidden=true);i=0;upd();});upd();});
+
+
+  const PAGEKEY="marshall-resume";
+  /* Resume review form: paste the https:// link to the Google Form here when it is ready. Until then the button reads "Review form opens soon". */
+  const REVIEW_FORM="";
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const store={get(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+  /* ---------- 03 tap-the-resume ---------- */
+  const HS=[
+    {k:"name",t:"Your name",r:"Bold, and larger than the body text, as in Marshall's samples. Everything below it stays at 10 to 12 point.",w:"Use the same header on your resume, cover letter, and references."},
+    {k:"contact",t:"Contact line",r:"Phone, an email you check often, and your LinkedIn URL, separated by bullets (•).",w:"Marshall doesn't recommend a mailing address. Left, center, or right alignment is up to you."},
+    {k:"heading",t:"Section headings",r:"Bold capitals with a line underneath. Education always comes first.",w:"Required sections: Education, Experience, and Skills."},
+    {k:"school",t:"School line",r:"School name in bold, with the city and state on the right. Write the full name: University of Southern California, Marshall School of Business.",w:"Keep abbreviations consistent and avoid acronyms on this line."},
+    {k:"degree",t:"Degree line",r:"Your exact degree, with a declared emphasis in parentheses and STEM Designated. Graduation month and year on the right.",w:"Section 05 shows the education line for every Marshall program."},
+    {k:"gpa",t:"Minor and GPA",r:"A minor gets its own line. Your GPA sits on the right: cumulative USC GPA only.",w:"If your GPA is below 3.0, you may leave it off."},
+    {k:"honors",t:"Honors and coursework",r:"Bold labels, then a list separated by commas.",w:"Pick courses that match the job. A finance role cares about Corporate Finance, not every class you've taken."},
+    {k:"abroad",t:"Study abroad",r:"Study abroad goes in Education: the school, its location, the program in italics, and the dates.",w:"LInC and GLP are different. They go in Leadership & Involvement."},
+    {k:"employer",t:"Employer line",r:"Employer in bold, city and state on the right. Every experience needs a location.",w:"For a remote role, add (remote) after your title, as Marshall's samples do."},
+    {k:"title",t:"Title and dates",r:"Job title in italics, dates on the right. Write dates the same way everywhere.",w:"Roles go in reverse chronological order: most recent first."},
+    {k:"bullet",t:"An Action, Context, Result bullet",r:"A strong verb, what you worked on, and what it achieved. Numbers make it concrete.",w:"Here: Built (action) a market sizing model for a grocery client (context), identifying a $40M opportunity (result)."},
+    {k:"transfer",t:"Transferable skills",r:"A job outside business still counts. Show skills any employer wants: training people, accuracy, customer focus.",w:"Marshall names communication, analytical skills, teamwork, initiative, attention to detail, and leadership."},
+    {k:"lead",t:"Leadership & Involvement",r:"Optional section. Several roles in one group stack under its name, each with its own dates.",w:"Describe what you did, not what the club does. Use present tense for roles you still hold."},
+    {k:"linc",t:"LInC and GLP",r:"Marshall programs like LInC and GLP go here, not in Education.",w:"Spell out the program name. The short form can follow in parentheses."},
+    {k:"skills",t:"Skills",r:"Group skills under bold labels. Give a level for each language and tool, and name specifics like vlookups or pivot tables.",w:"Match the job description. If it asks for Tableau and you have it, list it."},
+    {k:"interests",t:"Interests",r:"Optional. Keep them professional and specific enough to start a conversation.",w:"\"Film photography\" gives an interviewer a question to ask. \"Hanging out\" doesn't."},
+  ];
+  const paper=$("#paper"),wide=matchMedia("(min-width:761px)");
+  const hsEls=HS.map((h,i)=>{const el=$(`.hs[data-k="${h.k}"]`,paper);el.dataset.n=i+1;el.tabIndex=0;el.setAttribute("role","button");el.setAttribute("aria-label",`Part ${i+1}: ${h.t}`);return el;});
+  let cur=-1;
+  function pick(i,scroll){
+    if(i<0||i>=HS.length)return;cur=i;const h=HS[i];
+    hsEls.forEach((e,k)=>e.classList.toggle("on",k===i));
+    const old=$(".hs-pop",paper);if(old)old.remove();
+    if(wide.matches){
+      $("#rpK").textContent=`Part ${i+1} of ${HS.length}`;$("#rpT").textContent=h.t;$("#rpR").textContent=h.r;$("#rpW").textContent=h.w;
+      $("#rpPrev").disabled=i===0;$("#rpNext").textContent=i===HS.length-1?"Back to part 1":"Next part →";
+      if(scroll)hsEls[i].scrollIntoView({block:"nearest",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+    }else{
+      const pop=document.createElement("div");pop.className="hs-pop";
+      pop.innerHTML=`<b>${i+1} · ${esc(h.t)}</b>${esc(h.r)} <span style="color:var(--fg-2)">${esc(h.w)}</span><div class="nav2" style="display:flex;gap:8px;margin-top:8px"><button class="btn small" type="button" data-go="${i-1}" ${i===0?"disabled":""}>← Back</button><button class="btn primary small" type="button" data-go="${i===HS.length-1?0:i+1}">${i===HS.length-1?"Back to part 1":"Next part →"}</button></div>`;
+      hsEls[i].insertAdjacentElement("afterend",pop);
+      if(scroll)hsEls[i].scrollIntoView({block:"center"});
+    }
+  }
+  paper.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){e.stopPropagation();pick(+g.dataset.go,true);return;}
+    const el=e.target.closest(".hs");if(el)pick(+el.dataset.n-1,false);});
+  paper.addEventListener("keydown",e=>{const el=e.target.closest(".hs");if(el&&(e.key==="Enter"||e.key===" ")){e.preventDefault();pick(+el.dataset.n-1,false);}});
+  $("#rpNext").addEventListener("click",()=>pick(cur>=HS.length-1?0:cur+1,true));
+  $("#rpPrev").addEventListener("click",()=>pick(Math.max(0,cur-1),true));
+  $("#tourStart").addEventListener("click",()=>{pick(0,true);if(wide.matches)$("#anatomy .anat").scrollIntoView({block:"start"});});
+  $("#markTog").addEventListener("click",e=>{const on=paper.classList.toggle("markers");e.currentTarget.setAttribute("aria-pressed",String(on));e.currentTarget.textContent=on?"Numbers on":"Numbers off";});
+  $("#rpPrev").disabled=true;$("#rpK").textContent=`${HS.length} parts`;
+
+  /* ---------- 04 program picker ---------- */
+  const L=(a,b)=>`<p class="rl"><span>${a}</span><span>${b||""}</span></p>`;
+  const EMPH=["Business Analytics","Communication","Entrepreneurship and Innovation","Finance","Leadership and Innovation","Marketing","Risk Management"];
+  const PROG=[
+    {k:"buad",n:"Business Administration",h:()=>L("<b>University of Southern California, Marshall School of Business</b>","Los Angeles, CA")+L("Bachelor of Science in Business Administration – STEM Designated","May 20XX")+L("Minor in International Relations","GPA: 3.75"),
+      note:"The standard Marshall line. Add a minor on its own line if you have one, with your GPA on the right."},
+    {k:"emph",n:"Business Admin with an emphasis",emph:true,h:e=>L("<b>University of Southern California, Marshall School of Business</b>","Los Angeles, CA")+L(`Bachelor of Science, Business Administration (emphasis in ${esc(e)}) – STEM Designated`,"May 20XX")+L("","GPA: 3.67"),
+      note:"Marshall's guide says to include a declared emphasis. It goes in parentheses inside the degree line."},
+    {k:"acct",n:"Accounting",h:()=>L("<b>University of Southern California,</b> Los Angeles, CA","Expected May 20XX")+"<p><b>Leventhal School of Accounting</b></p><p><i>Bachelor of Science, Accounting – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.61</p>",
+      note:"Accounting majors follow Leventhal's format, which puts the school name on its own line and the degree in italics. See the Leventhal page for the full rules."},
+    {k:"dbl",n:"Accounting + Business double major",h:()=>L("<b>University of Southern California,</b> Los Angeles, CA","Expected May 20XX")+"<p><b>Leventhal School of Accounting</b></p><p><i>Bachelor of Science, Accounting – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.61</p><p><b>Marshall School of Business</b></p><p><i>Bachelor of Science, Business Administration – STEM Designated</i></p><p>Cumulative GPA: 3.52 · Major GPA: 3.45</p>",
+      note:"List each school and degree under one University of Southern California heading, each with its own GPA lines."},
+    {k:"acfn",n:"Accounting and Finance (ACFN)",h:()=>"<p><b>University of Southern California</b></p>"+L("Leventhal School of Accounting and Marshall School of Business","May 20XX")+"<p>Bachelor of Science – Accounting and Finance (ACFN) – STEM Designated</p>",
+      note:"Name both schools, Leventhal first, then the joint degree with ACFN in parentheses."},
+    {k:"buai",n:"AI for Business (BUAI)",h:()=>L("<b>University of Southern California, Marshall School of Business and Viterbi School of Engineering</b>","")+L("Bachelor of Science, Artificial Intelligence for Business (BUAI) – STEM Designated","May 20XX"),
+      note:"Name both Marshall and Viterbi on the school line."},
+    {k:"bca",n:"Business of Cinematic Arts (BCA)",h:()=>L("<b>University of Southern California, Marshall School of Business and School of Cinematic Arts</b>","May 20XX")+"<p>John H. Mitchell Business of Cinematic Arts Program</p><p>Bachelor of Science in Business of Cinematic Arts – STEM Designated</p>",
+      note:"Name both schools, then the program name on its own line above the degree."},
+    {k:"refd",n:"Real Estate Finance and Development (REFD)",h:()=>L("<b>University of Southern California, Marshall School of Business and Price School of Public Policy</b>","")+L("Bachelor of Science, Real Estate Finance and Development (REFD)","May 20XX"),
+      note:"Name both Marshall and Price. Check the exact degree name on your USC records."},
+    {k:"wbb",n:"World Bachelor in Business (WBB)",h:()=>L("World Bachelor in Business Program – B.S. Business Administration – STEM Designated","May 20XX")+"<p><i>Global program earning three degrees from three business schools</i></p>"+L("<b>University of Southern California, Marshall School of Business</b>","Los Angeles, CA")+L("<b>Hong Kong University of Science and Technology</b>","Clear Water Bay, Hong Kong")+L("<b>Bocconi University</b>","Milan, Italy"),
+      note:"Lead with the WBB program, then list all three schools with their locations."},
+    {k:"pdp",n:"Progressive degree (BS + MS)",h:()=>"<p><b>University of Southern California, Marshall School of Business</b></p>"+L("Master of Science, Business Analytics, GPA: 3.5","May 20XX")+L("Bachelor of Science, Business Administration – STEM Designated, GPA: 3.75","May 20XX"),
+      note:"Show both degrees under one school, master's first, each with its own date and GPA."},
+  ];
+  const progPick=$("#progPick"),emphSel=$("#emphSel");
+  emphSel.innerHTML=EMPH.map(e=>`<option${e==="Finance"?" selected":""}>${e}</option>`).join("");
+  progPick.innerHTML=PROG.map(p=>`<button class="btn" type="button" data-p="${p.k}" aria-pressed="false">${p.n}</button>`).join("");
+  let progCur="buad";
+  function showProg(k){progCur=k;const p=PROG.find(x=>x.k===k);
+    $$("button",progPick).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===k)));
+    $("#emphRow").hidden=!p.emph;$("#progPaper").innerHTML=p.h(emphSel.value);
+    $("#progNote").textContent=p.note+(p.emph?` The seven emphases: ${EMPH.join(", ")}.`:"");}
+  progPick.addEventListener("click",e=>{const b=e.target.closest("[data-p]");if(b)showProg(b.dataset.p);});
+  emphSel.addEventListener("change",()=>showProg(progCur));
+  showProg("buad");
+
+  /* ---------- 07 bullet builder ---------- */
+  const VERBS={
+    "Analytical":["Analyzed","Assessed","Benchmarked","Evaluated","Forecasted","Identified","Investigated","Modeled","Quantified","Researched"],
+    "Leadership":["Led","Coached","Directed","Mentored","Mobilized","Organized","Spearheaded","Supervised","Trained","Delegated"],
+    "Communication":["Presented","Pitched","Authored","Drafted","Negotiated","Persuaded","Published","Summarized","Translated","Briefed"],
+    "Initiative":["Launched","Founded","Created","Designed","Initiated","Introduced","Pioneered","Revamped","Built","Established"],
+    "Efficiency":["Streamlined","Automated","Reduced","Cut","Consolidated","Simplified","Accelerated","Standardized","Reorganized","Saved"],
+    "Financial":["Budgeted","Reconciled","Allocated","Audited","Calculated","Projected","Valued","Raised","Managed","Tracked"],
+    "Teamwork":["Collaborated","Partnered","Coordinated","Co-led","Contributed","Facilitated","Mediated","Aligned","Unified","Supported"],
+  };
+  const ALLV=new Set(Object.values(VERBS).flat().map(v=>v.toLowerCase()));
+  const WEAK=["helped","responsible","worked","assisted","was","did","participated","handled","tasked","duties"];
+  $("#verbList").innerHTML=[...ALLV].map(v=>`<option value="${v[0].toUpperCase()+v.slice(1)}">`).join("");
+  const bv=$("#bv"),bc=$("#bc"),brr=$("#br");
+  function bulletText(){const v=bv.value.trim(),c=bc.value.trim(),r=brr.value.trim();
+    let s=[v?v[0].toUpperCase()+v.slice(1):"",c].filter(Boolean).join(" ");if(r)s+=(s?", ":"")+r;s=s.replace(/[.\s]+$/,"");return s?s+".":"";}
+  function bUpdate(){const s=bulletText(),v=bv.value.trim().toLowerCase().split(/\s+/)[0]||"";
+    $("#bOut").textContent=s||"Your bullet appears here.";
+    const C=[];
+    if(!v)C.push([false,"Start with an action verb."]);
+    else if(WEAK.includes(v))C.push([false,`"${bv.value.trim()}" is weak. Use a verb that shows what you did, like Led, Built, or Reduced.`]);
+    else if(ALLV.has(v)||/ed$/.test(v))C.push([true,"Starts with an action verb."]);
+    else C.push([false,"Make sure the first word is an action verb, in past tense for a past role."]);
+    C.push(/\d|%|\$|\b(one|two|three|four|five|six|seven|eight|nine|ten|dozen|hundred|thousand)\b/i.test(s)?[true,"Includes a number that shows scale or impact."]:[false,"Add a number (#, %, $) to show scale or impact."]);
+    C.push(brr.value.trim()?[true,"Ends with a result."]:[false,"Add a result: what changed because of your work?"]);
+    C.push(/\b(I|my|me|we|our)\b/.test(s)?[false,"Drop I, my, and we. Resume bullets leave out the subject."]:[true,"No first-person words."]);
+    C.push(s.length<=190?[true,`Length is fine (${s.length} characters, about ${s.length>95?"two lines":"one line"}).`]:[false,`Long (${s.length} characters). Aim for one or two lines.`]);
+    $("#bChecks").innerHTML=C.map(([ok,t])=>`<li class="${ok?"ok":"bad"}"><span class="m">${ok?"✓":"!"}</span><span>${esc(t)}</span></li>`).join("");}
+  [bv,bc,brr].forEach(x=>x.addEventListener("input",bUpdate));
+  $("#bClear").addEventListener("click",()=>{bv.value="";bc.value="";brr.value="";bUpdate();bv.focus();});
+  $("#bCopy").addEventListener("click",()=>{const s=bulletText(),t=$("#bToast");if(!s){t.textContent="Write a bullet first.";return;}
+    const done=()=>{t.textContent="Copied. Paste it into your resume.";};
+    const fail=()=>{const r=document.createRange();r.selectNodeContents($("#bOut"));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);t.textContent="Selected. Press Ctrl+C or Cmd+C to copy.";};
+    try{navigator.clipboard.writeText(s).then(done,fail);}catch(e){fail();}});
+  bUpdate();
+  const vc=$("#verbCats"),vch=$("#verbChips");
+  vc.innerHTML=Object.keys(VERBS).map((k,i)=>`<button class="btn" type="button" data-c="${k}" aria-pressed="${i===0}">${k}</button>`).join("");
+  function showVerbs(k){$$("button",vc).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.c===k)));vch.innerHTML=VERBS[k].map(v=>`<button type="button" data-v="${v}">${v}</button>`).join("");}
+  vc.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b)showVerbs(b.dataset.c);});
+  vch.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;bv.value=b.dataset.v;bUpdate();$("#bToast").textContent=`Added "${b.dataset.v}" to the builder.`;});
+  showVerbs("Analytical");
+
+  /* ---------- 08 checklist ---------- */
+  const CL=[
+    ["The page",["One page, with consistent margins","Times New Roman, 10 to 12 point, black text","Consistent alignment, spacing, and bullet style","No spelling or grammar errors (read it aloud once)"]],
+    ["Header and Education",["Phone, an email you check, and LinkedIn URL; no mailing address","Education is the first section","Full school name, location, degree, and graduation date","Cumulative USC GPA, or left off if under 3.0","Declared emphasis included in the degree line","Study abroad listed in Education"]],
+    ["Experience and bullets",["Every role has employer, location, title, and dates","Most recent first in every section","Each bullet starts with an action verb","Bullets show results, with numbers where possible","Bullets match the job you're applying for"]],
+    ["Skills and the rest",["Education, Experience, and Skills sections all included","Every language and tool has a level","LInC or GLP in Leadership & Involvement, not Education","Abbreviations consistent; no unexplained acronyms"]],
+  ];
+  const CLK="rw-marshall-cl",clSaved=store.get(CLK)||{};let clN=0;
+  $("#clList").innerHTML=CL.map(([g,items])=>`<li class="grp">${g}</li>`+items.map(t=>{const id="cl"+(clN++);return `<li><label for="${id}"><input type="checkbox" id="${id}"${clSaved[id]?" checked":""}><span>${t}</span></label></li>`;}).join("")).join("");
+  function clUpd(){const bx=$$("#clList input"),n=bx.filter(b=>b.checked).length,st={};bx.forEach(b=>{if(b.checked)st[b.id]=1;});store.set(CLK,st);
+    $("#clCount").textContent=`${n} of ${bx.length}`;$("#clFill").style.width=(n/bx.length*100)+"%";}
+  $("#clList").addEventListener("change",clUpd);
+  $("#clReset").addEventListener("click",()=>{$$("#clList input").forEach(b=>b.checked=false);clUpd();});
+  clUpd();
+
+  /* ---------- 09 rubric ---------- */
+  const LV=["Marshall Ready","Almost Ready","Needs work","Not ready"];
+  const RUB=[
+    {k:"format",n:"Format",d:["Fills one page without crowding, no spelling or grammar errors, easy to scan.","Nearly fills the page, with some uneven white space or one small error or inconsistency.","Font and spacing are hard to scan, there's more than one error, and the format isn't consistent.","Half a page or two-plus pages, a hard-to-read font, lots of white space, several errors."]},
+    {k:"edu",n:"Education",d:["School with location, graduation date, degree, GPA, study abroad, and relevant coursework, clearly organized.","Organized and readable, but one or two of those items are missing.","Has school, location, date, and degree, but nothing else and no clear order.","Missing basics, like the location, graduation date, or degree."]},
+    {k:"exp",n:"Experience",d:["Every role has employer, location, title, and dates. Action-verb bullets fit the target job and use numbers.","Action-verb bullets and full details, but the bullets don't say enough about what you achieved.","Paragraphs or vague bullets that list duties. Some locations, dates, or titles missing.","No clear order, no detail on what you did, no locations or dates."]},
+    {k:"lead",n:"Leadership & Involvement",opt:true,d:["Roles and dates listed, with action-verb bullets that show skills and numbers.","All the information is there, but it's hard to follow or light on what you did.","Describes the organizations instead of your role, or leaves out titles or dates.","Almost nothing listed: no titles, dates, or descriptions."]},
+    {k:"skills",n:"Skills & Interests",d:["Relevant technical skills and languages, each with a level. Interests are professional.","Relevant skills, but levels are missing or inconsistent.","Too few or too many skills, mostly soft skills, no levels.","Missing, or interests that read as unprofessional."]},
+    {k:"proj",n:"Academic Projects",opt:true,d:["Course, project name, and date, with action-verb bullets using the job's terms.","Clear bullets and full details, but not fully tied to the target job.","Paragraphs instead of bullets, or the course, project, or date is missing.","Missing details and no sense of what you did."]},
+  ];
+  const NEXT=["Ready to submit. Keep it updated after each new role, and ask for feedback when you change direction.","Close. Re-read the Marshall guide for what you're missing, and meet a career advisor if you'd like a second look.","Meet a Marshall career advisor to sharpen your bullets, and attend a Resume Level II workshop.","Start with a Resume Level I workshop, review the Marshall guide closely, and run your resume through the AI reviewer in Handshake."];
+  $("#rub").innerHTML=RUB.map(c=>`<fieldset data-k="${c.k}"><legend>${c.n}${c.opt?"<small>Optional section</small>":""}</legend>
+    <div class="lv${c.opt?" na":""}">${LV.map((l,i)=>`<label><input type="radio" class="l${i+1}" name="rb-${c.k}" value="${i+1}"><span>${l}</span></label>`).join("")}${c.opt?`<label><input type="radio" name="rb-${c.k}" value="0" checked><span>Not on my resume</span></label>`:""}</div>
+    <p class="desc" id="d-${c.k}">${c.opt?"Skip this if your resume doesn't have the section.":"Pick the level that fits."}</p></fieldset>`).join("");
+  function rubUpd(){let sum=0,n=0,miss=[],worst=null;
+    RUB.forEach(c=>{const v=+(($(`input[name="rb-${c.k}"]:checked`)||{}).value||-1);const d=$("#d-"+c.k);
+      if(v>0){d.textContent=c.d[v-1];sum+=v;n++;if(!worst||v>worst.v)worst={n:c.n,v};}
+      else if(v===0){d.textContent="Skipped: this section isn't on your resume.";}
+      else{miss.push(c.n);}});
+    const box=$("#verdict");
+    if(miss.length){box.className="verdict";box.innerHTML=`<b>${miss.length} section${miss.length>1?"s":""} left to score</b><p>Still to pick: ${miss.join(", ")}.</p>`;return;}
+    const avg=sum/n,lvl=avg<1.5?1:avg<2.5?2:avg<3.5?3:4;
+    box.className="verdict"+(lvl===1?" v1":"");
+    box.innerHTML=`<b>Overall: ${LV[lvl-1]}</b><p>${NEXT[lvl-1]}</p>${worst&&worst.v>1?`<p class="note">Start with your weakest section: ${worst.n} (${LV[worst.v-1]}).</p>`:""}`;}
+  $("#rub").addEventListener("change",rubUpd);rubUpd();
+
+  /* ---------- 11 test ---------- */
+  const TEST=[
+    {q:"Which font does the Marshall format use?",o:["Arial, 11 point","Times New Roman, 10 to 12 point, black","Any font, as long as it's consistent","Calibri, 9 to 10 point"],a:1,w:"Times New Roman at 10 to 12 point, in black text."},
+    {q:"Which section goes at the top, under your header?",o:["Experience","Skills","Education","Leadership & Involvement"],a:2,w:"Education always comes first in the Marshall format."},
+    {q:"Which three sections are required?",o:["Education, Experience, Skills","Education, Interests, Projects","Experience, Leadership, Skills","Summary, Experience, Skills"],a:0,w:"Leadership & Involvement, Academic Projects, and Interests are optional."},
+    {q:"Your cumulative GPA is 2.9. What does Marshall say?",o:["You must list it","You may leave it off","List your major GPA instead","Round it to 3.0"],a:1,w:"Below 3.0, you may consider leaving it off. Never round up."},
+    {q:"Where does a semester abroad go?",o:["Experience","Leadership & Involvement","Education","Skills & Interests"],a:2,w:"Study abroad must be in Education."},
+    {q:"Where does LInC go?",o:["Education","Leadership & Involvement","Experience","It shouldn't be listed"],a:1,w:"LInC and GLP go in Leadership & Involvement, not Education."},
+    {q:"What does Marshall not recommend putting in your header?",o:["Your LinkedIn URL","Your phone number","Your mailing address","An email you check"],a:2,w:"Phone, email, and LinkedIn. Skip the mailing address."},
+    {q:"Which bullet is strongest?",o:["Responsible for the club's budget.","Helped with budgeting.","Managed a $12K club budget, cutting event costs 15% by consolidating vendors.","I was the treasurer and did the budget."],a:2,w:"Action, context, and a measurable result."},
+    {q:"What does reverse chronological order mean?",o:["Oldest first","Most recent first","Most important first","Alphabetical"],a:1,w:"Within each section, the most recent experience goes first."},
+    {q:"You've declared an emphasis in Finance. Where does it go?",o:["In Skills","In parentheses in your degree line","Nowhere, since it's not a degree","In Relevant Coursework"],a:1,w:"For example: Bachelor of Science, Business Administration (emphasis in Finance) – STEM Designated."},
+  ];
+  const DONE_MSG=(r,t)=>`<b>${r} of ${t}.</b> `+(r>=9?"You know the format. Run the checklist on your own resume, then score it.":r>=6?"Close. Re-read the parts you missed on the sample resume in step 03.":"Take the tour in step 03 once more, then retake the test.");
+
+  /* Same job, different resume: Marshall tracks. [[word]] marks the words tailored to each field.
+     Items 1 to 3 are stand-ins shaped like real student roles; swap in real ones by editing org, title, dates, and bullets. */
+  const PV={
+    tracks:[
+      {k:"consult",n:"Consulting",c:"#2a78d6",tint:"#dbe9fb",lead:"problem solving",d:"diagnose, analyze, recommend"},
+      {k:"acct",n:"Accounting",c:"#0c7a3e",tint:"#d9f2e2",lead:"accuracy with numbers",d:"reconcile, track, report"},
+      {k:"mktg",n:"Marketing",c:"#b8337a",tint:"#fbe0ee",lead:"the customer",d:"research, audiences, campaigns"},
+      {k:"badm",n:"Business Admin",c:"#8a6200",tint:"#fff0c2",lead:"getting things done",d:"people, process, results"},
+    ],
+    items:[
+      {tag:"Consulting project",org:"Pacific Crest Zoo",loc:"Los Angeles, CA",title:"Student Consultant (club client project)",dates:"January 2025 - May 2025",v:{
+        consult:{b:["Interviewed 12 zoo staff and [[surveyed 400 visitors]] to [[diagnose]] why weekday attendance trailed weekends by 40%.","Built an Excel [[revenue model]] and [[benchmarked]] six peer zoos, [[recommending]] a weekday membership tier projected to add $250K a year."],note:"Opens with the diagnosis, then the analysis, then a recommendation with a dollar impact. That's the arc a consulting interviewer listens for."},
+        acct:{b:["Analyzed three years of [[ticket and membership revenue]], [[reconciling]] figures across two reporting systems into one clean baseline.","Built a [[revenue forecast]] and [[break-even analysis]] for a new membership tier projected to add $250K a year."],note:"Same project, but the data work moves to the front: reconciling, forecasting, break-even. The visitor survey drops out."},
+        mktg:{b:["[[Surveyed 400 visitors]] to [[segment]] weekday guests, identifying [[young families]] as the most likely new members.","Designed a weekday family membership and a [[social media launch plan]] to grow weekday attendance."],note:"Leads with customer research and the audience you found. The Excel model is cut to make room for the campaign."},
+        badm:{b:["[[Coordinated]] a five-person team through a 10-week [[project plan]], running weekly check-ins with the zoo's leadership.","[[Presented]] a membership [[strategy]] to the executive director, combining visitor research and an Excel model."],note:"Shows you can run a project and present to senior leaders, which every business role needs."}}},
+      {tag:"Startup internship",org:"Casa Agave Mezcal",loc:"Los Angeles, CA",title:"Brand and Operations Intern",dates:"June 2024 - August 2024",v:{
+        consult:{b:["[[Analyzed]] sales across 40 retail accounts and found the eight stores driving 60% of volume, shaping where the founder [[focused distribution]].","[[Benchmarked]] pricing for 12 competing brands and [[recommended]] a price point for a new bottle size."],note:"Turns everyday startup work into analysis and recommendations a client team would use."},
+        acct:{b:["[[Reconciled]] monthly invoices and payments for 40 retail accounts, catching $6K in [[unbilled orders]].","Tracked [[inventory]] for three products and prepared [[monthly sales reports]] for the founder's [[cash planning]]."],note:"Leads with accuracy: invoices, inventory, and reports. The $6K catch proves attention to detail."},
+        mktg:{b:["Planned eight in-store [[tasting events]] that introduced the brand to 600+ customers and lifted [[sell-through]] at host stores by 20%.","Created [[Instagram content]] for a product launch, growing followers from 2,100 to 3,400 in three months."],note:"Leads with events and social growth, the parts of the job a brand team cares about most."},
+        badm:{b:["Managed [[inventory and order fulfillment]] for 40 retail accounts, keeping stockouts under 2%.","[[Coordinated]] deliveries and events with distributors, retailers, and the founder across Los Angeles."],note:"Frames the role as operations: keeping a small business running smoothly."}}},
+      {tag:"Finance internship",org:"Harbor Rock Capital Partners",loc:"Los Angeles, CA",title:"Summer Analyst",dates:"June 2025 - August 2025",v:{
+        consult:{b:["[[Researched]] three industries and [[synthesized]] findings into market overviews that shaped which deals the partners pursued.","Built [[comparable company analyses]] for 15 targets, helping the team [[prioritize]] four for deeper diligence."],note:"Puts research, synthesis, and prioritizing first: the core of consulting work."},
+        acct:{b:["Reviewed three years of target companies' [[financial statements]], adjusting EBITDA for [[one-time items]] in deal models.","Tracked [[monthly KPIs]] for six portfolio companies and flagged [[variances]] against budget for the partners."],note:"Leads with financial statements, adjustments, and variance analysis."},
+        mktg:{b:["Drafted [[investor update]] decks and one-page [[company profiles]] sent to 50+ investors.","[[Researched]] consumer brands' [[customer acquisition]] trends to support a pitch on a direct-to-consumer company."],note:"Highlights storytelling and customer research. A finance job can still show marketing skills."},
+        badm:{b:["[[Organized]] a 300-document [[data room]] and managed diligence requests between the firm, lawyers, and the target.","Supported three partners on deal screening, [[scheduling]], and [[investment committee]] materials."],note:"Shows organization and reliability under real deadlines."}}},
+      {tag:"Campus job",org:"Trojan Coffee Co.",loc:"Los Angeles, CA",title:"Shift Lead (part-time)",dates:"September 2024 - May 2026",v:{
+        consult:{b:["[[Timed]] the morning order line and [[redesigned]] the station layout, cutting average waits from nine minutes to five.","Proposed a [[staffing schedule]] based on [[hourly sales data]], which the store manager adopted."],note:"A coffee job, told as a process problem you measured and fixed."},
+        acct:{b:["[[Reconciled]] the register for 300+ daily transactions with zero discrepancies over two semesters.","Counted [[weekly inventory]] and tracked [[waste]], helping cut spoiled stock costs 15%."],note:"Cash handling and inventory are real accounting skills. Lead with them."},
+        mktg:{b:["Launched a [[student loyalty card]] that brought in 250 sign-ups in its first month.","Ran the store's [[Instagram specials]], lifting afternoon sales 10% on promoted days."],note:"Leads with winning and keeping customers."},
+        badm:{b:["Trained eight new baristas on [[service standards]], raising the store's customer rating from 4.2 to 4.7.","[[Scheduled]] shifts for 12 staff and ran [[opening and closing]] procedures."],note:"Shows leadership and operations, which fit almost any business role."}}},
+      {tag:"Student leadership",org:"Trojan Business Collective",loc:"Los Angeles, CA",title:"Treasurer",dates:"September 2025 - Present",v:{
+        consult:{b:["[[Analyzed]] four years of event attendance and costs and [[recommended]] cutting two low-turnout events, freeing $3K for career programs.","[[Survey]] 150 members each semester and [[present findings]] to the executive board."],note:"Club work told as analysis plus a recommendation with a number. For a role you still hold, ongoing work is in present tense and finished wins in past tense."},
+        acct:{b:["Manage a [[$40K annual budget]] and [[track every expense]] against plan, finishing last year 5% under budget.","[[Reconcile]] the club's bank account monthly and prepare [[financial reports]] for student government funding reviews."],note:"A treasurer role is accounting experience: budget, reconcile, report."},
+        mktg:{b:["Pitch local firms on [[recruiting-event sponsorships]], growing sponsorship revenue from $5K to $12K.","[[Promote]] the fall career fair through [[email and Instagram campaigns]], drawing 400 attendees, up from 250."],note:"Sponsorships and turnout are marketing results. Same role, new lead."},
+        badm:{b:["[[Coordinate]] budgeting and purchasing for 12 events a year with a 10-person executive board.","Built a [[shared expense tracker]] in Google Sheets, cutting reimbursement time from three weeks to one."],note:"Shows you can run the operations of an organization."}}},
+    ],
+  };
+
+  /* ---------- same job, different resume (expects PV and REVIEW_FORM) ---------- */
+  (function(){
+    const box=$("#pvList");if(!box||typeof PV==="undefined")return;
+    const T=PV.tracks,tv=t=>`--tline:${t.c};--ttint:${t.tint}`;
+    const kw=s=>esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="kw">$1</span>');
+    const kws=s=>[...s.matchAll(/\[\[(.+?)\]\]/g)].map(m=>m[1]);
+    $("#pvLegend").innerHTML=T.map(t=>`<span style="${tv(t)}"><i></i><b>${t.n}</b>&nbsp;${t.d}</span>`).join("");
+    const head=it=>`<p class="rl"><span><b>${esc(it.org)}</b></span><span>${esc(it.loc)}</span></p><p class="rl"><span><i>${esc(it.title)}</i></span><span>${esc(it.dates)}</span></p>`;
+    box.innerHTML=PV.items.map((it,i)=>`<article class="pv" data-i="${i}">
+      <button class="pv-head" type="button" aria-expanded="false" aria-controls="pvb${i}">
+        <span><span class="pv-tag">${esc(it.tag)}</span><span class="pv-org">${esc(it.org)}</span><span class="pv-role">${esc(it.title)} · ${esc(it.dates)}</span></span>
+        <span class="pv-cta">Tailor it ▾</span>
+      </button>
+      <div class="pv-body" id="pvb${i}" hidden>
+        <p class="pv-ask">Tailor this job for</p>
+        <div class="pv-tracks" role="group" aria-label="Tailor ${esc(it.org)} for">${T.map((t,k)=>`<button type="button" data-t="${t.k}" style="${tv(t)}" aria-pressed="${k===0}"><i></i>${t.n}</button>`).join("")}</div>
+        <div class="paper pv-paper">${head(it)}<ul class="pv-ul"></ul></div>
+        <div class="pv-why" aria-live="polite"></div>
+        <div class="pv-act"><button class="btn small pv-all" type="button" aria-expanded="false">See all four side by side</button></div>
+        <div class="pv-four" hidden>${T.map(t=>`<div class="paper" style="${tv(t)}"><h4><i></i>${t.n}</h4><ul>${it.v[t.k].b.map(b=>`<li>${kw(b)}</li>`).join("")}</ul></div>`).join("")}</div>
+      </div></article>`).join("");
+    function show(art,tk){const it=PV.items[+art.dataset.i],t=T.find(x=>x.k===tk),v=it.v[tk];
+      $$(".pv-tracks button",art).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===tk)));
+      const pap=$(".pv-paper",art);pap.setAttribute("style",tv(t));
+      const ul=$(".pv-ul",art);ul.innerHTML=v.b.map(b=>`<li>${kw(b)}</li>`).join("");ul.classList.remove("pv-fade");void ul.offsetWidth;ul.classList.add("pv-fade");
+      $(".pv-why",art).innerHTML=`<span class="lead">${t.n} version · leads with ${esc(t.lead)}</span><p>${esc(v.note)}</p><div class="pv-kws">${kws(v.b.join(" ")).map(k=>`<span>${esc(k)}</span>`).join("")}</div>`;}
+    box.addEventListener("click",e=>{
+      const h=e.target.closest(".pv-head");
+      if(h){const art=h.closest(".pv"),open=!art.classList.contains("open");
+        $$(".pv",box).forEach(a=>{if(a!==art&&a.classList.contains("open")){a.classList.remove("open");$(".pv-body",a).hidden=true;$(".pv-head",a).setAttribute("aria-expanded","false");$(".pv-cta",a).textContent="Tailor it ▾";}});
+        art.classList.toggle("open",open);$(".pv-body",art).hidden=!open;h.setAttribute("aria-expanded",String(open));$(".pv-cta",art).textContent=open?"Close ▴":"Tailor it ▾";
+        if(open){show(art,($('.pv-tracks button[aria-pressed="true"]',art)||{}).dataset?.t||T[0].k);if(art.getBoundingClientRect().top<70)art.scrollIntoView({block:"start"});}
+        return;}
+      const tb=e.target.closest(".pv-tracks button");if(tb){show(tb.closest(".pv"),tb.dataset.t);return;}
+      const all=e.target.closest(".pv-all");if(all){const f=$(".pv-four",all.closest(".pv")),o=f.hidden;f.hidden=!o;all.setAttribute("aria-expanded",String(o));all.textContent=o?"Hide side-by-side view":"See all four side by side";}
+    });
+  })();
+  (function(){const rl=$("#reviewLink");if(!rl)return;
+    if(/^https:\/\//.test(REVIEW_FORM)){rl.href=REVIEW_FORM;}
+    else{rl.removeAttribute("href");rl.setAttribute("aria-disabled","true");rl.classList.add("off");rl.textContent="Review form opens soon";}})();
+  const testq=$("#testq");
+  TEST.forEach((t,n)=>{const d=document.createElement("div");d.className="mc";d.dataset.answer=t.a;d.dataset.group="test";
+    d.innerHTML=`<div class="mc-head"><p class="stem" data-say="Question ${n+1}. ${t.q.replace(/"/g,"&quot;")}"><span class="qn">Q${n+1}</span>${t.q}</p><button class="btn small qlisten" type="button" aria-label="Listen to question ${n+1}">Listen</button></div>
+      <div class="opts">${t.o.map(o=>`<button class="opt" type="button" data-say="${o.replace(/"/g,"&quot;")}">${o}</button>`).join("")}</div>
+      <div class="why" hidden><p data-say="${t.w.replace(/"/g,"&quot;")}">${t.w}</p></div>`;
+    testq.appendChild(d);});
+
+  /* ---------- multiple choice engine ---------- */
+  function setupMC(mc){const opts=$$(".opt",mc);
+    opts.forEach((o,i)=>{if(!o.querySelector(".L")){const x=document.createElement("span");x.className="x";while(o.firstChild)x.appendChild(o.firstChild);
+        const L=document.createElement("span");L.className="L";L.textContent=LET[i];o.append(L,x);
+        o.dataset.say=LET[i]+". "+(o.dataset.say||x.textContent);}
+      o.addEventListener("click",()=>answer(mc,i));});}
+  function answer(mc,i){if(mc.dataset.done)return;mc.dataset.done="1";const a=+mc.dataset.answer,opts=$$(".opt",mc);
+    opts.forEach((o,k)=>{o.disabled=true;if(k===a){o.classList.add("right");o.insertAdjacentHTML("beforeend",`<span class="tag">✓ ${k===i?"Correct":"Answer"}</span>`);}
+      else if(k===i){o.classList.add("wrong");o.insertAdjacentHTML("beforeend",`<span class="tag">✕ Your pick</span>`);}});
+    mc.dataset.correct=String(i===a);$(".why",mc).hidden=false;if(mc.dataset.group==="test")score();}
+  function resetMC(mc){delete mc.dataset.done;delete mc.dataset.correct;$$(".opt",mc).forEach(o=>{o.disabled=false;o.classList.remove("right","wrong");const t=$(".tag",o);if(t)t.remove();});$(".why",mc).hidden=true;}
+  $$(".mc").forEach(setupMC);
+  function score(){const qs=$$('.mc[data-group="test"]'),done=qs.filter(q=>q.dataset.done),right=done.filter(q=>q.dataset.correct==="true").length;
+    $("#score").innerHTML=`${right} / ${done.length}<small>answered ${done.length} of ${qs.length}</small>`;
+    const box=$("#done");if(done.length===qs.length){box.hidden=false;
+      box.innerHTML=typeof DONE_MSG==="function"?DONE_MSG(right,qs.length):`<b>${right} of ${qs.length}.</b> `+(right>=11?"You're ready. Run the recommendation in step 09 out loud once more and get some sleep.":right>=8?"Solid. Re-read the explanations you missed, then run steps 04 and 09 out loud.":"Go back to the primer in step 01, then retake the test. The terms will stick on the second pass.");}
+    else box.hidden=true;}
+  $("#resetTest").addEventListener("click",()=>{$$('.mc[data-group="test"]').forEach(resetMC);score();$("#test").scrollIntoView();});
+  score();
+
+  /* ---------- read aloud, with a voice menu ---------- */
+  const synth=window.speechSynthesis,rateSel=$("#rate"),vSel=$("#voicePick");
+  try{const r=localStorage.getItem(PAGEKEY+"-rate");if(r)rateSel.value=r;}catch(e){}
+  rateSel.addEventListener("change",()=>{try{localStorage.setItem(PAGEKEY+"-rate",rateSel.value);}catch(e){}});
+  let speakingBtn=null,voice=null,voices=[];
+  const vrank=v=>(/natural|neural/i.test(v.name)?0:/premium/i.test(v.name)?1:/enhanced/i.test(v.name)?2:/google/i.test(v.name)?3:4)+(/^en[-_]US/i.test(v.lang)?0:.5);
+  function loadVoices(){
+    if(!synth)return;
+    voices=synth.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>vrank(a)-vrank(b)||a.name.localeCompare(b.name));
+    if(!vSel)return;
+    let saved=null;try{saved=localStorage.getItem(PAGEKEY+"-voice");}catch(e){}
+    vSel.innerHTML=voices.length?voices.map((v,i)=>`<option value="${i}">${v.name.replace(/[<>&"]/g,"")}${vrank(v)<2?" (natural)":""}</option>`).join(""):'<option value="">Browser default</option>';
+    let idx=voices.findIndex(v=>v.name===saved);if(idx<0)idx=0;
+    if(voices.length)vSel.value=String(idx);voice=voices[idx]||null;
+  }
+  if(vSel)vSel.addEventListener("change",()=>{voice=voices[+vSel.value]||null;try{localStorage.setItem(PAGEKEY+"-voice",voice?voice.name:"");}catch(e){}});
+  loadVoices();
+  if(synth&&"onvoiceschanged" in synth)synth.addEventListener("voiceschanged",loadVoices);
+  function textOf(el){return(el.getAttribute("data-say")||el.innerText||"").replace(/\s+/g," ").trim();}
+  function visible(el){return!!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+  function stop(){if(synth)synth.cancel();if(speakingBtn){speakingBtn.textContent=speakingBtn.dataset.label;speakingBtn.setAttribute("aria-pressed","false");speakingBtn=null;}}
+  function speakChunks(btn,chunks){
+    if(!synth||!chunks.length)return;
+    if(speakingBtn===btn){stop();return;}
+    stop();
+    speakingBtn=btn;btn.dataset.label=btn.dataset.label||btn.textContent;btn.textContent="Stop";btn.setAttribute("aria-pressed","true");
+    chunks.forEach((c,i)=>{const u=new SpeechSynthesisUtterance(c);u.rate=+rateSel.value;if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang="en-US";
+      if(i===chunks.length-1)u.onend=()=>{if(speakingBtn===btn)stop();};synth.speak(u);});
+  }
+  function speak(btn,els){const chunks=[];els.filter(visible).forEach(el=>{textOf(el).split(/(?<=[.?!])\s+(?=[A-Z0-9"“])/).forEach(c=>{if(c)chunks.push(c);});});speakChunks(btn,chunks);}
+  if(!synth){$$(".listen,.qlisten").forEach(b=>b.hidden=true);$(".speed").hidden=true;const vb=$(".voicebar");if(vb)vb.hidden=true;}
+  else{
+    $$(".listen").forEach(b=>{b.dataset.label=b.textContent;b.addEventListener("click",()=>{const sec=b.closest("section");speak(b,$$("[data-say]",sec).filter(el=>!el.parentElement.closest("[data-say]")));});});
+    document.addEventListener("click",e=>{const b=e.target.closest(".qlisten");if(!b)return;const mc=b.closest(".mc");speak(b,$$("[data-say]",mc).filter(el=>!el.parentElement.closest("[data-say]")));});
+    const vt=$("#voiceTest");if(vt){vt.dataset.label=vt.textContent;vt.addEventListener("click",()=>speakChunks(vt,["Hi. This is how I'll read your case.","Pick another voice if this one sounds robotic."]));}
+  }
+  /* ---------- rail highlight ---------- */
+  const chips=$$("#chips a"),map=new Map(chips.map(a=>[a.getAttribute("href").slice(1),a]));
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){chips.forEach(c=>c.classList.remove("on"));const a=map.get(en.target.id);if(a){a.classList.add("on");const p=a.parentElement;p.scrollTo({left:a.offsetLeft-p.clientWidth/2+a.offsetWidth/2,behavior:"smooth"});}}});},{rootMargin:"-45% 0px -50% 0px"});
+    $$("section.step").forEach(s=>io.observe(s));
+  }
+})();
+</script>
+</body></html>
