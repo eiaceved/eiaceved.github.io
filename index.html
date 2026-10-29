@@ -20,7 +20,10 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 .brand{padding:22px 20px 16px;border-bottom:1px solid var(--line)}
 .brand .kicker{font-family:Archivo,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 .brand h1{font-family:Archivo,sans-serif;font-weight:800;font-size:19px;margin:6px 0 2px}
-.brand .alpha{display:inline-block;font:800 9.5px/1 Archivo,sans-serif;letter-spacing:.18em;color:#fff;background:#b3402f;border-radius:4px;padding:3px 7px;margin-bottom:5px}
+.brand .alpha{display:inline-block;position:relative;overflow:hidden;font:700 12px/1 Archivo,sans-serif;letter-spacing:.02em;color:#43305a;background:linear-gradient(100deg,#fde2e4 0%,#fad2e1 22%,#fff3d6 40%,#e2ece9 58%,#d8e2f3 76%,#ecd5f0 100%);border:1px solid rgba(255,255,255,.85);border-radius:999px;padding:5px 13px;margin-bottom:6px;box-shadow:0 1px 4px rgba(19,32,42,.18)}
+.brand .alpha::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.9) 50%,transparent 100%);animation:ashine 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes ashine{0%{left:-70%}55%,100%{left:135%}}
+@media(prefers-reduced-motion:reduce){.brand .alpha::after{animation:none}}
 .brand p{margin:0;font-size:13px;color:var(--muted)}
 .nav{padding:12px 12px 4px;flex:1;overflow-y:auto}
 .nav .label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px}
@@ -187,7 +190,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 <div class="app">
   <aside class="sidebar">
     <div class="brand">
-      <span class="alpha">ALPHA</span>
+      <span class="alpha">Alpha</span>
       <h1 style="margin:0;color:var(--accent)">CaseQuarters</h1>
       <p style="font-family:Archivo,sans-serif;font-weight:800;font-size:16px;margin:8px 0 1px;padding-left:16px;color:#000">Evelyn Jones&#39;</p>
       <p style="font-size:12.5px;padding-left:30px;margin:0">one stop shop</p>
