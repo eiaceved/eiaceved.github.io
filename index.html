@@ -40,9 +40,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 .group.box>summary .meta{font-size:12.5px;color:var(--muted);display:block;margin-top:1px}
 .group.box>summary::after{content:'\25BE';margin-left:auto;font-size:10px;color:var(--muted);transition:transform .15s ease}
 .group.box[open]>summary::after{transform:rotate(180deg)}
-.sidebar-foot{padding:14px 20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
-.sidebar-foot a{color:var(--accent);font-weight:600;text-decoration:none}
-.sidebar-foot a:hover{text-decoration:underline}
 .stage{flex:1;min-width:0;display:flex;flex-direction:column}
 .welcome{flex:1;display:flex;align-items:center;justify-content:center;padding:40px}
 .welcome-card{max-width:520px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:34px 38px;box-shadow:0 1px 3px rgba(19,32,42,.06)}
@@ -151,7 +148,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 }
 .stage .intro{flex:1;min-height:0;overflow-y:auto}
 
-.updates-box{margin:0 16px 12px;background:#FFF6C9;border:1.5px solid #E4B429;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.5;max-height:190px;overflow-y:auto;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.updates-box{margin:2px 4px 12px;background:#FFF6C9;border:1.5px solid #E4B429;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .updates-title{font-weight:700;font-size:13px;color:#7a5c00;margin-bottom:6px;display:flex;align-items:center;gap:5px}
 .updates-sparkle{display:inline-block;animation:sparkle 1.8s ease-in-out infinite}
 @keyframes sparkle{0%,100%{opacity:.35;transform:scale(.85) rotate(0deg)}50%{opacity:1;transform:scale(1.2) rotate(8deg)}}
@@ -159,7 +156,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 .updates-list li{margin:0 0 7px}
 .updates-list li:last-child{margin-bottom:0}
 .updates-list b{color:#8a6d00}
-@media(max-width:720px){.updates-box{max-height:none}}
 </style>
 </head>
 <body>
@@ -373,20 +369,20 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
         <span class="meta">The daily listen rotation · checked every morning</span>
       </a>
       </details>
-    </nav>
     <div class="updates-box">
       <div class="updates-title">Updates <span class="updates-sparkle">✨</span></div>
       <ul class="updates-list">
+        <li><b>Oct 29</b> · Rebranded to CaseQuarters and moved to its own address: casequarters.com (old links still forward)</li>
+        <li><b>Oct 28</b> · Resume refreshed with the CaseQuarters name and the new address</li>
         <li><b>Oct 27</b> · Ask Anything board joined Community; resume refreshed with the hub</li>
         <li><b>Oct 26</b> · Mock cases moved up front in red with a new intro bubble; sidebar reshuffled (Read Daily and Front Page under Start here, Relationships added to Markets)</li>
         <li><b>Oct 25</b> · Framework builder added to the cases: build your own framework, your buckets, and a why-it-matters note for every piece; Community group launched (Manifest board + Success stories); Markets gained live dashboards with a watchlist; Read Daily, Podcasts and Front Page added</li>
         <li><b>Oct 24</b> · Start Here became the landing page; GPS Ridgeline added to Deloitte; Unicloth (Wharton Casebook 2017) added to MBB; casebook renamed Top Business Schools with school colors</li>
-        <li><b>Oct 22</b> · Skills launched: Case Math split into 12 topics, finance study guide added, Behavioral Prep highlighted in red; cases nested by firm in firm colors; new PwC cases (Luxury Hotel Entry, Hair Restore)</li>
+        <li><b>Oct 22</b> · Skills launched: Case Math split into 12 topics, finance study guide added, Behavioral Prep highlighted in red; cases nested by firm in firm colors; new PwC cases (Luxury Hotel Entry, Hair Restore); 50-scenario SJT practice test added to Behavioral Prep</li>
         <li><b>Oct 21</b> · CoffeeCo, FashionCo and both KPMG cases joined the hub; MBB and Big 4 became dropdown groups</li>
       </ul>
     </div>
-    
-        
+    </nav>
     </aside>
   <main class="stage">
     <div class="intro" id="intro" style="display:none">
