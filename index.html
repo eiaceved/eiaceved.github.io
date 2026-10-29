@@ -166,9 +166,9 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
 <div class="app">
   <aside class="sidebar">
     <div class="brand">
-      <span class="kicker">Case practice hub</span>
-      <h1>Evelyn Jones</h1>
-      <p>Interactive mock cases for casing practice</p>
+      <span class="kicker">The website room</span>
+      <h1>CaseQuarters</h1>
+      <p style="padding-left:14px">Evelyn Jones&#39; one stop shop</p>
     </div>
     <nav class="nav" id="nav">
       <a class="case-link" href="#start" id="start-link">
@@ -385,9 +385,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
         <li><b>Oct 21</b> · CoffeeCo, FashionCo and both KPMG cases joined the hub; MBB and Big 4 became dropdown groups</li>
       </ul>
     </div>
-    <div class="sidebar-foot">
-      <a id="fullscreen-link" href="/" target="_blank" rel="noopener" hidden>Open this case full screen →</a>
-    </div>
+    
         
     </aside>
   <main class="stage">
@@ -594,7 +592,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
   var frame = document.getElementById('caseframe');
   var welcome = document.getElementById('welcome');
   var openfull = document.getElementById('openfull');
-  var fslink = document.getElementById('fullscreen-link');
   var intro = document.getElementById('intro');
   var current = null;
   function select(slug){
@@ -608,9 +605,7 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     welcome.style.display = 'none';
     intro.style.display = 'none';
     openfull.style.display = 'block';
-    fslink.hidden = false;
     openfull.href = link.getAttribute('data-src');
-    fslink.href = link.getAttribute('data-src');
     var ds = link.getAttribute('data-src'), frag = '';
     var hi = ds.indexOf('#');
     if(hi > -1){ frag = ds.slice(hi); ds = ds.slice(0, hi); }
@@ -644,7 +639,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     intro.style.display = 'block';
     openfull.style.display = 'none';
     frame.style.display = 'none';
-    fslink.hidden = true;
   }
   function showWelcome(){
     current = null;
@@ -653,7 +647,6 @@ body{margin:0;font:15px/1.5 "Source Sans 3",system-ui,sans-serif;background:var(
     welcome.style.display = 'flex';
     openfull.style.display = 'none';
     frame.style.display = 'none';
-    fslink.hidden = true;
   }
   links.forEach(function(l){ l.addEventListener('click', function(e){ e.preventDefault(); location.hash = l.getAttribute('href').slice(1); }); });
   window.addEventListener('hashchange', function(){
